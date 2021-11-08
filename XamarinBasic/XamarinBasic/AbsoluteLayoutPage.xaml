@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.AbsoluteLayoutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0.5, 0, 1, 0.5"
+                AbsoluteLayout.LayoutFlags="All"
+                Color="Red" />
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0.5, 0.1, 200, 200"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Green" />
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0.5, 1,1, 0.5"
+                AbsoluteLayout.LayoutFlags="SizeProportional,YProportional"
+                Color="AntiqueWhite" />
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0.5, 250, 100, 100"
+                AbsoluteLayout.LayoutFlags="XProportional"
+                Color="Blue" />
+            <Button
+                AbsoluteLayout.LayoutBounds="0.5, 0.7, 100, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Text="Click" />
+
+            <BoxView AbsoluteLayout.LayoutBounds="50, 50, 30, 60" Color="Green" />
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

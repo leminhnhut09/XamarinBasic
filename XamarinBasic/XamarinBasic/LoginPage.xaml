@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Login">
+    <ContentPage.Content>
+        <StackLayout Margin="0,20,0,0" Padding="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="CenterAndExpand"
+                Text="Login"
+                TextColor="Black"
+                TextTransform="Uppercase"
+                WidthRequest="100" />
+            <Label
+                Margin="0,100,0,0"
+                FontSize="18"
+                Text="User name" />
+            <Entry x:Name="txtUserName" Placeholder="Enter your user name" />
+            <Label FontSize="18" Text="Password" />
+            <Entry
+                x:Name="txtPassWord"
+                IsPassword="True"
+                Placeholder="Enter your password" />
+            <StackLayout Margin="0,20,0,0" Orientation="Horizontal">
+                <Button
+                    x:Name="btnLogin"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Sign In"
+                    TextTransform="Uppercase"
+                    WidthRequest="180" />
+                <Button
+                    x:Name="btnRegister"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Sign Up"
+                    TextTransform="Uppercase"
+                    WidthRequest="180" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

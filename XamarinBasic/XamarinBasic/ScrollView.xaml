@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.ScrollView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Scroll View">
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView
+                x:Name="MyScrollView"
+                Orientation="Both"
+                Scrolled="MyScrollView_Scrolled">
+                <StackLayout
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="StartAndExpand">
+                    <BoxView
+                        BackgroundColor="Red"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                    <BoxView
+                        BackgroundColor="Orange"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                    <BoxView
+                        BackgroundColor="Yellow"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                    <BoxView
+                        BackgroundColor="GreenYellow"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                    <BoxView
+                        BackgroundColor="Green"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                    <BoxView
+                        BackgroundColor="Cyan"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                    <BoxView
+                        BackgroundColor="Blue"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                    <BoxView
+                        BackgroundColor="Purple"
+                        HeightRequest="1000"
+                        WidthRequest="100" />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

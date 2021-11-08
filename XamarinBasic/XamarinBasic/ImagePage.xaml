@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.ImagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Image">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Local image" />
+            <Image
+                x:Name="imgImage1"
+                HeightRequest="100"
+                Source="image.png"
+                WidthRequest="200" />
+            <Label Text="DownLoad image" />
+            <Image
+                x:Name="imgImage2"
+                HeightRequest="100"
+                Source="https://csc.edu.vn/data/images/tin-tuc/lap-trinh-di-dong/tin-cong-nghe-ltdd/gioi-thieu-xamarin/xamarin-2.png"
+                WidthRequest="200" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
