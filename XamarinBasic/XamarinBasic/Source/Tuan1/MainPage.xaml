@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Controls and layout">
+
+    <StackLayout Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!--  Controls  -->
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="Controls"
+                TextColor="SeaGreen" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Clicked="ButtonLogin_Clicked"
+                Text="Label - Button" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Clicked="ButtonSlider_Clicked"
+                Text="Slider - Editor" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Clicked="ButtonWebView_Clicked"
+                Text="Web View" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Clicked="ButtonImage_Clicked"
+                Text="Image" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Clicked="ButtonBoxView_Clicked"
+                Text="Box View" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Clicked="ButtonDateAndTime_Clicked"
+                Text="Date And Time" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                Clicked="ButtonProgressBar_Clicked"
+                Text="ProgressBar" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                Clicked="ButtonListView_Clicked"
+                Text="List View" />
+            <!--  Layouts  -->
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="Layouts"
+                TextColor="SeaGreen" />
+            <Button
+                Grid.Row="6"
+                Grid.Column="0"
+                Clicked="ButtonGridLayout_Clicked"
+                Text="Grid Layout" />
+            <Button
+                Grid.Row="6"
+                Grid.Column="1"
+                Clicked="ButtonScrollView_Clicked"
+                Text="Scoll View" />
+            <Button
+                Grid.Row="7"
+                Grid.Column="0"
+                Clicked="ButtonAbsoluteLayout_Clicked"
+                Text="Absolute Layout" />
+            <Button
+                Grid.Row="7"
+                Grid.Column="1"
+                Clicked="ButtonRelativeLayout_Clicked"
+                Text="Relative Layout" />
+            <Button
+                Grid.Row="8"
+                Grid.Column="0"
+                Clicked="ButtonStackLayout_Clicked"
+                Text="Stack Layout" />
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
