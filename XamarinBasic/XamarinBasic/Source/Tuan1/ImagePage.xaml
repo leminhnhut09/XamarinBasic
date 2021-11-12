@@ -8,13 +8,13 @@
         <StackLayout Padding="20">
             <Label Text="Local image" />
             <Image
-                x:Name="imgImage1"
+                x:Name="theFirstImage"
                 HeightRequest="100"
                 Source="image.png"
                 WidthRequest="200" />
             <Label Text="DownLoad image" />
             <Image
-                x:Name="imgImage2"
+                x:Name="theSecondImage"
                 HeightRequest="100"
                 Source="https://csc.edu.vn/data/images/tin-tuc/lap-trinh-di-dong/tin-cong-nghe-ltdd/gioi-thieu-xamarin/xamarin-2.png"
                 WidthRequest="200" />

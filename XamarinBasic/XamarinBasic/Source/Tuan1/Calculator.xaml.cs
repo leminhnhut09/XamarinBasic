@@ -20,107 +20,119 @@ namespace XamarinBasic.Source.Tuan1
         {
             InitializeComponent();
         }
-        private void btnCommon_Clicked(object sender, EventArgs e)
-        {
-            Button buttonClick = (Button)sender;
-            if (isShowResult)
-            {
-                isShowResult = false;
-                lblResult.Text = "0";
-                lblSubResult.Text = "";
-            }
 
-            if (lblResult.Text.Trim().Equals("0") || isOperatorClicked)
+        private void OnPercentButtonClicked(object sender, EventArgs e)
+        {
+            try
             {
-                isOperatorClicked = false;
-                lblResult.Text = buttonClick.Text;
+                string number = resultLabel.Text;
+                if (number != "0")
+                {
+                    decimal percent = decimal.Parse(number);
+                    resultLabel.Text = (percent / 100).ToString();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblResult.Text += buttonClick.Text;
+                DisplayAlert("Notification", ex.Message, "Ok");
             }
         }
 
-        private void btnClear_Clicked(object sender, EventArgs e)
+        private void OnClearButtonClicked(object sender, EventArgs e)
         {
-            lblResult.Text = "0";
-            lblSubResult.Text = "";
+            resultLabel.Text = "0";
+            subResultLabel.Text = "";
             isOperatorClicked = false;
             firstNumber = 0;
         }
 
-        private void btnDel_Clicked(object sender, EventArgs e)
+        private void OnDelButtonClicked(object sender, EventArgs e)
         {
-            string number = lblResult.Text;
+            string number = resultLabel.Text;
             if (number != "0")
             {
                 number = number.Remove(number.Length - 1, 1);
                 if (String.IsNullOrEmpty(number))
                 {
-                    lblResult.Text = "0";
-                    lblSubResult.Text = "";
+                    resultLabel.Text = "0";
+                    subResultLabel.Text = "";
                     isOperatorClicked = false;
                     firstNumber = 0;
                 }
                 else
                 {
-                    lblResult.Text = number;
+                    resultLabel.Text = number;
                 }
             }
         }
 
-        private async void btnPercent_Clicked(object sender, EventArgs e)
+        private void OnOperatorButtonClick(object sender, EventArgs e)
         {
-            try
-            {
-                string number = lblResult.Text;
-                if (number != "0")
-                {
-                    decimal percent = decimal.Parse(number);
-                    lblResult.Text = (percent / 100).ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Notification", ex.Message, "Ok");
-            }
+            //Button button = sender as Button(); 
+            // Correct -> không có giá trị -> null
 
-        }
-        private void btnOperator_Clicked(object sender, EventArgs e)
-        {
+            //  Button button = (Button)sender;
+            // Avoid -> không có giá trị -> error
             Button button = (Button)sender;
             isOperatorClicked = true;
             operatorName = button.Text;
-            firstNumber = decimal.Parse(lblResult.Text);
+            firstNumber = decimal.Parse(resultLabel.Text);
             if (isShowResult)
             {
                 isShowResult = false;
-                lblSubResult.Text = firstNumber + " " + button.Text;
+                subResultLabel.Text = firstNumber + " " + button.Text;
             }
             else
             {
-                lblSubResult.Text += lblResult.Text + " " + button.Text;
+                subResultLabel.Text += resultLabel.Text + " " + button.Text;
             }
-
         }
 
-        private async void btnEqual_Clicked(object sender, EventArgs e)
+        private void OnCommonButtonClick(object sender, EventArgs e)
+        {
+            Button buttonClick = (Button)sender;
+            if (isShowResult)
+            {
+                isShowResult = false;
+                resultLabel.Text = "0";
+                subResultLabel.Text = "";
+            }
+
+            if (resultLabel.Text.Trim().Equals("0") || isOperatorClicked)
+            {
+                isOperatorClicked = false;
+                resultLabel.Text = buttonClick.Text;
+            }
+            else
+            {
+                resultLabel.Text += buttonClick.Text;
+            }
+        }
+
+        private void OnConvertButtonClick(object sender, EventArgs e)
+        {
+            isOperatorClicked = false;
+            firstNumber = 0;
+            resultLabel.Text = (-(decimal.Parse(resultLabel.Text))).ToString();
+        }
+
+        private void OnEqualButtonClick(object sender, EventArgs e)
         {
             try
             {
                 if (isShowResult == false)
                 {
-                    lblSubResult.Text = lblSubResult.Text + lblResult.Text + " = ";
+                    subResultLabel.Text = subResultLabel.Text + resultLabel.Text + " = ";
                     isShowResult = true;
-                    decimal secondNumber = decimal.Parse(lblResult.Text);
-                    lblResult.Text = Calculate(firstNumber, secondNumber).ToString();
+                    decimal secondNumber = decimal.Parse(resultLabel.Text);
+                    resultLabel.Text = Calculate(firstNumber, secondNumber).ToString();
                     firstNumber = 0;
                 }
 
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Notification", ex.Message, "Cancel");
+                DisplayAlert("Notification", ex.Message, "Cancel");
             }
         }
         public decimal Calculate(decimal theFirst, decimal theSecond)
@@ -145,17 +157,5 @@ namespace XamarinBasic.Source.Tuan1
             }
             return result;
         }
-
-        private void btnConvert_Clicked(object sender, EventArgs e)
-        {
-            isOperatorClicked = false;
-            firstNumber = 0;
-            lblResult.Text = (-(decimal.Parse(lblResult.Text))).ToString();
-        }
-
-        //private void OnChangeColorButtonClicked(object sender, EventArgs e)
-        //{
-        //    lblResult.TextColor = Color.Red;
-        //}
     }
 }

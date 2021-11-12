@@ -20,7 +20,6 @@ namespace XamarinBasic.Source.Tuan1
         private void OnRemoveButtonClick(object sender, EventArgs e)
         {
             Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2]);
-
         }
 
         private void OnInsertButtonClick(object sender, EventArgs e)

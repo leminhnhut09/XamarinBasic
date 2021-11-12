@@ -6,10 +6,10 @@
     <ContentPage.Content>
         <StackLayout>
             <Label FontSize="20" Text="Date picker" />
-            <DatePicker x:Name="dpNgay" Format="dd/MM/yyyy" />
+            <DatePicker x:Name="datePicker" Format="dd/MM/yyyy" />
             <Label FontSize="20" Text="Time picker" />
-            <TimePicker x:Name="tpThoiGian" />
-            <Button Clicked="ButtonProcess_Clicked" Text="Process" />
+            <TimePicker x:Name="timePicker" />
+            <Button Clicked="OnProcessButtonClicked" Text="Process" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

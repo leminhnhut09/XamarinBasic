@@ -15,8 +15,8 @@ namespace XamarinBasic.Source.Tuan1
         public DetailLoginPage(string user, string pass)
         {
             InitializeComponent();
-            userNameLabel.Text = user;
-            passwordLabel.Text = pass;
+            userLabel.Text = user;
+            passLabel.Text = pass;
         }
     }
 }

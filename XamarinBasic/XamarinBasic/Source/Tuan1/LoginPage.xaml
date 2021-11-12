@@ -22,14 +22,13 @@
             <Label
                 FontAttributes="Bold"
                 FontSize="30"
-                StyleClass="labelTitle"
+                StyleClass="titleLabelStyle"
                 Text="Login"
                 TextTransform="Uppercase"
                 WidthRequest="100" />
             <Label
                 Margin="0,40,0,0"
                 FontSize="18"
-                StyleClass="subTitle"
                 Text="User name" />
             <Entry
                 x:Name="userEntry"
@@ -43,8 +42,8 @@
                 Text="" />
             <StackLayout Margin="0,40,0,0" Orientation="Horizontal">
                 <Button
-                    x:Name="btnLogin"
-                    Style="{StaticResource purpleButton}"
+                    x:Name="loginButton"
+                    Style="{StaticResource purpleButtonStyle}"
                     Text="Sign In"
                     WidthRequest="180">
                     <Button.Triggers>
@@ -58,8 +57,8 @@
                     </Button.Triggers>
                 </Button>
                 <Button
-                    x:Name="btnRegister"
-                    Style="{StaticResource purpleButton}"
+                    x:Name="registerButton"
+                    Style="{StaticResource purpleButtonStyle}"
                     Text="Sign Up"
                     WidthRequest="180" />
             </StackLayout>

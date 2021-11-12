@@ -20,19 +20,19 @@
                 <Setter Property="BackgroundColor" Value="LightSkyBlue" />
             </Style>
             <!--  explicit  -->
-            <Style x:Key="exclicitButton" TargetType="Button">
+            <Style x:Key="exclicitButtonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="Red" />
                 <Setter Property="BackgroundColor" Value="LightSteelBlue" />
                 <Setter Property="CornerRadius" Value="20" />
                 <Setter Property="FontSize" Value="Large" />
             </Style>
-            <Style x:Key="blueLabel" TargetType="Label">
+            <Style x:Key="blueLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="Blue" />
             </Style>
             <!--  inherit  -->
             <Style
-                x:Key="inheritButton"
-                BasedOn="{StaticResource exclicitButton}"
+                x:Key="inheritButtonStyle"
+                BasedOn="{StaticResource exclicitButtonStyle}"
                 TargetType="Button">
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="BorderColor" Value="Red" />
@@ -45,25 +45,15 @@
             Padding="5"
             BackgroundColor="WhiteSmoke"
             VerticalOptions="CenterAndExpand">
-            <!--<StackLayout>
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style x:Key="stack" TargetType="Button">
-                            <Setter Property="BorderWidth" Value="2" />
-                            <Setter Property="BorderColor" Value="Red" />
-                        </Style>
-                    </ResourceDictionary>
-                </StackLayout.Resources>
-            </StackLayout>-->
             <Frame Margin="0,10">
                 <StackLayout>
                     <Label
-                        x:Name="lblSubResult"
+                        x:Name="subResultLabel"
                         FontSize="20"
                         HorizontalTextAlignment="End"
                         Text="" />
                     <Label
-                        x:Name="lblResult"
+                        x:Name="resultLabel"
                         FontAttributes="Bold"
                         FontSize="45"
                         HorizontalTextAlignment="End"
@@ -89,117 +79,113 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button
-                    x:Name="btnPercent"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Clicked="btnPercent_Clicked"
+                    Clicked="OnPercentButtonClicked"
                     Text="%" />
                 <Button
-                    x:Name="btnClear"
                     Grid.Row="0"
                     Grid.Column="1"
-                    Clicked="btnClear_Clicked"
+                    Clicked="OnClearButtonClicked"
                     Text="C" />
                 <Button
-                    x:Name="btnDel"
                     Grid.Row="0"
                     Grid.Column="2"
-                    Clicked="btnDel_Clicked"
+                    Clicked="OnDelButtonClicked"
                     Text="Del" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="3"
-                    Clicked="btnOperator_Clicked"
-                    Style="{StaticResource exclicitButton}"
+                    Clicked="OnOperatorButtonClick"
+                    Style="{StaticResource exclicitButtonStyle}"
                     Text="/" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="0"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="7" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="8" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="9" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="3"
-                    Clicked="btnOperator_Clicked"
-                    Style="{StaticResource exclicitButton}"
+                    Clicked="OnOperatorButtonClick"
+                    Style="{StaticResource exclicitButtonStyle}"
                     Text="x" />
 
                 <Button
                     Grid.Row="2"
                     Grid.Column="0"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="4" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="5" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="6" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="3"
-                    Clicked="btnOperator_Clicked"
-                    Style="{StaticResource exclicitButton}"
+                    Clicked="OnOperatorButtonClick"
+                    Style="{StaticResource exclicitButtonStyle}"
                     Text="-" />
 
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="1" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="2" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="2"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="3" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="3"
-                    Clicked="btnOperator_Clicked"
-                    Style="{StaticResource exclicitButton}"
+                    Clicked="OnOperatorButtonClick"
+                    Style="{StaticResource exclicitButtonStyle}"
                     Text="+" />
 
                 <Button
-                    x:Name="btnConvert"
                     Grid.Row="4"
                     Grid.Column="0"
-                    Clicked="btnConvert_Clicked"
+                    Clicked="OnConvertButtonClick"
                     Text="+/-" />
                 <Button
                     Grid.Row="4"
                     Grid.Column="1"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="0" />
                 <Button
                     Grid.Row="4"
                     Grid.Column="2"
-                    Clicked="btnCommon_Clicked"
+                    Clicked="OnCommonButtonClick"
                     Text="." />
                 <Button
                     x:Name="btnEqual"
                     Grid.Row="4"
                     Grid.Column="3"
-                    Clicked="btnEqual_Clicked"
-                    Style="{StaticResource inheritButton}"
+                    Clicked="OnEqualButtonClick"
+                    Style="{StaticResource inheritButtonStyle}"
                     Text="=" />
             </Grid>
         </StackLayout>

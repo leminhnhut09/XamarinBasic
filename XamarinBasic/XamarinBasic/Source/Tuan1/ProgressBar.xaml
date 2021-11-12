@@ -6,10 +6,10 @@
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label FontSize="Medium" Text="Status" />
-            <Switch x:Name="swStatus" />
+            <Switch x:Name="statusSwitch" />
             <Label FontSize="Medium" Text="Progress Bar" />
-            <ProgressBar x:Name="probPercent" HeightRequest="50" />
-            <Button Clicked="ButtonProgressbar_Clicked" Text="Click" />
+            <ProgressBar x:Name="percentProgressbar" HeightRequest="50" />
+            <Button Clicked="OnProgressbarButtonClicked" Text="Click" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -16,73 +16,73 @@ namespace XamarinBasic
             InitializeComponent();
         }
 
-        private void ButtonLogin_Clicked(object sender, EventArgs e)
+        private void OnLoginButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new LoginPage());
         }
 
-        private void ButtonSlider_Clicked(object sender, EventArgs e)
+        private void OnSliderButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SliderPage());
         }
 
-        private void ButtonWebView_Clicked(object sender, EventArgs e)
+        private void OnWebViewButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new TabbedPageWebView());
         }
 
-        private void ButtonImage_Clicked(object sender, EventArgs e)
+        private void OnImageButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ImagePage());
         }
 
-        private void ButtonBoxView_Clicked(object sender, EventArgs e)
+        private void OnBoxViewButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new BoxViewPage());
 
         }
 
-        private void ButtonGridLayout_Clicked(object sender, EventArgs e)
+        private void OnGridLayoutButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Calculator());
         }
 
-        private void ButtonScollView_Clicked(object sender, EventArgs e)
+        private void OnScollViewButtonClicked(object sender, EventArgs e)
         {
             
         }
 
-        private void ButtonAbsoluteLayout_Clicked(object sender, EventArgs e)
+        private void OnAbsoluteLayoutButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AbsoluteLayoutPage());
         }
 
-        private void ButtonRelativeLayout_Clicked(object sender, EventArgs e)
+        private void OnRelativeLayoutButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new RelativeLayoutPage());
         }
 
-        private void ButtonStackLayout_Clicked(object sender, EventArgs e)
+        private void OnStackLayoutButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new LoginPage());
         }
 
-        private void ButtonDateAndTime_Clicked(object sender, EventArgs e)
+        private void OnDateAndTimeButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new DateAndTimePickerPage());
         }
 
-        private void ButtonScrollView_Clicked(object sender, EventArgs e)
+        private void OnScrollViewButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ScrollView());
         }
 
-        private void ButtonProgressBar_Clicked(object sender, EventArgs e)
+        private void OnProgressBarButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ProgressBar());
         }
 
-        private void ButtonListView_Clicked(object sender, EventArgs e)
+        private void OnListViewButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ListViewPage());
         }

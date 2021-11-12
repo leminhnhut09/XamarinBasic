@@ -36,42 +36,42 @@
             <Button
                 Grid.Row="1"
                 Grid.Column="0"
-                Clicked="ButtonLogin_Clicked"
+                Clicked="OnLoginButtonClicked"
                 Text="Label - Button" />
             <Button
                 Grid.Row="1"
                 Grid.Column="1"
-                Clicked="ButtonSlider_Clicked"
+                Clicked="OnSliderButtonClicked"
                 Text="Slider - Editor" />
             <Button
                 Grid.Row="2"
                 Grid.Column="0"
-                Clicked="ButtonWebView_Clicked"
+                Clicked="OnWebViewButtonClicked"
                 Text="Web View" />
             <Button
                 Grid.Row="2"
                 Grid.Column="1"
-                Clicked="ButtonImage_Clicked"
+                Clicked="OnImageButtonClicked"
                 Text="Image" />
             <Button
                 Grid.Row="3"
                 Grid.Column="0"
-                Clicked="ButtonBoxView_Clicked"
+                Clicked="OnBoxViewButtonClicked"
                 Text="Box View" />
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
-                Clicked="ButtonDateAndTime_Clicked"
+                Clicked="OnDateAndTimeButtonClicked"
                 Text="Date And Time" />
             <Button
                 Grid.Row="4"
                 Grid.Column="0"
-                Clicked="ButtonProgressBar_Clicked"
+                Clicked="OnProgressBarButtonClicked"
                 Text="ProgressBar" />
             <Button
                 Grid.Row="4"
                 Grid.Column="1"
-                Clicked="ButtonListView_Clicked"
+                Clicked="OnListViewButtonClicked"
                 Text="List View" />
             <!--  Layouts  -->
             <Label
@@ -87,27 +87,27 @@
             <Button
                 Grid.Row="6"
                 Grid.Column="0"
-                Clicked="ButtonGridLayout_Clicked"
+                Clicked="OnGridLayoutButtonClicked"
                 Text="Grid Layout" />
             <Button
                 Grid.Row="6"
                 Grid.Column="1"
-                Clicked="ButtonScrollView_Clicked"
+                Clicked="OnScrollViewButtonClicked"
                 Text="Scoll View" />
             <Button
                 Grid.Row="7"
                 Grid.Column="0"
-                Clicked="ButtonAbsoluteLayout_Clicked"
+                Clicked="OnAbsoluteLayoutButtonClicked"
                 Text="Absolute Layout" />
             <Button
                 Grid.Row="7"
                 Grid.Column="1"
-                Clicked="ButtonRelativeLayout_Clicked"
+                Clicked="OnRelativeLayoutButtonClicked"
                 Text="Relative Layout" />
             <Button
                 Grid.Row="8"
                 Grid.Column="0"
-                Clicked="ButtonStackLayout_Clicked"
+                Clicked="OnStackLayoutButtonClicked"
                 Text="Stack Layout" />
         </Grid>
     </StackLayout>

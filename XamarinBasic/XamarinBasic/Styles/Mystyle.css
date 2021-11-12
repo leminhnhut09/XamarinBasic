@@ -7,7 +7,7 @@ stacklayout > entry{
     border-width: thin;
 }
 
-.labelTitle {
+.titleLabelStyle {
     color: orange;
     text-align: center;
 }

@@ -15,7 +15,7 @@ namespace XamarinBasic
         public ProgressBar()
         {
             InitializeComponent();
-            swStatus.Toggled += SwitchStatus_Toggled;
+            statusSwitch.Toggled += SwitchStatus_Toggled;
         }
 
         private void SwitchStatus_Toggled(object sender, ToggledEventArgs e)
@@ -23,9 +23,9 @@ namespace XamarinBasic
             DisplayAlert("Status", $"You have selected the status {e.Value}", "Ok");
         }
 
-        private void ButtonProgressbar_Clicked(object sender, EventArgs e)
+        private void OnProgressbarButtonClicked(object sender, EventArgs e)
         {
-            probPercent.ProgressTo(10, 9000, Easing.Linear);
+            percentProgressbar.ProgressTo(10, 9000, Easing.Linear);
         }
     }
 }

@@ -20,7 +20,6 @@ namespace XamarinBasic
         }
         public class ProductViewModel
         {
-            //List
             public ObservableCollection<Product> Collection { get; set; }
             public ProductViewModel()
             {
@@ -28,7 +27,7 @@ namespace XamarinBasic
             }
         }
 
-        private void ButtonRemove_Clicked(object sender, EventArgs e)
+        private void OnRemoveButtonClicked(object sender, EventArgs e)
         {
             var viewModel = BindingContext as ProductViewModel;
             if (viewModel != null && viewModel.Collection.Any())
@@ -37,11 +36,10 @@ namespace XamarinBasic
             }
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            //DisplayAlert("Detail", e.SelectedItemIndex + "", "Close");
             var selectProduct = e.SelectedItem as Product;
-            DisplayAlert("Detail", $"Id: {selectProduct.IdProduct}\nName: {selectProduct.NameProduct}\nPrice: {selectProduct.Price}" , "Close");
+            DisplayAlert("Detail", $"Id: {selectProduct.IdProduct}\nName: {selectProduct.NameProduct}\nPrice: {selectProduct.Price}", "Close");
         }
     }
 }

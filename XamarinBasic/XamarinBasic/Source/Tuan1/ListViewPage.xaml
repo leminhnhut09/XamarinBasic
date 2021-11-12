@@ -7,15 +7,9 @@
     Title="List View">
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <ListView
-                x:Name="lvListView"
-                ItemSelected="ListView_ItemSelected"
-                ItemsSource="{Binding Collection}">
+            <ListView ItemSelected="OnListViewItemSelected" ItemsSource="{Binding Collection}">
                 <ListView.Footer>
-                    <Button
-                        x:Name="buttonRemove"
-                        Clicked="ButtonRemove_Clicked"
-                        Text="Remove" />
+                    <Button Clicked="OnRemoveButtonClicked" Text="Remove" />
                 </ListView.Footer>
                 <ListView.ItemTemplate>
                     <DataTemplate>

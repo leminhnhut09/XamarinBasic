@@ -16,8 +16,8 @@ namespace XamarinBasic
         public LoginPage()
         {
             InitializeComponent();
-            btnLogin.Clicked += ButtonLogin_Clicked;
-            btnRegister.Clicked += ButtonRegister_Clicked;
+            loginButton.Clicked += ButtonLogin_Clicked;
+            registerButton.Clicked += ButtonRegister_Clicked;
         }
 
         private void ButtonRegister_Clicked(object sender, EventArgs e)

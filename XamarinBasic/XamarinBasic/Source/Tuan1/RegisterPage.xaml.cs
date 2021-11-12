@@ -13,16 +13,16 @@ namespace XamarinBasic
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
-        List<string> lstCountry;
+        List<string> listCountry;
         public RegisterPage()
         {
             InitializeComponent();
-            lstCountry = GetListCountry();
-            countryPicker.ItemsSource = lstCountry;
-            countryPicker.SelectedIndexChanged += PkCountry_SelectedIndexChanged;
+            listCountry = GetListCountry();
+            countryPicker.ItemsSource = listCountry;
+            countryPicker.SelectedIndexChanged += OnCountryPickerSelectedIndexChanged;
         }
 
-        private void PkCountry_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnCountryPickerSelectedIndexChanged(object sender, EventArgs e)
         {
             string country = ((Picker)sender).SelectedItem.ToString();
             DisplayAlert("Notification", $"You choose {country}", "Ok");
@@ -75,7 +75,7 @@ namespace XamarinBasic
                 };
             return listCountry;
         }
-        private void RegisterButton_Clicked(object sender, EventArgs e)
+        private void OnRegisterButtonClicked(object sender, EventArgs e)
         {
             string sex = "male";
             if (femaleRadioButton.IsChecked)

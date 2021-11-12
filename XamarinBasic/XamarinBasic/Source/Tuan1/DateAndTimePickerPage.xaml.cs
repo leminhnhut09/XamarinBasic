@@ -17,10 +17,10 @@ namespace XamarinBasic
             InitializeComponent();
         }
 
-        private void ButtonProcess_Clicked(object sender, EventArgs e)
+        private void OnProcessButtonClicked(object sender, EventArgs e)
         {
-            string currentDate = dpNgay.Date.ToString("dd/MM/yyyy");
-            string currentTime = tpThoiGian.Time.ToString();
+            string currentDate = datePicker.Date.ToString("dd/MM/yyyy");
+            string currentTime = timePicker.Time.ToString();
             DisplayAlert("Notification", $"Date: {currentDate} \nTime: {currentTime}", "Ok");
         }
     }

@@ -12,32 +12,32 @@ namespace XamarinBasic
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SliderPage : ContentPage
     {
-        Slider sliderPercent;
-        Label labelShowPercent;
+        Slider percentSlider;
+        Label percentLabel;
         public SliderPage()
         {
             InitializeComponent();
-            sliderPercent = new Slider()
+            percentSlider = new Slider()
             {
                 Minimum = 0,
                 Maximum = 100,
                 BackgroundColor = Color.LemonChiffon
             };
-            labelShowPercent = new Label();
-            layoutMain.Children.Add(sliderPercent);
-            layoutMain.Children.Add(labelShowPercent);
-            sliderPercent.ValueChanged += SliderPercent_ValueChanged;
+            percentLabel = new Label();
+            layoutMain.Children.Add(percentSlider);
+            layoutMain.Children.Add(percentLabel);
+            percentSlider.ValueChanged += OnPercentSliderValueChanged;
         }
 
-        private void SliderPercent_ValueChanged(object sender, ValueChangedEventArgs e)
+        private void OnPercentSliderValueChanged(object sender, ValueChangedEventArgs e)
         {
             string percent = ((Slider)sender).Value.ToString();
-            labelShowPercent.Text = percent;
+            percentLabel.Text = percent;
         }
 
-        private void EditorDescription_TextChanged(object sender, TextChangedEventArgs e)
+        private void OnDescriptionEditorTextChanged(object sender, TextChangedEventArgs e)
         {
-            string description = editorDescription.Text.Trim().ToString();
+            string description = descriptionEditor.Text.Trim().ToString();
             if (description.Length == 50)
             {
                 DisplayAlert("Notification", "50 character ", "Close");

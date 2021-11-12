@@ -7,15 +7,15 @@
     <ContentPage.Content>
         <StackLayout x:Name="layoutMain" Padding="20">
             <Slider
-                x:Name="sliderAngle"
+                x:Name="angleSlider"
                 BackgroundColor="Red"
                 Maximum="360"
                 Minimum="0" />
             <Label FontSize="20" Text="Value" />
-            <Label Text="{Binding Source={x:Reference sliderAngle}, Path=Value}" />
+            <Label Text="{Binding Source={x:Reference angleSlider}, Path=Value}" />
             <Label FontSize="20" Text="Editor" />
             <Editor
-                x:Name="editorDescription"
+                x:Name="descriptionEditor"
                 BackgroundColor="LightBlue"
                 FontAttributes="Italic"
                 FontSize="16"
@@ -23,7 +23,7 @@
                 IsSpellCheckEnabled="True"
                 IsTextPredictionEnabled="True"
                 MaxLength="1000"
-                TextChanged="EditorDescription_TextChanged" />
+                TextChanged="OnDescriptionEditorTextChanged" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,12 +7,12 @@
     <ContentPage.Content>
         <StackLayout>
             <Label
-                x:Name="userNameLabel"
+                x:Name="userLabel"
                 Margin="0,200"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="Center" />
             <Label
-                x:Name="passwordLabel"
+                x:Name="passLabel"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="Center" />
         </StackLayout>
