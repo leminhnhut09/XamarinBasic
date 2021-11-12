@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamarinBasic.Source.Calculator;
+using XamarinBasic.Source.Tuan2;
 
 namespace XamarinBasic
 {
@@ -10,9 +10,9 @@ namespace XamarinBasic
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new CaculatorPage();
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new MainPage());
+            MainPage = new FlyoutPageMain();
+            //MainPage = new ListViewSelectedItemBehavior();
         }
 
         protected override void OnStart()

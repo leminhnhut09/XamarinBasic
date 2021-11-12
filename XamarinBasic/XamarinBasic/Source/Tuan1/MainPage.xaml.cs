@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XamarinBasic.Source.Calculator;
+using XamarinBasic.Source.Tuan1;
 
 namespace XamarinBasic
 {
@@ -44,7 +44,7 @@ namespace XamarinBasic
 
         private void ButtonGridLayout_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CaculatorPage());
+            Navigation.PushAsync(new Calculator());
         }
 
         private void ButtonScollView_Clicked(object sender, EventArgs e)

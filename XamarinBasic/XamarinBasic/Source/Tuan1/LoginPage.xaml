@@ -4,38 +4,63 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Login">
+    <ContentPage.Resources>
+        <StyleSheet Source="/Styles/Mystyle.css" />
+        <ResourceDictionary>
+            <!--  Property Trigger  -->
+            <Style TargetType="Entry">
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                        <Setter Property="BackgroundColor" Value="BlanchedAlmond" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="0,20,0,0" Padding="20">
+        <StackLayout Padding="20,0" VerticalOptions="CenterAndExpand">
             <Label
                 FontAttributes="Bold"
                 FontSize="30"
-                HorizontalOptions="CenterAndExpand"
+                StyleClass="labelTitle"
                 Text="Login"
-                TextColor="Black"
                 TextTransform="Uppercase"
                 WidthRequest="100" />
             <Label
-                Margin="0,100,0,0"
+                Margin="0,40,0,0"
                 FontSize="18"
+                StyleClass="subTitle"
                 Text="User name" />
-            <Entry x:Name="txtUserName" Placeholder="Enter your user name" />
+            <Entry
+                x:Name="userEntry"
+                Placeholder="Enter your user name"
+                Text="" />
             <Label FontSize="18" Text="Password" />
             <Entry
-                x:Name="txtPassWord"
+                x:Name="passEntry"
                 IsPassword="True"
-                Placeholder="Enter your password" />
-            <StackLayout Margin="0,20,0,0" Orientation="Horizontal">
+                Placeholder="Enter your password"
+                Text="" />
+            <StackLayout Margin="0,40,0,0" Orientation="Horizontal">
                 <Button
                     x:Name="btnLogin"
-                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource purpleButton}"
                     Text="Sign In"
-                    TextTransform="Uppercase"
-                    WidthRequest="180" />
+                    WidthRequest="180">
+                    <Button.Triggers>
+                        <MultiTrigger TargetType="Button">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding Source={x:Reference userEntry}, Path=Text.Length}" Value="0" />
+                                <BindingCondition Binding="{Binding Source={x:Reference passEntry}, Path=Text.Length}" Value="0" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="False" />
+                        </MultiTrigger>
+                    </Button.Triggers>
+                </Button>
                 <Button
                     x:Name="btnRegister"
-                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource purpleButton}"
                     Text="Sign Up"
-                    TextTransform="Uppercase"
                     WidthRequest="180" />
             </StackLayout>
         </StackLayout>

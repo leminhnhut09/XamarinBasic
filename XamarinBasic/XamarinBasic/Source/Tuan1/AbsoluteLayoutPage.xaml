@@ -24,9 +24,11 @@
             <Button
                 AbsoluteLayout.LayoutBounds="0.5, 0.7, 100, 50"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                Text="Click" />
+                Text="Click"
+                Clicked="OnLoginButtonClicked"
+                />
 
-            <BoxView AbsoluteLayout.LayoutBounds="50, 50, 30, 60" Color="Green" />
+            <BoxView AbsoluteLayout.LayoutBounds="50, 50, 30, 60" Color="Green"/>
 
         </AbsoluteLayout>
     </ContentPage.Content>

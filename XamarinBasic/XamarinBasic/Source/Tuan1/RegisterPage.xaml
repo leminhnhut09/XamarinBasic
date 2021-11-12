@@ -2,7 +2,28 @@
 <ContentPage
     x:Class="XamarinBasic.RegisterPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:triggers="clr-namespace:XamarinBasic.Trigger">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="orangeButon"
+                BasedOn="{StaticResource purpleButton}"
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Orange" />
+                <Setter Property="BorderColor" Value="Orange" />
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+            <!--  Property Trigger  -->
+            <Style TargetType="Entry">
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                        <Setter Property="BackgroundColor" Value="BlanchedAlmond" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label
@@ -10,49 +31,69 @@
                 FontSize="24"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
+                Style="{DynamicResource TitleStyle}"
                 Text="Create Account"
-                TextColor="Black"
+                TextColor="Orange"
                 TextTransform="Uppercase"
                 WidthRequest="300" />
             <Label
                 Margin="0,10,0,0"
                 FontAttributes="Bold"
                 FontSize="18"
+                Style="{DynamicResource SubtitleStyle}"
                 Text="User name" />
-            <Entry x:Name="txtUserName" Placeholder="Enter your user name" />
+            <Entry x:Name="userNameEntry" Placeholder="Enter your user name" />
             <Label
                 FontAttributes="Bold"
                 FontSize="18"
+                Style="{DynamicResource SubtitleStyle}"
                 Text="Password" />
             <Entry
-                x:Name="txtPassword"
+                x:Name="passwordEntry"
                 IsPassword="True"
-                Placeholder="Enter your pass word" />
+                Placeholder="Enter your pass word">
+                <Entry.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <triggers:MatchPasswordTrigger />
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
             <Label
                 FontAttributes="Bold"
                 FontSize="18"
+                Style="{DynamicResource SubtitleStyle}"
                 Text="RePassword" />
             <Entry
-                x:Name="txtRePassword"
+                x:Name="repassEntry"
                 IsPassword="True"
-                Placeholder="Enter your pass word" />
+                Placeholder="Enter your pass word">
+                <Entry.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <triggers:MatchPasswordTrigger />
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
             <Label
                 FontAttributes="Bold"
                 FontSize="18"
+                Style="{DynamicResource SubtitleStyle}"
                 Text="Birthday" />
-            <DatePicker x:Name="dpBirthday" Format="dd/MM/yyyy" />
+            <DatePicker x:Name="birthdayPicker" Format="dd/MM/yyyy" />
             <Label
                 FontAttributes="Bold"
                 FontSize="18"
+                Style="{DynamicResource SubtitleStyle}"
                 Text="Sex" />
             <StackLayout Orientation="Horizontal">
                 <RadioButton
+                    x:Name="maleRadioButton"
                     Content="Male"
                     GroupName="GroupRadioButtonSex"
                     HorizontalOptions="FillAndExpand"
                     IsChecked="True"
                     Value="Male" />
                 <RadioButton
+                    x:Name="femaleRadioButton"
                     Content="FeMale"
                     GroupName="GroupRadioButtonSex"
                     HorizontalOptions="FillAndExpand"
@@ -61,15 +102,34 @@
             <Label
                 FontAttributes="Bold"
                 FontSize="18"
+                Style="{DynamicResource SubtitleStyle}"
                 Text="Country" />
-            <Picker x:Name="pkCountry" />
+            <Picker x:Name="countryPicker" />
+            <StackLayout Orientation="Horizontal">
+                <CheckBox x:Name="acceptCheckBox" IsChecked="False" />
+                <Label
+                    FontSize="20"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="Accept"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
             <Button
-                x:Name="btnRegister"
+                x:Name="registerButton"
                 Margin="0,10,0,0"
+                Clicked="RegisterButton_Clicked"
                 HorizontalOptions="CenterAndExpand"
-                Text="Register"
-                WidthRequest="100" />
-
+                IsEnabled="False"
+                Style="{StaticResource orangeButon}"
+                Text="Register">
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference acceptCheckBox}, Path=IsChecked}"
+                        TargetType="Button"
+                        Value="True">
+                        <Setter Property="IsEnabled" Value="True" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

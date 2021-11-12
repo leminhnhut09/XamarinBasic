@@ -575,3 +575,6 @@ H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\stamp\_G
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\image.png
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\layout.png
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\control.png
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\check.png

@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace XamarinBasic.Source.Calculator
+namespace XamarinBasic.Source.Tuan1
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CaculatorPage : ContentPage
+    public partial class Calculator : ContentPage
     {
         private bool isOperatorClicked;
         private bool isShowResult;
         private decimal firstNumber;
         private string operatorName;
-        public CaculatorPage()
+        public Calculator()
         {
             InitializeComponent();
         }
-
         private void btnCommon_Clicked(object sender, EventArgs e)
         {
             Button buttonClick = (Button)sender;
@@ -102,14 +101,14 @@ namespace XamarinBasic.Source.Calculator
             {
                 lblSubResult.Text += lblResult.Text + " " + button.Text;
             }
-            
+
         }
 
         private async void btnEqual_Clicked(object sender, EventArgs e)
         {
             try
             {
-                if(isShowResult == false)
+                if (isShowResult == false)
                 {
                     lblSubResult.Text = lblSubResult.Text + lblResult.Text + " = ";
                     isShowResult = true;
@@ -117,11 +116,11 @@ namespace XamarinBasic.Source.Calculator
                     lblResult.Text = Calculate(firstNumber, secondNumber).ToString();
                     firstNumber = 0;
                 }
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-               await DisplayAlert("Notification", ex.Message, "Cancel");
+                await DisplayAlert("Notification", ex.Message, "Cancel");
             }
         }
         public decimal Calculate(decimal theFirst, decimal theSecond)
@@ -151,7 +150,12 @@ namespace XamarinBasic.Source.Calculator
         {
             isOperatorClicked = false;
             firstNumber = 0;
-            lblResult.Text = (-(decimal.Parse(lblResult.Text))).ToString(); 
+            lblResult.Text = (-(decimal.Parse(lblResult.Text))).ToString();
         }
+
+        //private void OnChangeColorButtonClicked(object sender, EventArgs e)
+        //{
+        //    lblResult.TextColor = Color.Red;
+        //}
     }
 }

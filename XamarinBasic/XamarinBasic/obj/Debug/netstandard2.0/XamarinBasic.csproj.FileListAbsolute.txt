@@ -11,7 +11,6 @@ H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\XamlC
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\XamarinBasic.dll
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\ref\XamarinBasic.dll
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\XamarinBasic.pdb
-H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Calculator\CaculatorPage.xaml.g.cs
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\AbsoluteLayoutPage.xaml.g.cs
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\BoxViewPage.xaml.g.cs
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\DateAndTimePickerPage.xaml.g.cs
@@ -27,3 +26,17 @@ H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Sourc
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\SliderPage.xaml.g.cs
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\TabbedPageWebView.xaml.g.cs
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\WebViewPage.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\FlyoutPageMain.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\FlyoutPageMainDetail.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\FlyoutPageMainFlyout.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\TabbedPageLayouts.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Styles\Mystyle.css.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\Calculator.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\DetailLoginPage.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan1\DetailRegister.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\BehaviorsPage.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Themes\LightTheme.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Themes\DarkTheme.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\ListViewBehavior.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\ListViewSelectedItemBehavior.xaml.g.cs
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic\obj\Debug\netstandard2.0\Source\Tuan2\AnimationsPage.xaml.g.cs

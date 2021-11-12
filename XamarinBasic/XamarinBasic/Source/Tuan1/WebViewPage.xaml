@@ -19,8 +19,8 @@
             <ScrollView Orientation="Vertical">
                 <WebView
                     x:Name="webView"
-                    Source="https://dantri.com.vn/"
-                    WidthRequest="3000" />
+                    HeightRequest="3000"
+                    Source="https://dantri.com.vn/" />
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

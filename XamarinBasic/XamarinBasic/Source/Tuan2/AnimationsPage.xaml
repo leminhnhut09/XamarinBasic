@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan2.AnimationsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Image x:Name="image" Source="check.png" />
+            <Grid Margin="0,80">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Clicked="RotationButtonClick"
+                    Text="Rotation" />
+                <Button
+                    Grid.Column="1"
+                    Clicked="RelativeButtonClick"
+                    Text="Relative" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Clicked="TranslationButtonClick"
+                    Text="Translation" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Clicked="FadingButtonClick"
+                    Text="Fading" />
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Clicked="CompoundButtonClick"
+                    Text="Compound Animations" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Clicked="CompositeButtonClick"
+                    Text="Composite Animations" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Clicked="EasingButtonClick"
+                    Text="Easing functions" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Clicked="CustomAnimationButtonClick"
+                    Text="CustomAnimation" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

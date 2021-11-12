@@ -1,0 +1,18 @@
+﻿stacklayout > label{
+    color: black;
+}
+
+stacklayout > entry{
+    border-radius: inherit;
+    border-width: thin;
+}
+
+.labelTitle {
+    color: orange;
+    text-align: center;
+}
+
+
+stacklayout{
+    background-color: whitesmoke;
+}

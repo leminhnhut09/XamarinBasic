@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinBasic.Source.Tuan1;
 
 namespace XamarinBasic
 {
@@ -21,32 +22,35 @@ namespace XamarinBasic
 
         private void ButtonRegister_Clicked(object sender, EventArgs e)
         {
+            NavigationPage navigation = new NavigationPage(new LoginPage());
             Navigation.PushAsync(new RegisterPage());
         }
 
         private void ButtonLogin_Clicked(object sender, EventArgs e)
         {
-            string userName = txtUserName.Text;
-            string passWord = txtPassWord.Text;
-            if (String.IsNullOrEmpty(userName))
+            string userName = userEntry.Text.Trim().ToString();
+            string passWord = passEntry.Text.Trim().ToString();
+
+
+            if (userName.Equals("admin") && passWord.Equals("123456"))
             {
-                DisplayAlert("Notification", "Please enter user name", "Ok");
-                txtUserName.Focus();
-                return;
-            }
-            if (String.IsNullOrEmpty(passWord))
-            {
-                DisplayAlert("Notification", "Please enter password", "Ok");
-                txtPassWord.Focus();
-                return;
-            }
-            if (userName.Equals("admin") && passWord.Equals("123456")){
-                DisplayAlert("Notification", "Login success", "Close");
+                Navigation.PushAsync(new DetailLoginPage(userName, passWord));
             }
             else
             {
                 DisplayAlert("Notification", "Account does not exist !", "Close");
             }
+        }
+    }
+
+    public class User
+    {
+        public string Pass { get; set; }
+        public string UserName { get; set; }
+        public User(string name, string pass)
+        {
+            this.UserName = name;
+            this.Pass = pass;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinBasic.Source.Tuan1;
 
 namespace XamarinBasic
 {
@@ -17,8 +18,8 @@ namespace XamarinBasic
         {
             InitializeComponent();
             lstCountry = GetListCountry();
-            pkCountry.ItemsSource = lstCountry;
-            pkCountry.SelectedIndexChanged += PkCountry_SelectedIndexChanged;
+            countryPicker.ItemsSource = lstCountry;
+            countryPicker.SelectedIndexChanged += PkCountry_SelectedIndexChanged;
         }
 
         private void PkCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,5 +75,38 @@ namespace XamarinBasic
                 };
             return listCountry;
         }
+        private void RegisterButton_Clicked(object sender, EventArgs e)
+        {
+            string sex = "male";
+            if (femaleRadioButton.IsChecked)
+            {
+                sex = "female";
+            }
+            Account account = new Account(userNameEntry.Text, passwordEntry.Text, DateTime.Parse(birthdayPicker.Date.ToString()), sex, countryPicker.SelectedItem.ToString());
+            DetailRegister detailRegister = new DetailRegister();
+            detailRegister.BindingContext = account;
+            Navigation.PushAsync(detailRegister);
+        }
+
+        public class Account
+        {
+            public string UserName { get; set; }
+            public string Password { get; set; }
+            public DateTime BirthDay { get; set; }
+            public string Sex { get; set; }
+            public string Country { get; set; }
+
+            public Account(string userName, string passWord, DateTime birthDay, string sex, string country)
+            {
+                this.UserName = userName;
+                this.Password = passWord;
+                this.BirthDay = birthDay;
+                this.Sex = sex;
+                this.Country = country;
+            }
+
+
+        }
+
     }
 }

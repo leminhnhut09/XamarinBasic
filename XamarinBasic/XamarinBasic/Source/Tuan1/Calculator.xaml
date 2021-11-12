@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="XamarinBasic.Source.Calculator.CaculatorPage"
+    x:Class="XamarinBasic.Source.Tuan1.Calculator"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Padding>
@@ -9,17 +9,52 @@
         </OnPlatform>
     </ContentPage.Padding>
     <ContentPage.Resources>
+        <!--<StyleSheet Source="/Styles/Mystyle.css" />-->
         <ResourceDictionary>
-            <Style x:Key="button" TargetType="Button">
+            <!--  implicit  -->
+            <Style TargetType="Button">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Padding" Value="20" />
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BackgroundColor" Value="LightSkyBlue" />
+            </Style>
+            <!--  explicit  -->
+            <Style x:Key="exclicitButton" TargetType="Button">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="BackgroundColor" Value="LightSteelBlue" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+            <Style x:Key="blueLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Blue" />
+            </Style>
+            <!--  inherit  -->
+            <Style
+                x:Key="inheritButton"
+                BasedOn="{StaticResource exclicitButton}"
+                TargetType="Button">
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="BorderColor" Value="Red" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="5" BackgroundColor="WhiteSmoke">
+
+        <StackLayout
+            Padding="5"
+            BackgroundColor="WhiteSmoke"
+            VerticalOptions="CenterAndExpand">
+            <!--<StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="stack" TargetType="Button">
+                            <Setter Property="BorderWidth" Value="2" />
+                            <Setter Property="BorderColor" Value="Red" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+            </StackLayout>-->
             <Frame Margin="0,10">
                 <StackLayout>
                     <Label
@@ -35,10 +70,10 @@
                         MaxLines="1"
                         Text="0" />
                 </StackLayout>
-
             </Frame>
             <Grid
                 Margin="0,30,0,0"
+                Padding="0,30"
                 ColumnSpacing="10"
                 RowSpacing="10">
                 <Grid.RowDefinitions>
@@ -58,101 +93,89 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Clicked="btnPercent_Clicked"
-                    Style="{StaticResource button}"
                     Text="%" />
                 <Button
                     x:Name="btnClear"
                     Grid.Row="0"
                     Grid.Column="1"
                     Clicked="btnClear_Clicked"
-                    Style="{StaticResource button}"
                     Text="C" />
                 <Button
                     x:Name="btnDel"
                     Grid.Row="0"
                     Grid.Column="2"
                     Clicked="btnDel_Clicked"
-                    Style="{StaticResource button}"
                     Text="Del" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="3"
                     Clicked="btnOperator_Clicked"
-                    Style="{StaticResource button}"
+                    Style="{StaticResource exclicitButton}"
                     Text="/" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="0"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="7" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="8" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="9" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="3"
                     Clicked="btnOperator_Clicked"
-                    Style="{StaticResource button}"
+                    Style="{StaticResource exclicitButton}"
                     Text="x" />
 
                 <Button
                     Grid.Row="2"
                     Grid.Column="0"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="4" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="5" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="6" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="3"
                     Clicked="btnOperator_Clicked"
-                    Style="{StaticResource button}"
+                    Style="{StaticResource exclicitButton}"
                     Text="-" />
 
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="1" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="2" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="2"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="3" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="3"
                     Clicked="btnOperator_Clicked"
-                    Style="{StaticResource button}"
+                    Style="{StaticResource exclicitButton}"
                     Text="+" />
 
                 <Button
@@ -160,26 +183,23 @@
                     Grid.Row="4"
                     Grid.Column="0"
                     Clicked="btnConvert_Clicked"
-                    Style="{StaticResource button}"
                     Text="+/-" />
                 <Button
                     Grid.Row="4"
                     Grid.Column="1"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="0" />
                 <Button
                     Grid.Row="4"
                     Grid.Column="2"
                     Clicked="btnCommon_Clicked"
-                    Style="{StaticResource button}"
                     Text="." />
                 <Button
                     x:Name="btnEqual"
                     Grid.Row="4"
                     Grid.Column="3"
                     Clicked="btnEqual_Clicked"
-                    Style="{StaticResource button}"
+                    Style="{StaticResource inheritButton}"
                     Text="=" />
             </Grid>
         </StackLayout>

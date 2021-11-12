@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan1.DetailRegister"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:triggers="clr-namespace:XamarinBasic.Trigger">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="orangeButon"
+                BasedOn="{StaticResource purpleButton}"
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Orange" />
+                <Setter Property="BorderColor" Value="Orange" />
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+            <!--  Property Trigger  -->
+            <Style TargetType="Entry">
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                        <Setter Property="BackgroundColor" Value="BlanchedAlmond" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid
+                Margin="0,30"
+                ColumnSpacing="0"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Style="{DynamicResource TitleStyle}"
+                    Text="Detail Account"
+                    TextColor="Orange"
+                    TextTransform="Uppercase"
+                    WidthRequest="300" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="User name:" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="{Binding UserName}" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="Password:" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="{Binding Password}" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="Birthday:" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="{Binding BirthDay}" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="Sex:" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="{Binding Sex}" />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="Country:" />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{DynamicResource SubtitleStyle}"
+                    Text="{Binding Country}" />
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Button
+                    Clicked="OnRemoveButtonClick"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Remove page" />
+                <Button
+                    Clicked="OnInsertButtonClick"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Insert page" />
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
