@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.GesturesRegconizer.GesturesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:XamarinBasic.Source.Tuan3.GesturesRegconizer">
+    <ContentPage.BindingContext>
+        <vm:TabbedGesture />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Tap" />
+            <Image Source="{Binding ImageSource}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapGestureRecognizer}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Pinch" />
+            <Grid Padding="20">
+                <vm:PinchToZoomContainer>
+                    <vm:PinchToZoomContainer.Content>
+                        <Image Source="image.png" />
+                    </vm:PinchToZoomContainer.Content>
+                </vm:PinchToZoomContainer>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

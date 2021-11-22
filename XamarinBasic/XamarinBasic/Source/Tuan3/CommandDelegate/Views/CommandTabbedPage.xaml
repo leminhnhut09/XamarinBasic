@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="XamarinBasic.Source.Tuan3.CommandDelegate.Views.CommandTabbedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamarinBasic.Source.Tuan3.CommandDelegate.Views">
+    <!--  Pages can be added as references or inline  -->
+    <local:CommandPage Title="Command" />
+    <local:LoginPage Title="DelegateCommand" />
+</TabbedPage>

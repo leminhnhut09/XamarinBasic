@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.GesturesRegconizer.GesturesPageThree"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <BoxView
+            HeightRequest="200"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="200"
+            Color="Teal">
+            <BoxView.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped" />
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped" />
+                <SwipeGestureRecognizer Direction="Up" Swiped="OnSwiped" />
+                <SwipeGestureRecognizer Direction="Down" Swiped="OnSwiped" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+    </ContentPage.Content>
+</ContentPage>

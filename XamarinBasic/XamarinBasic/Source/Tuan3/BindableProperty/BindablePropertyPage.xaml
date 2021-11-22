@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.BindableProperty.BindablePropertyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:XamarinBasic.Converters"
+    xmlns:cr="clr-namespace:XamarinBasic.CustomRenderers"
+    xmlns:vm="clr-namespace:XamarinBasic.Source.Tuan3.BindableProperty">
+    <ContentPage.BindingContext>
+        <vm:BindableViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:GenderConverter x:Key="converterGender" />
+            <converter:StudentConverter x:Key="converterStudents" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <cr:BorderEntry
+                BorderRadius="{Binding BorderRadius}"
+                ClearButtonVisibility="WhileEditing"
+                Rotation="{Binding Rotation}" />
+            <Label Text="Data binding" />
+            <Label Text="{Binding Age, StringFormat='Age: {0}', FallbackValue='Binding error'}" />
+            <Label Text="{Binding Animation, StringFormat='Animation: {0}', TargetNullValue='Value null'}" />
+            <Label>
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0}{1}">
+                        <Binding Path="BorderRadius" />
+                        <Binding Path="Rotation" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <Label>
+                <Label.Text>
+                    <!--  Converter="{StaticResource converterStudents}"  -->
+                    <!--  StringFormat="Multi Converter: {0}{1}"  -->
+                    <MultiBinding StringFormat="{}{0}{1}">
+                        <Binding
+                            FallbackValue="Binding Miss"
+                            Path="student.Name"
+                            TargetNullValue="Null Student" />
+                        <Binding
+                            Converter="{StaticResource converterGender}"
+                            FallbackValue="Binding Miss"
+                            Path="student.Gender"
+                            StringFormat="Gender: {0}"
+                            TargetNullValue="Null Student" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <!--<cr:BorderEntry BorderRadius="100" />-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

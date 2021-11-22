@@ -32,7 +32,7 @@
     <ContentPage.Content>
 
 
-        <StackLayout Padding="20" BackgroundColor="{DynamicResource PrimaryColor}">
+        <StackLayout Padding="20">
 
             <Label
                 Grid.Row="0"
@@ -67,6 +67,8 @@
                     <behaviors:ComparePasswordValidationBehavior BindingContext="{x:Reference passwordEntry}" Text="{Binding Text}" />
                 </Entry.Behaviors>
             </Entry>
+
+            <Picker x:Name="themePicker" SelectedIndexChanged="OnPickerSelectedChange" />
 
         </StackLayout>
     </ContentPage.Content>

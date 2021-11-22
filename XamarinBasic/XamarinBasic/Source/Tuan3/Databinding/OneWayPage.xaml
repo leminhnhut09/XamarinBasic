@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.Databinding.OneWayPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="firstEntry" Placeholder="Enter yout text" />
+            <Entry
+                x:Name="secondEntry"
+                Placeholder="Enter yout text"
+                Text="{Binding Source={x:Reference firstEntry}, Path=Text, Mode=OneWay}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

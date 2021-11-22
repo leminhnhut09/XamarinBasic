@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.Effects.EffectPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:XamarinBasic.Effects">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <!--  Tĩnh  -->
+            <Label Text="Code Xaml" />
+            <Entry Text="Hello Word">
+                <Entry.Effects>
+                    <effects:FocusEffect />
+                </Entry.Effects>
+            </Entry>
+
+            <Editor AutoSize="TextChanges" Text="Hello Word">
+                <Editor.Effects>
+                    <effects:FocusEffect />
+                </Editor.Effects>
+            </Editor>
+
+            <Button Text="Hello">
+                <Button.Effects>
+                    <effects:ButtonBoderEffect />
+                </Button.Effects>
+            </Button>
+            <!--  Động  -->
+            <Button x:Name="button" Text="Click me">
+                <Button.Effects>
+                    <effects:ShadowEffect
+                        DistanceX="5"
+                        DistanceY="5"
+                        Radius="5">
+                        <effects:ShadowEffect.Color>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Black" />
+                                <On Platform="Android" Value="Red" />
+                            </OnPlatform>
+                        </effects:ShadowEffect.Color>
+                    </effects:ShadowEffect>
+                </Button.Effects>
+            </Button>
+            <Label Text="Code Behind" />
+            <Entry x:Name="effectEntry" Text="Behind" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.CustomRenderer.CustomRendererPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamarinBasic.CustomRenderers"
+    xmlns:vm="clr-namespace:XamarinBasic.Source.Tuan3.CustomRenderer">
+    <ContentPage.BindingContext>
+        <vm:RadioButtonViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <local:FocusEntry Text="Hello" />
+            <local:MyRadioButton CheckedChanged="MyRadioButton_CheckedChanged" Text="{Binding Message}" />
+            <RadioButton CheckedChanged="RadioButton_CheckedChanged" Content="Real Radio Button" />
+            <local:RoundedCornerStackView
+                BackgroundColor="Red"
+                BottomLeft="True"
+                BottomRight="True"
+                HeightRequest="200"
+                RoundedCornerRadius="20"
+                TopLeft="True"
+                TopRight="True"
+                WidthRequest="200" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

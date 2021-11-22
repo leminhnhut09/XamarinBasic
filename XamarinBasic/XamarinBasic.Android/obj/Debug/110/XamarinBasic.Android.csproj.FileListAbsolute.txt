@@ -578,3 +578,15 @@ H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\draw
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\layout.png
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\control.png
 H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\check.png
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\MyEntryRenderer.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\BoderEntry.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\MyRadioButton.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\RoundedStackView.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\sabo.png
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\res\drawable\chopper.png
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\MyBoderEntry.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\MyRadioButtonRenderer.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\RoundedStackViewRenderer.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\BackgroundEntryRenderer.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\BoderEntryRenderer.java
+H:\Xamarin\XamarinBasic\XamarinBasic\XamarinBasic.Android\obj\Debug\110\android\src\crc64c4fb8ca90b65cfcb\RadioButtonRenderer.java

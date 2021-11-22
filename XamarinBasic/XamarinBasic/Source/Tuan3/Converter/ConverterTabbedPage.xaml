@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="XamarinBasic.Source.Tuan3.Converter.ConverterTabbedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamarinBasic.Source.Tuan3.Converter"
+    CurrentPageChanged="OnCurrentPageChanged"
+    NavigationPage.BackButtonTitle="False"
+    NavigationPage.HasNavigationBar="False"
+    PropertyChanged="OnPropertyChanged">
+    <!--  Pages can be added as references or inline  -->
+    <TabbedPage.Children>
+        <NavigationPage Title="Date Converter">
+            <x:Arguments>
+                <local:ConverterPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="List View">
+            <x:Arguments>
+                <local:CharacterPage />
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>

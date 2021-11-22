@@ -63,6 +63,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\BoderEntryRenderer.cs" />
+    <Compile Include="CustomRenderers\BackgroundEntryRenderer.cs" />
+    <Compile Include="Effects\MyBoderEffect.cs" />
+    <Compile Include="Effects\MyFocusEffect.cs" />
+    <Compile Include="Effects\MyShadowEffect.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -144,5 +149,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sabo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chopper.png" />
   </ItemGroup>
 </Project>

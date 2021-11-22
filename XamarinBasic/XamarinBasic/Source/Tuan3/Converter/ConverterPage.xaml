@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.Converter.ConverterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:XamarinBasic.Converters">
+    <ContentPage.Resources>
+        <converters:YearConverter x:Key="yearConverter" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <DatePicker x:Name="datePicker" />
+            <Entry x:Name="yearEntry" Text="{Binding Source={x:Reference datePicker}, Path=Date, Converter={StaticResource yearConverter}}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

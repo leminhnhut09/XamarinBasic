@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="XamarinBasic.Source.Tuan3.Databinding.DataBindingTabbedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamarinBasic.Source.Tuan3.Databinding"
+    SelectedTabColor="Red"
+    UnselectedTabColor="Black">
+    <!--  Pages can be added as references or inline  -->
+    <local:OneWayPage Title="One Way" />
+    <local:TwoWay Title="Two Way" />
+    <local:OneWayToSource Title="One Source" />
+</TabbedPage>

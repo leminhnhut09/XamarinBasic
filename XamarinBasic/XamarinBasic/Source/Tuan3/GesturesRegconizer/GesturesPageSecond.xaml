@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.GesturesRegconizer.GesturesPageSecond"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamarinBasic.Source.Tuan3.GesturesRegconizer">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <local:PanContainer>
+                <Image
+                    HeightRequest="768"
+                    Source="check.png"
+                    WidthRequest="1024" />
+            </local:PanContainer>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

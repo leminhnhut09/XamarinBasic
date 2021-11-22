@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinBasic.Source.Tuan3.GesturesRegconizer.GesturePageFour"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamarinBasic.Source.Tuan3.GesturesRegconizer">
+    <ContentPage.BindingContext>
+        <local:FoodViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="200, Auto, *">
+            <CollectionView ItemsSource="{Binding FoodItems}" SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Purple" CornerRadius="10">
+                            <Grid RowDefinitions="Auto, Auto, Auto">
+                                <Image
+                                    Grid.Row="0"
+                                    HeightRequest="100"
+                                    Source="{Binding ImageUrl}"
+                                    WidthRequest="100">
+                                    <Image.GestureRecognizers>
+                                        <DragGestureRecognizer CanDrag="True" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Grid.Row="1" Text="{Binding Title}" />
+                                <Label Grid.Row="2" Text="{Binding Price, StringFormat='{0:c}'}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Grid.Row="1" Text="Choose" />
+            <Image Grid.Row="2" BackgroundColor="LightSkyBlue">
+                <Image.GestureRecognizers>
+                    <DropGestureRecognizer AllowDrop="True" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

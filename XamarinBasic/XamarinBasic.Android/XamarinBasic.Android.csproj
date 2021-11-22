@@ -58,6 +58,13 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\BoderEntryRenderer.cs" />
+    <Compile Include="CustomRenderers\BackgroundEntryRenderer.cs" />
+    <Compile Include="CustomRenderers\RadioButtonRenderer.cs" />
+    <Compile Include="CustomRenderers\RoundedStackViewRenderer.cs" />
+    <Compile Include="Effects\MyBoderEffect.cs" />
+    <Compile Include="Effects\MyFocusEffect.cs" />
+    <Compile Include="Effects\MyShadowEffect.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\sabo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\chopper.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
