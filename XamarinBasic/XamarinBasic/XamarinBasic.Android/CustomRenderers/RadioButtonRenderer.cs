@@ -12,9 +12,8 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using XamarinBasic.CustomRenderers;
-using XamarinBasic.Droid.CustomRenderers;
 
-[assembly: ExportRenderer(typeof(MyRadioButton), typeof(XamarinBasic.Droid.CustomRenderers.RadioButtonRenderer))]
+[assembly: ExportRenderer(typeof(MyRadioButton), typeof(RadioButtonRenderer))]
 namespace XamarinBasic.Droid.CustomRenderers
 {
     public class RadioButtonRenderer : ViewRenderer<MyRadioButton, Android.Widget.RadioButton>

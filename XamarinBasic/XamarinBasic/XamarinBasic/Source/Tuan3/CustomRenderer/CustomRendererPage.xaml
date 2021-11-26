@@ -9,7 +9,7 @@
         <vm:RadioButtonViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="20">
+        <StackLayout x:Name="stackLayout" Padding="20">
             <local:FocusEntry Text="Hello" />
             <local:MyRadioButton CheckedChanged="MyRadioButton_CheckedChanged" Text="{Binding Message}" />
             <RadioButton CheckedChanged="RadioButton_CheckedChanged" Content="Real Radio Button" />

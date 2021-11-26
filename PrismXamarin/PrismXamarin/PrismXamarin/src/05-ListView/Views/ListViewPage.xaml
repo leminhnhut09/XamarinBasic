@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PrismXamarin.src._05_ListView.Views.ListViewPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                ItemSelected="ListView_ItemSelected"
+                ItemsSource="{Binding Collection}"
+                SelectedItem="{Binding Product}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell
+                            Detail="{Binding Price}"
+                            ImageSource="{Binding Image}"
+                            Text="{Binding NameProduct}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <prism:EventToCommandBehavior Command="{Binding ItemTappedCommand}" EventName="ItemSelected" />
+                </ListView.Behaviors>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+<!--  EventArgsParameterPath="SelectedItem"  -->

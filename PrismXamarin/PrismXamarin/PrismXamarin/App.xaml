@@ -1,8 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PrismXamarin.App">
+<prism:PrismApplication
+    x:Class="PrismXamarin.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com">
     <Application.Resources>
 
+        <!--  Application resource dictionary  -->
+        <ResourceDictionary>
+            <Style x:Key="customButtonStyle" TargetType="Button">
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="BackgroundColor" Value="BlueViolet" />
+            </Style>
+        </ResourceDictionary>
+
     </Application.Resources>
-</Application>
+</prism:PrismApplication>

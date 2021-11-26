@@ -12,8 +12,9 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using XamarinBasic.CustomRenderers;
+using XamarinBasic.Droid.CustomRenderers;
 
-[assembly:ExportRenderer(typeof(XamarinBasic.CustomRenderers.RoundedCornerStackView), typeof(XamarinBasic.Droid.CustomRenderers.RoundedStackViewRenderer))]
+[assembly:ExportRenderer(typeof(RoundedCornerStackView), typeof(RoundedStackViewRenderer))]
 namespace XamarinBasic.Droid.CustomRenderers
 {
     public class RoundedStackViewRenderer : VisualElementRenderer<RoundedCornerStackView>

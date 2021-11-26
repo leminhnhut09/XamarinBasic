@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:XamarinBasic.Effects">
     <ContentPage.Content>
-        <StackLayout Padding="20">
+        <StackLayout x:Name="stackLayout" Padding="20">
             <!--  Tĩnh  -->
             <Label Text="Code Xaml" />
             <Entry Text="Hello Word">

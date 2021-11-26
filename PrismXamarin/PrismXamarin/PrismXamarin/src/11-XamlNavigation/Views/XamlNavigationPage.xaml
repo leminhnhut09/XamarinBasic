@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PrismXamarin.src._11_XamlNavigation.Views.XamlNavigationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    Title="Main Xaml"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" />
+            <Button Command="{prism:NavigateTo 'XamlA'}" Text="Info Page Without Parameters" />
+
+            <Button Command="{prism:NavigateTo 'XamlA?Message=Hello%20from%20XAML!'}" Text="Info Page with QueryString parameters" />
+
+            <Button Command="{prism:NavigateTo 'XamlA'}" Text="Info Page With Parameters">
+                <Button.CommandParameter>
+                    <prism:Parameter Key="Message" Value="A message from the past." />
+                </Button.CommandParameter>
+            </Button>
+
+            <Button Command="{prism:NavigateTo 'XamlA'}" Text="Info Page With Multiple Parameters">
+                <Button.CommandParameter>
+                    <prism:Parameters>
+                        <prism:Parameter Key="Message" Value="A message from the past." />
+                        <prism:Parameter Key="More" Value="Extra messages from the past." />
+                    </prism:Parameters>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button
+                Command="{prism:NavigateTo 'XamlA'}"
+                CommandParameter="{prism:Parameter Key='Message',
+                                                   Value='Hello from XamlExtension'}"
+                Text="Info Page With Inline Command Parameters" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

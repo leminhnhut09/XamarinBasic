@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PrismXamarin.src._09_TabbedPage.Views.TabA"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout x:Name="layout">
+            <Label HorizontalOptions="CenterAndExpand" Text="Tab A" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

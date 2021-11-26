@@ -14,7 +14,7 @@ using Xamarin.Forms.Platform.Android;
 using XamarinBasic.CustomRenderers;
 using XamarinBasic.Droid.CustomRenderers;
 
-[assembly:ExportRenderer(typeof(FocusEntry), typeof(BackgroundEntryRenderer))]
+[assembly: ExportRenderer(typeof(FocusEntry), typeof(BackgroundEntryRenderer))]
 namespace XamarinBasic.Droid.CustomRenderers
 {
     public class BackgroundEntryRenderer : EntryRenderer
@@ -38,9 +38,9 @@ namespace XamarinBasic.Droid.CustomRenderers
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-            try
+            if (e.PropertyName == VisualElement.IsFocusedProperty.PropertyName)
             {
-                if (e.PropertyName == VisualElement.IsFocusedProperty.PropertyName)
+                try
                 {
                     if (((Android.Graphics.Drawables.ColorDrawable)Control.Background).Color == _currentBackgroundColor)
                     {
@@ -51,10 +51,10 @@ namespace XamarinBasic.Droid.CustomRenderers
                         Control.SetBackgroundColor(_currentBackgroundColor);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
     }
