@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.UnitConverters"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Fahrenheit, Mile" />
+            <Stepper Increment="1" Value="{Binding Fahrenheit}" />
+            <Label Text="{Binding Fahrenheit}" />
+            <Label Text="{Binding Celsius, StringFormat='Celsius: {0}'}" />
+            <Label Text="{Binding Mile, StringFormat='Mile: {0}'}" />
+            <Button Command="{Binding OnConvertFtoCCommand}" Text="Converter" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

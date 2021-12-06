@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._00_MainNavigation.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <ScrollView
+            HorizontalOptions="CenterAndExpand"
+            Orientation="Vertical"
+            VerticalOptions="CenterAndExpand">
+            <Grid
+                Padding="5,20"
+                ColumnSpacing="5"
+                RowSpacing="5">
+                <Grid.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Button">
+                            <Setter Property="HeightRequest" Value="80" />
+                            <Setter Property="BorderWidth" Value="0" />
+                            <Setter Property="BackgroundColor" Value="BlueViolet" />
+                            <Setter Property="TextColor" Value="White" />
+                        </Style>
+                    </ResourceDictionary>
+                </Grid.Resources>
+                <!--  Define  -->
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  Content  -->
+                <Button
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="AppLifeCycleMainPage"
+                    Text="01 - AppLifecycle" />
+                <!--  Style="{StaticResource Key=customButtonStyle}"  -->
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="LifecyclePage"
+                    Text="02 - PageLifecycle" />
+                <Button
+                    Grid.Row="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="LocatorPage"
+                    Text="03 - ViewModelLocator" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="NavigationMainPage"
+                    Text="04 - Navigation" />
+                <Button
+                    Grid.Row="2"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="ListViewPage"
+                    Text="05 - ListView" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="DependencyServicePage"
+                    Text="06 - Dependency Service" />
+                <Button
+                    Grid.Row="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="MainServicePage"
+                    Text="07 - Dependency Injection" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="/PrismMasterDetailPage/NavigationPage/ViewA"
+                    Text="08 - MasterDetailPage" />
+                <Button
+                    Grid.Row="4"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="PrismTabbedPage1"
+                    Text="09 - Tabbed Page" />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="XamlNavigationPage"
+                    Text="10 - Navigation XAML" />
+                <Button
+                    Grid.Row="5"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="ApiPage"
+                    Text="11 - Api" />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="ApiHttpPage"
+                    Text="12 - API Http" />
+                <Button
+                    Grid.Row="6"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="MessageAPage"
+                    Text="13 - Messaging Center" />
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="AggregatorPage"
+                    Text="14 - Aggregator" />
+                <Button
+                    Grid.Row="7"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="/MainEssentialPage/NavigationPage/AppInfomation"
+                    Text="15 - Essentials" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

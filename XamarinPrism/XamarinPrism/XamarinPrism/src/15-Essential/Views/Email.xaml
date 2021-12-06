@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.Email"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Enter to" Text="{Binding To}" />
+            <Entry Placeholder="Enter cc" Text="{Binding Cc}" />
+            <Entry Placeholder="Enter cc" Text="{Binding Bbc}" />
+            <Entry Placeholder="Enter subject" Text="{Binding Subject}" />
+            <Editor
+                HeightRequest="400"
+                IsTextPredictionEnabled="True"
+                Placeholder="Enter massage"
+                Text="{Binding Message}" />
+            <Button Command="{Binding OnSendEmailCommand}" Text="Send" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

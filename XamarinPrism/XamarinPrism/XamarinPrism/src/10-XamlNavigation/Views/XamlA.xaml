@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._10_XamlNavigation.Views.XamlA"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding Text}"
+                VerticalOptions="CenterAndExpand" />
+            <Button Command="{prism:GoBack}" Text="Back" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.TextToSpeech"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Enter text" Text="{Binding Text}" />
+            <Label Text="Volume" />
+            <Slider
+                Maximum="1"
+                Minimum="0"
+                Value="{Binding Volume}" />
+            <Label Text="Pitch" />
+            <Slider
+                Maximum="2"
+                Minimum="0"
+                Value="{Binding Pitch}" />
+            <Button Command="{Binding OnTextToSpeedCommand}" Text="Speak" />
+            <Button Command="{Binding OnCancelSpeedCommand}" Text="Cancel" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

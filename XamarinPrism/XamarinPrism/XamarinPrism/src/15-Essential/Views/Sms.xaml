@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.Sms"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry
+                Keyboard="Telephone"
+                Placeholder="Phone number"
+                Text="{Binding PhoneNumber}" />
+            <Entry Placeholder="Message" Text="{Binding TextSms}" />
+            <Button Command="{Binding OnSmsCommand}" Text="Send sms" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

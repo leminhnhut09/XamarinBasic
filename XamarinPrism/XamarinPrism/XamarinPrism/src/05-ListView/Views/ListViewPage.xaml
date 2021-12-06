@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._05_ListView.Views.ListViewPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                GroupDisplayBinding="{Binding GroupName}"
+                GroupShortNameBinding="{Binding GroupName, StringFormat='{0:c1}'}"
+                IsGroupingEnabled="True"
+                ItemSelected="ListView_ItemSelected"
+                ItemsSource="{Binding Collection}"
+                SelectedItem="{Binding Product}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell
+                            Detail="{Binding Price}"
+                            ImageSource="{Binding Image}"
+                            Text="{Binding NameProduct}">
+                            <ImageCell.ContextActions>
+                                <MenuItem IsDestructive="True" Text="Delete" />
+                            </ImageCell.ContextActions>
+                        </ImageCell>
+                        <!--<ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem IsDestructive="True" Text="Delete" />
+                            </ViewCell.ContextActions>
+                            <Grid Margin="5" Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2" Source="{Binding Image}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding NameProduct}"
+                                    TextColor="Red" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding Price}" />
+                            </Grid>
+                        </ViewCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!--<ListView.Behaviors>
+                    <prism:EventToCommandBehavior Command="{Binding ItemTappedCommand}" EventName="ItemSelected" />
+                </ListView.Behaviors>-->
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+<!--  EventArgsParameterPath="SelectedItem"  -->

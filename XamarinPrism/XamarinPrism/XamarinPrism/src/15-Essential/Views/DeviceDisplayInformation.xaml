@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.DeviceDisplayInformation"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Orientation, StringFormat='Hướng: {0}'}" />
+            <Label Text="{Binding Rotation, StringFormat='Góc: {0}'}" />
+            <Label Text="{Binding Width, StringFormat='Độ rộng: {0}'}" />
+            <Label Text="{Binding Height, StringFormat='Độ cao: {0}'}" />
+            <!--  Mật độ điểm ảnh  -->
+            <Label Text="{Binding Density, StringFormat='Mật độ điểm ảnh: {0}'}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

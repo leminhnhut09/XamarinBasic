@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.GeoCoding"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Geocoding" />
+            <Entry Text="{Binding Latitude}" />
+            <Entry Text="{Binding Longtitude}" />
+            <Button Command="{Binding GetAddressCommand}" Text="Detect Placemarks" />
+            <Label Text="{Binding GeocodeAddress}" />
+            <Label Text="Reverse" />
+            <Entry Text="{Binding Address}" />
+            <Button Command="{Binding GetPositionCommand}" Text="Detect Location" />
+            <Label Text="{Binding GeocodePosition}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

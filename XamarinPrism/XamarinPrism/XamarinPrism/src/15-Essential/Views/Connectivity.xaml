@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.Connectivity"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="User name" />
+            <Entry Placeholder="Enter user" />
+            <Label Text="Password" />
+            <Entry Placeholder="Enter password" />
+            <Button Command="{Binding OnConnectionCommand}" Text="Login" />
+            <Label
+                BackgroundColor="Red"
+                HorizontalTextAlignment="Center"
+                Opacity="{Binding Opacity}"
+                Text="Disconnected"
+                TextColor="White"
+                VerticalOptions="EndAndExpand" />
+            <!--<Label Text="{Binding ConnectionProfile}" />-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

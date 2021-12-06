@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage
+    x:Class="XamarinPrism.src._15_Essential.Views.MainEssentialPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <MasterDetailPage.Master>
+        <ContentPage
+            Title="Menu"
+            Padding="{OnPlatform Default='20',
+                                 iOS='20,40'}"
+            IconImageSource="{OnPlatform iOS='hamburger.png'}">
+            <ScrollView>
+                <StackLayout>
+                    <Label
+                        Margin="0,20"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Text="Master Detail Demo" />
+                    <!--  Thông tin app về tên, version  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="AppInfomation"
+                        Text="App Info" />
+                    <!--  Thông tin về pin: trạng thái, phần trăm  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Batterry"
+                        Text="Batterry" />
+                    <!--  Thông tin về bộ nhớ tạm  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Clipboard"
+                        Text="Clipboard" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="ColorConverters"
+                        Text="ColorConverters" />
+                    <!--  Thông tin về kết nối mạng  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Connectivity"
+                        Text="Connectivity" />
+                    <!--  Cảm biến rung, lắc  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="DetectShake"
+                        Text="DetectShake" />
+                    <!--  Thông tin màn hình của thiết bị  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="DeviceDisplayInformation"
+                        Text="DeviceDisplayInformation" />
+                    <!--  Thông tin thiết bị  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="DeviceInfomation"
+                        Text="DeviceInfomation" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Email"
+                        Text="Email" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="FilePicker"
+                        Text="FilePicker" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="FileSystemHelpers"
+                        Text="FileSystemHelpers" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="FlaskLight"
+                        Text="FlaskLight" />
+                    <!--  Từ vị trí -> địa chỉ, từ địa chỉ -> vị  trí  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="GeoCoding"
+                        Text="GeoCoding" />
+                    <!--  Lấy tọa độ hiện tại hoặc cuối cùng  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Geolocation"
+                        Text="Geolocation" />
+                    <!--  Phản hồi xác giác: Rung nhẹ(click), rung mạnh (long press)  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="HapticFeedback"
+                        Text="HapticFeedback" />
+                    <!--  Con quay hồi chuyển (x, y, z) ...  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Gyroscope"
+                        Text="Gyroscope" />
+                    <!--  Launcher  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Launcher"
+                        Text="Launcher" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="MainThread"
+                        Text="MainThread" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Map"
+                        Text="Map" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="MediaPicker"
+                        Text="MediaPicker" />
+                    <!--  open browser web  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Browser"
+                        Text="Browser" />
+                    <!--  open UI phone  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="PhoneDailer"
+                        Text="PhoneDailer" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Preferences"
+                        Text="Preferences" />
+                    <!--  Screen Shot  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Screenshot"
+                        Text="Screenshot" />
+                    <!--  Share preferences  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="SecureStorage"
+                        Text="SecureStorage" />
+                    <!--  share with app  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Share"
+                        Text="Share" />
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Sms"
+                        Text="Sms" />
+
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="TextToSpeech"
+                        Text="TextToSpeech" />
+
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="UnitConverters"
+                        Text="UnitConverters" />
+                    <!--  Info app history build...  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="VersionTracking"
+                        Text="VersionTracking" />
+                    <!--  Rung trong khoang thoi gian  -->
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Vibrate"
+                        Text="Vibrate" />
+
+                    <Button
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="WebAuthenticator"
+                        Text="WebAuthenticator" />
+                </StackLayout>
+            </ScrollView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

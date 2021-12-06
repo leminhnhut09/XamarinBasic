@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._11_Api.Views.ApiPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    IsBusy="True">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding ListMakeUp}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell
+                            Detail="{Binding Price}"
+                            DetailColor="Blue"
+                            ImageSource="{Binding ImageLink}"
+                            Text="{Binding Name}"
+                            TextColor="Red" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding OnLoadDataCommand}" Text="GET" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding OnPostCommand}"
+                    Text="POST" />
+                <Button
+                    Grid.Row="1"
+                    Command="{Binding OnPutCommand}"
+                    Text="PUT" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Command="{Binding OnDeleteCommand}"
+                    Text="DELETE" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

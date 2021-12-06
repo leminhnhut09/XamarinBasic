@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.VersionTracking"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding FirstLaunch, StringFormat='FirstLaunch: {0}'}" />
+            <Label Text="{Binding FirstLaunchCurrent, StringFormat='FirstLaunchCurrent: {0}'}" />
+            <Label Text="{Binding CurrentVersion, StringFormat='CurrentVersion: {0}'}" />
+            <Label Text="{Binding FirstLaunchBuild, StringFormat='FirstLaunchBuild: {0}'}" />
+            <Label Text="{Binding CurrentBuild, StringFormat='CurrentBuild: {0}'}" />
+            <Label Text="{Binding PreviousVersion, StringFormat='PreviousVersion: {0}'}" />
+            <Label Text="{Binding PreviousBuild, StringFormat='PreviousBuild: {0}'}" />
+            <Label Text="{Binding FirstVersion, StringFormat='FirstVersion: {0}'}" />
+            <Label Text="{Binding FirstBuild, StringFormat='FirstBuild: {0}'}" />
+            <Label Text="{Binding VersionHistory, StringFormat='VersionHistory: {0}'}" />
+            <Label Text="{Binding BuildHistory, StringFormat='BuildHistory: {0}'}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

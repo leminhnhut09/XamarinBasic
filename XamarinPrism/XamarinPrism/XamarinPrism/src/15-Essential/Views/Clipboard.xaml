@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinPrism.src._15_Essential.Views.Clipboard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Enter text" Text="{Binding Text}" />
+            <Button Command="{Binding OnCopyCammand}" Text="Copy Text" />
+            <Button Command="{Binding OnPasteCammand}" Text="Paste Text" />
+            <Editor AutoSize="TextChanges" Text="{Binding Content}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
