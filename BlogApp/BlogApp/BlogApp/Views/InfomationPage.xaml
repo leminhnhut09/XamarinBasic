@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BlogApp.Views.InfomationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:BlogApp.Behavior"
+    xmlns:effects="clr-namespace:BlogApp.Effects"
+    BackgroundColor="{DynamicResource TertiaryTextColor}">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="10,0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <Image
+                Aspect="AspectFill"
+                BackgroundColor="Red"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                Source="image.png"
+                VerticalOptions="Center"
+                WidthRequest="200">
+                <Image.Clip>
+                    <EllipseGeometry
+                        Center="100,100"
+                        RadiusX="100"
+                        RadiusY="100" />
+                </Image.Clip>
+            </Image>
+
+            <Entry
+                Margin="0,30,0,0"
+                Style="{DynamicResource placeColorStyle}"
+                Text="Lê Minh Nhựt" />
+            <Entry Style="{DynamicResource placeColorStyle}" Text="minhnhut" />
+            <Entry
+                IsPassword="True"
+                Style="{DynamicResource placeColorStyle}"
+                Text="nhut1234@" />
+            <!--<Button
+                Margin="0,20"
+                effects:LongPressedEffect.Command="{Binding ShowAlertCommand}"
+                effects:LongPressedEffect.CommandParameter="{Binding .}"
+                Text="Quay lại">
+                <Button.Effects>
+                    <effects:LongPressedEffect />
+                </Button.Effects>
+            </Button>-->
+            <Button
+                Margin="0,20"
+                Padding="20"
+                Command="{Binding OnPopNavigationCommand}"
+                Text="Quay lại" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

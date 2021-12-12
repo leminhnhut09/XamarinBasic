@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BlogApp.Views.PostPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="{DynamicResource TertiaryTextColor}"
+    IsBusy="{Binding IsBusy}">
+    <ContentPage.Content>
+        <StackLayout>
+            <ActivityIndicator
+                BackgroundColor="Transparent"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="{DynamicResource PlaceHolderColor}" />
+            <!--  Background="White"  -->
+            <ListView
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemsSource="{Binding PostList}"
+                RefreshControlColor="Purple"
+                RowHeight="100"
+                SeparatorColor="{DynamicResource PlaceHolderColor}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+                                <!--<Image
+                                    Grid.RowSpan="2"
+                                    Margin="5"
+                                    Aspect="Fill"
+                                    HeightRequest="50"
+                                    Source="https://clipart-best.com/img/mario/mario-clip-art-5.png"
+                                    WidthRequest="50" />-->
+                                <!--<Image
+                                    Grid.RowSpan="3"
+                                    Aspect="AspectFill"
+                                    HeightRequest="80"
+                                    HorizontalOptions="Center"
+                                    Source="image.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="80">
+                                    <Image.Clip>
+                                        <EllipseGeometry
+                                            Center="40,40"
+                                            RadiusX="100"
+                                            RadiusY="100" />
+                                    </Image.Clip>
+                                </Image>-->
+                                <Frame
+                                    Grid.RowSpan="3"
+                                    Padding="0"
+                                    CornerRadius="100"
+                                    HeightRequest="80"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="True"
+                                    VerticalOptions="Center"
+                                    WidthRequest="80">
+                                    <!--<ffimageloading:CachedImage
+                                        DownsampleToViewSize="true"
+                                        HeightRequest="80"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding ThumbnailUrl}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="80" />-->
+                                    <Label Text="{Binding ThumbnailUrl}" TextColor="Red" />
+                                    <!--<Image Aspect="Fill" Source="{Binding ThumbnailUrl}" />-->
+                                </Frame>
+                                <!--<Label Grid.RowSpan="3" Text="{Binding ThumbnailUrl, StringFormat='{0}.png'}" />-->
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="0,5,0,0"
+                                    FontAttributes="Bold"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding TitlePhoto}"
+                                    TextColor="{DynamicResource PrimaryTextColor}"
+                                    TextTransform="Uppercase" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding TitleAlbum, StringFormat='Album: {0}'}"
+                                    TextColor="{DynamicResource PrimaryTextColor}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Margin="0,0,5,0"
+                                    FontSize="Small"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{Binding UserName, StringFormat='Person: {0}'}"
+                                    TextColor="{DynamicResource SubTextColor}" />
+                                <!--  TextColor="DarkCyan"  -->
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <prism:EventToCommandBehavior
+                        Command="{Binding OnItemSelectedCommand}"
+                        EventArgsParameterPath="Item"
+                        EventName="ItemTapped" />
+                    <prism:EventToCommandBehavior Command="{Binding OnRefreshingListViewCommand}" EventName="Refreshing" />
+                </ListView.Behaviors>
+            </ListView>
+            <Label
+                BackgroundColor="Red"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding IsNotInternet}"
+                Text="Disconnected"
+                TextColor="White" />
+        </StackLayout>
+        <!--<Label Text="Hello" />-->
+    </ContentPage.Content>
+</ContentPage>

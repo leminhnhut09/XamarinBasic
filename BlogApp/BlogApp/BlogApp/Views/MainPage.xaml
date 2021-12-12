@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage
+    x:Class="BlogApp.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:BlogApp.Behavior"
+    xmlns:effects="clr-namespace:BlogApp.Effects"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:renderers="clr-namespace:BlogApp.CustomRenderes"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="cornerRadiusButtonStyle" TargetType="Button">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="TextColor" Value="WhiteSmoke" />
+            </Style>
+            <Style
+                x:Key="buttonGradientStyle"
+                BasedOn="{StaticResource cornerRadiusButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0.1" Color="Pink" />
+                            <GradientStop Offset="1.0" Color="Green" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style
+                x:Key="buttonPurpleStyle"
+                BasedOn="{StaticResource cornerRadiusButtonStyle}"
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Purple" />
+            </Style>
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
+    <MasterDetailPage.Master>
+        <ContentPage
+            Title="Menu"
+            Padding="{OnPlatform Default='20',
+                                 iOS='20,40'}"
+            BackgroundColor="{DynamicResource TertiaryTextColor}"
+            IconImageSource="{OnPlatform iOS='hamburger.png'}">
+            <ScrollView>
+                <StackLayout>
+                    <Frame
+                        BackgroundColor="DarkBlue"
+                        CornerRadius="5"
+                        HeightRequest="120">
+                        <StackLayout>
+                            <!--<Frame
+                                Padding="0"
+                                BackgroundColor="Red"
+                                CornerRadius="100"
+                                HeightRequest="200"
+                                HorizontalOptions="Center"
+                                IsClippedToBounds="True"
+                                WidthRequest="200">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HorizontalOptions="Center"
+                                    Source="facebook.png"
+                                    VerticalOptions="Start" />
+                            </Frame>-->
+                            <Image
+                                Aspect="AspectFill"
+                                BackgroundColor="Red"
+                                HeightRequest="100"
+                                HorizontalOptions="Center"
+                                Source="image.png"
+                                VerticalOptions="Center"
+                                WidthRequest="100">
+                                <Image.Clip>
+                                    <EllipseGeometry
+                                        Center="50,50"
+                                        RadiusX="50"
+                                        RadiusY="50" />
+                                </Image.Clip>
+                            </Image>
+
+                            <Label
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Họ và tên"
+                                TextColor="White"
+                                VerticalOptions="StartAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                    <renderers:GradientButtonRenderer
+                        Command="{Binding OnNavigationCommand}"
+                        CommandParameter="InfoPage"
+                        EndColor="Green"
+                        StartColor="Pink"
+                        Style="{StaticResource cornerRadiusButtonStyle}"
+                        Text="Thông tin cá nhân" />
+
+                    <renderers:GradientButtonRenderer
+                        Command="{Binding OnNavigationCommand}"
+                        CommandParameter="PostPage"
+                        EndColor="Green"
+                        StartColor="Pink"
+                        Style="{StaticResource cornerRadiusButtonStyle}"
+                        Text="Duyệt hình ảnh" />
+                    <!--<Button
+                        Command="{Binding OnNavigationCommand}"
+                        CommandParameter="InfomationPage"
+                        Style="{StaticResource buttonGradientStyle}"
+                        Text="Thông tin cá nhân" />
+                    <Button
+                        Command="{Binding OnNavigationCommand}"
+                        CommandParameter="PostPage"
+                        Style="{StaticResource buttonGradientStyle}"
+                        Text="Duyệt hình ảnh" />-->
+                    <Button Style="{StaticResource buttonPurpleStyle}" Text="Đăng xuất">
+                        <Button.Behaviors>
+                            <behaviors:LongPressBehavior Command="{Binding OnLogOutCommand}" CommandParameter="someValue" />
+                        </Button.Behaviors>
+                        <Button.Effects>
+                            <effects:LongPressedEffect Color="Purple" />
+                        </Button.Effects>
+                    </Button>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>
