@@ -10,17 +10,11 @@ namespace BlogApp.Models
         [JsonPropertyName("albumId")]
         public int AlbumId { get; set; }
 
-        //[JsonPropertyName("id")]
-        //public int Id { get; set; }
-
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        //[JsonPropertyName("url")]
-        //public string Url { get; set; }
-
         [JsonPropertyName("thumbnailUrl")]
-        //[JsonConverter(typeof(ThumbnailUrlConverter))]
+       // [JsonConverter(typeof(ThumbnailUrlConverter))]
         public string ThumbnailUrl { get; set; }
 
         public Photo()
@@ -45,7 +39,7 @@ namespace BlogApp.Models
 
         public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(value);
+            writer.WriteStringValue(value ?? "No Url");
         }
     }
 }

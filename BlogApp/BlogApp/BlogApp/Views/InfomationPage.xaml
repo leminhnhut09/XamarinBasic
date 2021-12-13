@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:BlogApp.Behavior"
     xmlns:effects="clr-namespace:BlogApp.Effects"
+    xmlns:renderers="clr-namespace:BlogApp.CustomRenderes"
     BackgroundColor="{DynamicResource TertiaryTextColor}">
     <ContentPage.Content>
         <StackLayout
@@ -31,11 +32,11 @@
                 Margin="0,30,0,0"
                 Style="{DynamicResource placeColorStyle}"
                 Text="Lê Minh Nhựt" />
-            <Entry Style="{DynamicResource placeColorStyle}" Text="minhnhut" />
+            <Entry Style="{DynamicResource placeColorStyle}" Text="{Binding UserName}" />
             <Entry
                 IsPassword="True"
                 Style="{DynamicResource placeColorStyle}"
-                Text="nhut1234@" />
+                Text="{Binding Password}" />
             <!--<Button
                 Margin="0,20"
                 effects:LongPressedEffect.Command="{Binding ShowAlertCommand}"
@@ -45,11 +46,21 @@
                     <effects:LongPressedEffect />
                 </Button.Effects>
             </Button>-->
-            <Button
+
+            <renderers:GradientButtonRenderer
                 Margin="0,20"
                 Padding="20"
                 Command="{Binding OnPopNavigationCommand}"
+                CommandParameter="InfoPage"
+                EndColor="Green"
+                StartColor="Pink"
+                Style="{StaticResource cornerRadiusButtonStyle}"
                 Text="Quay lại" />
+            <!--<Button
+                Margin="0,20"
+                Padding="20"
+                Command="{Binding OnPopNavigationCommand}"
+                Text="Quay lại" />-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

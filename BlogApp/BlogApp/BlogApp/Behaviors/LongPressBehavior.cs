@@ -10,9 +10,8 @@ namespace BlogApp.Behavior
 {
     public class LongPressBehavior : Behavior<Button>
     {
+        private const int Duration = 3000;
         private readonly object _syncObject = new object();
-        private const int Duration = 400;
-
         private Timer _timer;
         private readonly int _duration;
         private volatile bool _isReleased;

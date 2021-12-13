@@ -49,13 +49,19 @@ namespace BlogApp.ViewModels
             if (!IsInternet)
             {
                 await _pageDialogService.DisplayAlertAsync("Thông báo", "Mất kết nối", "Đóng");
-                return;
+            }
+            else if(String.IsNullOrEmpty(UserName) || String.IsNullOrEmpty(Password))
+            {
+                await _pageDialogService.DisplayAlertAsync("Thông báo", "Vui lòng điền đầy đủ thông tin theo yêu cầu !", "Đóng");
             }
             else
             {
                 if ((UserName.Equals("minhnhut") && Password.Equals("Nhut1234@")))
                 {
-                    var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage");
+                    var navigationParams = new NavigationParameters();
+                    navigationParams.Add("username", UserName);
+                    navigationParams.Add("password", Password);
+                    var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
                     //await _pageDialogService.DisplayAlertAsync("Thông báo", "Đăng nhập thành công", "Đóng");
                     if(!result.Success)
                     {
@@ -64,8 +70,9 @@ namespace BlogApp.ViewModels
                     if (result.Success && IsChecked)
                     {
                        Preferences.Set("isRemember", IsChecked);
+                       await SecureStorage.SetAsync("username", UserName);
+                       await SecureStorage.SetAsync("password", Password);
                     }
-
                 }
                 else
                 {
@@ -78,7 +85,14 @@ namespace BlogApp.ViewModels
             base.OnAppearing();
             if (Preferences.ContainsKey("isRemember"))
             {
-                var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage");
+                var username = await SecureStorage.GetAsync("username");
+                var pass = await SecureStorage.GetAsync("password");
+
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("username", username);
+                navigationParams.Add("password", pass);
+
+                var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
                 if (!result.Success)
                 {
                     await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể chuyển trang", "Đóng");

@@ -10,23 +10,6 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <MasterDetailPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="cornerRadiusButtonStyle" TargetType="Button">
-                <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="TextColor" Value="WhiteSmoke" />
-            </Style>
-            <Style
-                x:Key="buttonGradientStyle"
-                BasedOn="{StaticResource cornerRadiusButtonStyle}"
-                TargetType="Button">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Offset="0.1" Color="Pink" />
-                            <GradientStop Offset="1.0" Color="Green" />
-                        </LinearGradientBrush>
-                    </Setter.Value>
-                </Setter>
-            </Style>
             <Style
                 x:Key="buttonPurpleStyle"
                 BasedOn="{StaticResource cornerRadiusButtonStyle}"
@@ -81,7 +64,7 @@
 
                             <Label
                                 HorizontalOptions="CenterAndExpand"
-                                Text="Họ và tên"
+                                Text="{Binding UserName}"
                                 TextColor="White"
                                 VerticalOptions="StartAndExpand" />
                         </StackLayout>

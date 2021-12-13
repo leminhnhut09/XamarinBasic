@@ -9,7 +9,7 @@ namespace BlogApp.ViewModels
 {
     public class DetailPostPageViewModel : BindableBase, INavigationAware
     {
-        private string _title = "Detail Post";
+        private string _title = "Chi tiết";
         public string Title 
         {
             get { return _title; }

@@ -132,6 +132,9 @@
     <PackageReference Include="Refit">
       <Version>6.1.15</Version>
     </PackageReference>
+    <PackageReference Include="Refit.Newtonsoft.Json">
+      <Version>6.1.15</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
       <Version>2.4.11.982</Version>
     </PackageReference>

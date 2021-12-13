@@ -1,10 +1,7 @@
 ﻿using BlogApp.Models;
-using Newtonsoft.Json;
 using Refit;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BlogApp.Services
@@ -15,6 +12,18 @@ namespace BlogApp.Services
         {
             try
             {
+                //var nullTask = Task.FromResult<Exception>(null);
+                //var setting = new RefitSettings
+                //{
+                //    ExceptionFactory = httpResponse => nullTask
+                //};
+
+                //var settings = new RefitSettings
+                //{
+                //    ContentSerializer = new NewtonsoftJsonContentSerializer()
+                //};
+
+
                 var responseUser = RestService.For<IAlbumService>("http://jsonplaceholder.typicode.com");
                 var albums = await responseUser.GetAlbums();
                 return albums;
@@ -24,6 +33,7 @@ namespace BlogApp.Services
             }
             catch (ApiException ex)
             {
+                Console.WriteLine(ex.RequestMessage);
                 //exception handling
             }
             return null;

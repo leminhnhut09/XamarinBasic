@@ -3,6 +3,7 @@
     x:Class="BlogApp.Views.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:converters="clr-namespace:BlogApp.Converters"
     xmlns:renderers="clr-namespace:BlogApp.CustomRenderes"
     BackgroundColor="{DynamicResource TertiaryTextColor}">
@@ -18,120 +19,126 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="10,0" VerticalOptions="CenterAndExpand">
-            <StackLayout Margin="15,10" Padding="0">
-                <Label
-                    Margin="0,0,0,40"
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    Text="LOGIN"
-                    TextColor="{DynamicResource PrimaryTextColor}" />
-                <Frame
+        <StackLayout Padding="10,0" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <StackLayout
+                    Margin="15,10"
                     Padding="0"
-                    BackgroundColor="Transparent"
-                    BorderColor="DarkGray"
-                    CornerRadius="30"
-                    HorizontalOptions="FillAndExpand">
-                    <StackLayout Orientation="Horizontal">
-                        <Frame
-                            Margin="5"
-                            Padding="0"
-                            BackgroundColor="SkyBlue"
-                            CornerRadius="30"
-                            HeightRequest="40"
-                            WidthRequest="40">
-                            <Image
-                                Margin="0"
-                                Aspect="AspectFill"
-                                Source="https://www.findool.com/images/avatars/avatar.png" />
-                        </Frame>
-
-                        <renderers:CustomEntryRenderer
-                            Margin="0,0,20,0"
-                            FontAttributes="None"
-                            HorizontalOptions="FillAndExpand"
-                            Placeholder="Username"
-                            PlaceholderColor="{DynamicResource PlaceHolderColor}"
-                            Text="{Binding UserName}"
-                            TextColor="{DynamicResource SecondaryColor}" />
-                    </StackLayout>
-                </Frame>
-                <Label
-                    Margin="0"
-                    Text="Độ dài ít nhất 8 ký tự"
-                    TextColor="{DynamicResource SecondaryTextColor}">
-                    <Label.Triggers>
-                        <DataTrigger
-                            Binding="{Binding UserName, Converter={StaticResource isValidUserName}}"
-                            TargetType="Label"
-                            Value="true">
-                            <Setter Property="Text" Value="" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-                <Frame
-                    Margin="0,15,0,0"
-                    Padding="0"
-                    BackgroundColor="Transparent"
-                    BorderColor="DarkGray"
-                    CornerRadius="30"
-                    HorizontalOptions="FillAndExpand">
-                    <StackLayout Orientation="Horizontal">
-                        <Frame
-                            Margin="5"
-                            Padding="0"
-                            BackgroundColor="SkyBlue"
-                            CornerRadius="30"
-                            HeightRequest="40"
-                            WidthRequest="40">
-                            <Image
-                                Margin="0"
-                                Aspect="AspectFill"
-                                Source="https://images.all-free-download.com/images/graphicthumb/lock_icon_6813906.jpg" />
-                        </Frame>
-
-                        <renderers:CustomEntryRenderer
-                            Margin="0,0,20,0"
-                            FontAttributes="None"
-                            HorizontalOptions="FillAndExpand"
-                            IsPassword="True"
-                            Placeholder="Password"
-                            PlaceholderColor="{DynamicResource PlaceHolderColor}"
-                            Text="{Binding Password}"
-                            TextColor="{DynamicResource SecondaryColor}" />
-                    </StackLayout>
-                </Frame>
-                <Label
-                    Margin="0"
-                    Text="Độ dài ít nhất 8 ký tự, có chứa số và ký tự đặc biệt"
-                    TextColor="{DynamicResource SecondaryTextColor}">
-                    <Label.Triggers>
-                        <DataTrigger
-                            Binding="{Binding Password, Converter={StaticResource isValidPassword}}"
-                            TargetType="Label"
-                            Value="true">
-                            <Setter Property="Text" Value="" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <StackLayout Margin="0,15,0,0" Orientation="Horizontal">
-                    <CheckBox IsChecked="{Binding IsChecked, Mode=OneWayToSource}" Color="{DynamicResource PrimaryTextColor}" />
+                    VerticalOptions="CenterAndExpand">
                     <Label
-                        FontSize="Small"
-                        HorizontalTextAlignment="Center"
-                        Text="Remember me"
-                        TextColor="{DynamicResource PrimaryTextColor}"
-                        VerticalTextAlignment="Center" />
+                        Margin="0,0,0,40"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="LOGIN"
+                        TextColor="{DynamicResource PrimaryTextColor}" />
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="DarkGray"
+                        CornerRadius="30"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame
+                                Margin="5"
+                                Padding="0"
+                                BackgroundColor="SkyBlue"
+                                CornerRadius="30"
+                                HeightRequest="40"
+                                WidthRequest="40">
+                                <Image
+                                    Margin="0"
+                                    Aspect="AspectFill"
+                                    Source="https://www.findool.com/images/avatars/avatar.png" />
+                            </Frame>
 
+                            <renderers:CustomEntryRenderer
+                                Margin="0,0,20,0"
+                                FontAttributes="None"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Username"
+                                PlaceholderColor="{DynamicResource PlaceHolderColor}"
+                                Text="{Binding UserName}"
+                                TextColor="{DynamicResource SecondaryColor}" />
+                        </StackLayout>
+                    </Frame>
+                    <Label
+                        Margin="0"
+                        Text="Độ dài ít nhất 8 ký tự"
+                        TextColor="{DynamicResource PrimaryTextColor}">
+                        <Label.Triggers>
+                            <DataTrigger
+                                Binding="{Binding UserName, Converter={StaticResource isValidUserName}}"
+                                TargetType="Label"
+                                Value="true">
+                                <Setter Property="Text" Value="" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Frame
+                        Margin="0,15,0,0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="DarkGray"
+                        CornerRadius="30"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame
+                                Margin="5"
+                                Padding="0"
+                                BackgroundColor="SkyBlue"
+                                CornerRadius="30"
+                                HeightRequest="40"
+                                WidthRequest="40">
+                                <Image
+                                    Margin="0"
+                                    Aspect="AspectFill"
+                                    Source="https://images.all-free-download.com/images/graphicthumb/lock_icon_6813906.jpg" />
+                            </Frame>
+
+                            <renderers:CustomEntryRenderer
+                                Margin="0,0,20,0"
+                                FontAttributes="None"
+                                HorizontalOptions="FillAndExpand"
+                                IsPassword="True"
+                                Placeholder="Password"
+                                PlaceholderColor="{DynamicResource PlaceHolderColor}"
+                                Text="{Binding Password}"
+                                TextColor="{DynamicResource SecondaryColor}" />
+                        </StackLayout>
+                    </Frame>
+                    <Label
+                        Margin="0"
+                        Text="Độ dài ít nhất 8 ký tự, có chứa số và ký tự đặc biệt"
+                        TextColor="{DynamicResource PrimaryTextColor}">
+                        <Label.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Password, Converter={StaticResource isValidPassword}}"
+                                TargetType="Label"
+                                Value="true">
+                                <Setter Property="Text" Value="" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+
+                    <StackLayout Margin="0,15,0,0" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsChecked, Mode=OneWayToSource}" Color="{DynamicResource PrimaryTextColor}" />
+                        <Label
+                            FontSize="Small"
+                            HorizontalTextAlignment="Center"
+                            Text="Remember me"
+                            TextColor="{DynamicResource PrimaryTextColor}"
+                            VerticalTextAlignment="Center" />
+
+                    </StackLayout>
+                    <Button
+                        Margin="0,15,0,0"
+                        Command="{Binding OnNavigationPageCommand}"
+                        Style="{StaticResource buttonStyle}"
+                        Text="Login" />
                 </StackLayout>
-                <Button
-                    Margin="0,15,0,0"
-                    Command="{Binding OnNavigationPageCommand}"
-                    Style="{StaticResource buttonStyle}"
-                    Text="Login" />
             </StackLayout>
+
             <StackLayout VerticalOptions="End">
                 <Label
                     BackgroundColor="Red"
@@ -141,6 +148,5 @@
                     TextColor="White" />
             </StackLayout>
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

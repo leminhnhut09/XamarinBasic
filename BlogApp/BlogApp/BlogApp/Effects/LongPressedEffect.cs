@@ -23,7 +23,6 @@ namespace BlogApp.Effects
             view.SetValue(CommandProperty, value);
         }
 
-
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.CreateAttached("CommandParameter", typeof(object), typeof(LongPressedEffect), null);
         public static object GetCommandParameter(BindableObject view)
         {

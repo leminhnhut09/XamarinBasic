@@ -23,14 +23,11 @@ namespace BlogApp
         {
             InitializeComponent();
             LoadTheme(AppInfo.RequestedTheme.ToString());
-            //Application.Current.RequestedThemeChanged += (s, a) =>
-            //{
-            //    // Respond to the theme change
-            //};
 
             Application.Current.RequestedThemeChanged += OnRequestedThemeChanged; ;
 
-            var result = await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            //var result = await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            var result = await NavigationService.NavigateAsync("LoginPage");
             //var result = await NavigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage");
             if (!result.Success)
             {

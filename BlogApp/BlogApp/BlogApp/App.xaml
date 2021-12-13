@@ -10,6 +10,23 @@
                 <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryTextColor}" />
                 <Setter Property="TextColor" Value="Black" />
             </Style>
+            <Style x:Key="cornerRadiusButtonStyle" TargetType="Button">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="TextColor" Value="WhiteSmoke" />
+            </Style>
+            <Style
+                x:Key="buttonGradientStyle"
+                BasedOn="{StaticResource cornerRadiusButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0.1" Color="Pink" />
+                            <GradientStop Offset="1.0" Color="Green" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 

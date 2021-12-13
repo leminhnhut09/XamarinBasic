@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlogApp.Models;
+using BlogApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,16 @@ namespace BlogApp.Views
         public PostPage()
         {
             InitializeComponent();
+        }
+
+        private void OnListViewItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            var viewmodel = BindingContext as PostPageViewModel;
+            //(BindingContext as PostPageViewModel).LoadMore(e.Item as Post);
+            if(viewmodel != null)
+            {
+                viewmodel.LoadMore(e.Item as Post);
+            }
         }
     }
 }

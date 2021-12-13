@@ -56,13 +56,20 @@ namespace BlogApp.Droid.Effects
 
         private async void OnLongClick(object sender, Android.Views.View.LongClickEventArgs e)
         {
+            Control.Touch += Control_Touch;
             //Console.WriteLine("Invoking long click command");
             //var command = LongPressedEffect.GetCommand(Element);
             //command?.Execute(LongPressedEffect.GetCommandParameter(Element));
             Control.SetBackgroundColor(Android.Graphics.Color.Red);
-            await Task.Delay(500);
+            await Task.Delay(3000);
             Control.SetBackgroundColor(_currentColor);
         }
+
+        private void Control_Touch(object sender, Android.Views.View.TouchEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void OnDetached()
         {
             if (_attached)

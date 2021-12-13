@@ -9,7 +9,7 @@ namespace BlogApp.Services
 {
     public interface IPhotoService
     {
-        [Get("/photos?_start=30&_limit=50")]
-        Task<List<Photo>> GetPhotos();
+        [Get("/photos?_start={start}&_limit={limit}")]
+        Task<List<Photo>> GetPhotos(int start, int limit);
     }
 }

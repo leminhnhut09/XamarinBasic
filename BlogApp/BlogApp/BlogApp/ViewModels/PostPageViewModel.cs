@@ -26,7 +26,7 @@ namespace BlogApp.ViewModels
         protected IUserService _userService;
         protected IPhotoService _photoService;
 
-        private string _title = "Detail Post";
+        private string _title = "Danh Sách";
         public string Title
         {
             get { return _title; }
@@ -61,6 +61,20 @@ namespace BlogApp.ViewModels
             set { SetProperty(ref _isRefreshing, value); }
         }
 
+        private bool _isBusyLoadMore;
+        public bool IsBusyLoadMore
+        {
+            get { return _isBusyLoadMore; }
+            set { SetProperty(ref _isBusyLoadMore, value); }
+        }
+
+        private int _offset = 0;
+        public int OffSet
+        {
+            get { return _offset; }
+            set { SetProperty(ref _offset, value); }
+        }
+
         public List<User> UserList { get; set; } = new List<User>();
         public List<Photo> PhotoList { get; set; } = new List<Photo>();
         public List<Album> AlbumList { get; set; } = new List<Album>();
@@ -91,7 +105,7 @@ namespace BlogApp.ViewModels
 
         private async void ExcuteItemSelected(Post post)
         {
-            if(post != null)
+            if (post != null)
             {
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("post", post);
@@ -172,7 +186,7 @@ namespace BlogApp.ViewModels
             }
             //var responsePhoto = RestService.For<IPhotoService>("http://jsonplaceholder.typicode.com");
             //var photos = await responsePhoto.GetPhotos();
-            var photos = await _photoService.GetPhotos();
+            var photos = await _photoService.GetPhotos(0, 50);
             foreach (var item in photos)
             {
                 PhotoList.Add(new Photo(item.AlbumId, item.Title, item.ThumbnailUrl));
@@ -195,8 +209,11 @@ namespace BlogApp.ViewModels
                                a.TitleAlbum,
                                u.UserName
                            };
-            if (listPost == null) return;
-            //Console.WriteLine("countttttttttttt" + listPost.Count());
+            if (listPost == null)
+            {
+                IsBusy = false;
+                return;
+            } 
             foreach (var item in listPost)
             {
                 PostList.Add(new Post(item.UserName, item.TitleAlbum, item.Title, item.ThumbnailUrl));
@@ -204,10 +221,48 @@ namespace BlogApp.ViewModels
             IsBusy = false;
         }
 
+        public async void LoadMore(Post currentItem)
+        {
+            int itemIndex = PostList.IndexOf(currentItem);
+            Console.WriteLine("indexxxxxxxxxxx:" + itemIndex);
+            if (PostList.Count - 3 == itemIndex)
+            {
+                IsBusyLoadMore = true;
+                OffSet = PostList.Count;
+                PhotoList.Clear();
+                var photos = await _photoService.GetPhotos(OffSet, 50);
+                IsBusyLoadMore = false;
+                foreach (var item in photos)
+                {
+                    PhotoList.Add(new Photo(item.AlbumId, item.Title, item.ThumbnailUrl));
+                }
+
+                var listPost = from p in PhotoList
+                               join a in AlbumList on p.AlbumId.ToString() equals a.Id.ToString()
+                               join u in UserList on a.UserId.ToString() equals u.Id.ToString()
+                               select new
+                               {
+                                   p.ThumbnailUrl,
+                                   p.Title,
+                                   a.TitleAlbum,
+                                   u.UserName
+                               };
+                foreach (var item in listPost)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        PostList.Add(new Post(item.UserName, item.TitleAlbum, item.Title, item.ThumbnailUrl));
+                    });
+                }
+                //PhotoList.Clear();
+                Console.WriteLine("PostList" + PostList.Count);
+            }
+        }
+
         public async void OnResume()
         {
-             GetStatusInternet();
-             await CallApi();
+            GetStatusInternet();
+            await CallApi();
         }
 
         public void OnSleep()

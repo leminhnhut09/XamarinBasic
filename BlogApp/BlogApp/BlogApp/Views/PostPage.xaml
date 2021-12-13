@@ -21,6 +21,7 @@
             <ListView
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing}"
+                ItemAppearing="OnListViewItemAppearing"
                 ItemsSource="{Binding PostList}"
                 RefreshControlColor="Purple"
                 RowHeight="100"
@@ -28,7 +29,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid Padding="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
@@ -69,14 +70,14 @@
                                     IsClippedToBounds="True"
                                     VerticalOptions="Center"
                                     WidthRequest="80">
-                                    <!--<ffimageloading:CachedImage
+                                    <ffimageloading:CachedImage
                                         DownsampleToViewSize="true"
                                         HeightRequest="80"
                                         HorizontalOptions="Center"
                                         Source="{Binding ThumbnailUrl}"
                                         VerticalOptions="Center"
-                                        WidthRequest="80" />-->
-                                    <Label Text="{Binding ThumbnailUrl}" TextColor="Red" />
+                                        WidthRequest="80" />
+                                    <!--<Label Text="{Binding ThumbnailUrl}" TextColor="Red" />-->
                                     <!--<Image Aspect="Fill" Source="{Binding ThumbnailUrl}" />-->
                                 </Frame>
                                 <!--<Label Grid.RowSpan="3" Text="{Binding ThumbnailUrl, StringFormat='{0}.png'}" />-->
@@ -92,15 +93,17 @@
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Text="{Binding TitleAlbum, StringFormat='Album: {0}'}"
-                                    TextColor="{DynamicResource PrimaryTextColor}" />
+                                    TextColor="{DynamicResource PrimaryTextColor}"
+                                    VerticalOptions="StartAndExpand" />
                                 <Label
                                     Grid.Row="2"
                                     Grid.Column="1"
-                                    Margin="0,0,5,0"
+                                    Margin="0,0,5,5"
                                     FontSize="Small"
                                     HorizontalOptions="EndAndExpand"
                                     Text="{Binding UserName, StringFormat='Person: {0}'}"
-                                    TextColor="{DynamicResource SubTextColor}" />
+                                    TextColor="{DynamicResource SubTextColor}"
+                                    VerticalOptions="End" />
                                 <!--  TextColor="DarkCyan"  -->
                             </Grid>
                         </ViewCell>
