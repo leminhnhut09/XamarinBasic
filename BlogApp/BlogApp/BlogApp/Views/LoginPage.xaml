@@ -6,15 +6,16 @@
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:converters="clr-namespace:BlogApp.Converters"
     xmlns:renderers="clr-namespace:BlogApp.CustomRenderes"
-    BackgroundColor="{DynamicResource TertiaryTextColor}">
+    BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
+                                      Dark={StaticResource SystemGrayDark}}">
     <ContentPage.Resources>
         <converters:IsValidUserNameConverter x:Key="isValidUserName" />
         <converters:IsValidPasswordConverter x:Key="isValidPassword" />
         <ResourceDictionary>
             <Style x:Key="buttonStyle" TargetType="Button">
                 <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="BackgroundColor" Value="DarkGray" />
-                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SystemPurple1}, Dark={StaticResource SystemBlueDark}}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SystemGray6}, Dark={StaticResource SystemGray6}}" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -31,7 +32,8 @@
                         FontSize="30"
                         HorizontalOptions="Center"
                         Text="LOGIN"
-                        TextColor="{DynamicResource PrimaryTextColor}" />
+                        TextColor="{AppThemeBinding Light={StaticResource TextColor},
+                                                    Dark={StaticResource TextColorDark}}" />
                     <Frame
                         Padding="0"
                         BackgroundColor="Transparent"
@@ -57,15 +59,19 @@
                                 FontAttributes="None"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Username"
-                                PlaceholderColor="{DynamicResource PlaceHolderColor}"
+                                PlaceholderColor="{AppThemeBinding Light={StaticResource SystemGray4},
+                                                                   Dark={StaticResource SystemGray4}}"
                                 Text="{Binding UserName}"
-                                TextColor="{DynamicResource SecondaryColor}" />
+                                TextColor="{AppThemeBinding Light={StaticResource TextColor},
+                                                            Dark={StaticResource TextColorDark}}" />
                         </StackLayout>
                     </Frame>
                     <Label
+                        x:Name="userLabel"
                         Margin="0"
                         Text="Độ dài ít nhất 8 ký tự"
-                        TextColor="{DynamicResource PrimaryTextColor}">
+                        TextColor="{AppThemeBinding Light={StaticResource SystemGray2Dark},
+                                                    Dark={StaticResource SystemGray4}}">
                         <Label.Triggers>
                             <DataTrigger
                                 Binding="{Binding UserName, Converter={StaticResource isValidUserName}}"
@@ -102,15 +108,19 @@
                                 HorizontalOptions="FillAndExpand"
                                 IsPassword="True"
                                 Placeholder="Password"
-                                PlaceholderColor="{DynamicResource PlaceHolderColor}"
+                                PlaceholderColor="{AppThemeBinding Light={StaticResource SystemGray4},
+                                                                   Dark={StaticResource SystemGray4}}"
                                 Text="{Binding Password}"
-                                TextColor="{DynamicResource SecondaryColor}" />
+                                TextColor="{AppThemeBinding Light={StaticResource TextColor},
+                                                            Dark={StaticResource TextColorDark}}" />
                         </StackLayout>
                     </Frame>
                     <Label
+                        x:Name="passwordLabel"
                         Margin="0"
                         Text="Độ dài ít nhất 8 ký tự, có chứa số và ký tự đặc biệt"
-                        TextColor="{DynamicResource PrimaryTextColor}">
+                        TextColor="{AppThemeBinding Light={StaticResource SystemGray2Dark},
+                                                    Dark={StaticResource SystemGray4}}">
                         <Label.Triggers>
                             <DataTrigger
                                 Binding="{Binding Password, Converter={StaticResource isValidPassword}}"
@@ -122,20 +132,34 @@
                     </Label>
 
                     <StackLayout Margin="0,15,0,0" Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsChecked, Mode=OneWayToSource}" Color="{DynamicResource PrimaryTextColor}" />
+                        <CheckBox IsChecked="{Binding IsChecked, Mode=OneWayToSource}" Color="{AppThemeBinding Light={StaticResource SystemGray2Dark}, Dark={StaticResource SystemGray6}}" />
                         <Label
                             FontSize="Small"
                             HorizontalTextAlignment="Center"
                             Text="Remember me"
-                            TextColor="{DynamicResource PrimaryTextColor}"
+                            TextColor="{AppThemeBinding Light={StaticResource SystemGray2Dark},
+                                                        Dark={StaticResource SystemGray6}}"
                             VerticalTextAlignment="Center" />
-
                     </StackLayout>
                     <Button
                         Margin="0,15,0,0"
                         Command="{Binding OnNavigationPageCommand}"
+                        InputTransparent="True"
+                        Opacity="0.5"
                         Style="{StaticResource buttonStyle}"
-                        Text="Login" />
+                        Text="Login">
+                        <Button.Triggers>
+                            <MultiTrigger TargetType="Button">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding Source={x:Reference userLabel}, Path=Text}" Value="" />
+                                    <BindingCondition Binding="{Binding Source={x:Reference passwordLabel}, Path=Text}" Value="" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="InputTransparent" Value="False" />
+                                <Setter Property="Opacity" Value="1" />
+                            </MultiTrigger>
+                        </Button.Triggers>
+
+                    </Button>
                 </StackLayout>
             </StackLayout>
 
@@ -143,7 +167,7 @@
                 <Label
                     BackgroundColor="Red"
                     HorizontalTextAlignment="Center"
-                    Opacity="{Binding Opacity}"
+                    Opacity="{Binding BlurRatio}"
                     Text="Disconnected"
                     TextColor="White" />
             </StackLayout>

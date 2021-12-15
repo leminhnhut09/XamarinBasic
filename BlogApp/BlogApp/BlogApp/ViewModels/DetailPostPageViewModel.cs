@@ -9,6 +9,7 @@ namespace BlogApp.ViewModels
 {
     public class DetailPostPageViewModel : BindableBase, INavigationAware
     {
+        const string PostKey = "post";
         private string _title = "Chi tiết";
         public string Title 
         {
@@ -23,14 +24,13 @@ namespace BlogApp.ViewModels
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            throw new NotImplementedException();
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("post"))
+            if (parameters.ContainsKey(PostKey))
             {
-                var param = parameters.GetValue<Post>("post");
+                var param = parameters.GetValue<Post>(PostKey);
                 if(param != null)
                 {
                     PostItem = param;

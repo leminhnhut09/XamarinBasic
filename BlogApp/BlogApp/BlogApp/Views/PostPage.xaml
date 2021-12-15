@@ -3,12 +3,17 @@
     x:Class="BlogApp.Views.PostPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:BlogApp.Converters"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:prism="http://prismlibrary.com"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True"
-    BackgroundColor="{DynamicResource TertiaryTextColor}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
+                                      Dark={StaticResource SystemGrayDark}}"
     IsBusy="{Binding IsBusy}">
+    <ContentPage.Resources>
+        <converters:IsInternetConverter x:Key="isNotInternetConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator
@@ -16,7 +21,8 @@
                 HorizontalOptions="Center"
                 IsRunning="{Binding IsBusy}"
                 IsVisible="{Binding IsBusy}"
-                Color="{DynamicResource PlaceHolderColor}" />
+                Color="{AppThemeBinding Light={StaticResource CardBackgroundDark},
+                                        Dark={StaticResource CardBackground}}" />
             <!--  Background="White"  -->
             <ListView
                 IsPullToRefreshEnabled="true"
@@ -25,7 +31,8 @@
                 ItemsSource="{Binding PostList}"
                 RefreshControlColor="Purple"
                 RowHeight="100"
-                SeparatorColor="{DynamicResource PlaceHolderColor}">
+                SeparatorColor="{AppThemeBinding Light={StaticResource SystemGray2},
+                                                 Dark={StaticResource SystemGray6}}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -87,13 +94,15 @@
                                     FontAttributes="Bold"
                                     LineBreakMode="TailTruncation"
                                     Text="{Binding TitlePhoto}"
-                                    TextColor="{DynamicResource PrimaryTextColor}"
+                                    TextColor="{AppThemeBinding Light={StaticResource TextColor},
+                                                                Dark={StaticResource TextColorDark}}"
                                     TextTransform="Uppercase" />
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Text="{Binding TitleAlbum, StringFormat='Album: {0}'}"
-                                    TextColor="{DynamicResource PrimaryTextColor}"
+                                    TextColor="{AppThemeBinding Light={StaticResource TextColor},
+                                                                Dark={StaticResource TextColorDark}}"
                                     VerticalOptions="StartAndExpand" />
                                 <Label
                                     Grid.Row="2"
@@ -102,7 +111,8 @@
                                     FontSize="Small"
                                     HorizontalOptions="EndAndExpand"
                                     Text="{Binding UserName, StringFormat='Person: {0}'}"
-                                    TextColor="{DynamicResource SubTextColor}"
+                                    TextColor="{AppThemeBinding Light={StaticResource TextColor},
+                                                                Dark={StaticResource TextColorDark}}"
                                     VerticalOptions="End" />
                                 <!--  TextColor="DarkCyan"  -->
                             </Grid>
@@ -120,7 +130,7 @@
             <Label
                 BackgroundColor="Red"
                 HorizontalTextAlignment="Center"
-                IsVisible="{Binding IsNotInternet}"
+                IsVisible="{Binding IsInternet, Converter={StaticResource isNotInternetConverter}}"
                 Text="Disconnected"
                 TextColor="White" />
         </StackLayout>

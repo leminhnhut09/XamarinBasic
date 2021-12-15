@@ -1,4 +1,5 @@
-﻿using BlogApp.Models;
+﻿using BlogApp.Helpers;
+using BlogApp.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace BlogApp.Services
         {
             try
             {
-                var responseUser = RestService.For<IUserService>("http://jsonplaceholder.typicode.com");
+                var responseUser = RestService.For<IUserService>(ContainsKey.HostKey);
                 var users = await responseUser.GetUsers();
                 return users;
             }

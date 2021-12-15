@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using BlogApp.Droid.Effects;
@@ -11,63 +12,95 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ResolutionGroupName("Xamarin")]
-[assembly: ExportEffect(typeof(AndroidLongPressedEffect), "LongPressedEffect")]
+[assembly: ExportEffect(typeof(AndroidLongPressedEffect), nameof(LongPressedEffect))]
 namespace BlogApp.Droid.Effects
 {
     public class AndroidLongPressedEffect : PlatformEffect
     {
         private bool _attached;
-        Android.Graphics.Color _currentColor = new Android.Graphics.Color();
+        private Timer _timer;
+        private bool _isLongPressed;
+        private Android.Graphics.Rect _rectf;
+
         protected override void OnAttached()
         {
             if (!_attached)
             {
                 if (Control != null)
                 {
-                    Control.LongClickable = true;
-                    Control.LongClick += OnLongClick;
+                    Control.Touch += OnTouch;
                 }
                 else
                 {
-                    Container.LongClickable = true;
-                    Container.LongClick += OnLongClick;
+                    Container.Touch += OnTouch;
                 }
                 _attached = true;
             }
+        }
 
-            try
+        private void OnTouch(object sender, Android.Views.View.TouchEventArgs e)
+        {
+            float x1 = e.Event.GetX();
+            float y1 = e.Event.GetY();
+            float x = Control.GetX();
+            float y = Control.GetY();
+            float width = Control.Width;
+            float height = Control.Height;
+            Android.Views.View view = Control as Android.Views.View;
+            if (e.Event.Action == MotionEventActions.Down)
             {
-                var effect = (LongPressedEffect)Element.Effects.FirstOrDefault(e => e is LongPressedEffect);
-                if (effect != null)
+                Console.WriteLine("Ấnnnnnnnnnnnnn");
+                _isLongPressed = true;
+                Control.SetBackgroundColor(Android.Graphics.Color.Green);
+                _timer = new Timer(HanldeCallBack, null, 5000, Timeout.Infinite);
+
+                _rectf = new Android.Graphics.Rect(view.Left, view.Top, view.Right, view.Bottom);
+                Console.WriteLine("x,y,w,h: ({0},{1},{2},{3})", view.Left, view.Top, view.Right, view.Bottom);
+            }
+            else if (e.Event.Action == MotionEventActions.Up)
+            {
+                if (!_isLongPressed) return;
+                Console.WriteLine("Thảaaaaaaaaaaaaaaaaa");
+                Cancel();
+                Control.SetBackgroundColor(Android.Graphics.Color.Purple);
+                _isLongPressed = false;
+            }
+            else if (e.Event.Action == MotionEventActions.Move)
+            {
+                Console.WriteLine("Tọa độ nhấn: (x, y): {0},{1}", x1 + x, y1 + y);
+                Console.WriteLine("Tọa độ button: (x1, x2, y1, y2): {0},{1},{2},{3}", x, x + width, y, y + height);
+
+
+                if (x1 + x < x || x1 + x > x + width || y1 + y < 0 || y1 + y > y + height)
                 {
-                    _currentColor = effect.Color.ToAndroid();
+                    Console.WriteLine("Out Side");
                 }
             }
-            catch (Exception e)
+            else if (e.Event.Action == MotionEventActions.Outside)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Outsideeeeeeeeeeee");
             }
         }
-
-        private async void OnLongClick(object sender, Android.Views.View.LongClickEventArgs e)
+        private void Cancel()
         {
-            Control.Touch += Control_Touch;
-            //Console.WriteLine("Invoking long click command");
-            //var command = LongPressedEffect.GetCommand(Element);
-            //command?.Execute(LongPressedEffect.GetCommandParameter(Element));
-            Control.SetBackgroundColor(Android.Graphics.Color.Red);
-            await Task.Delay(3000);
-            Control.SetBackgroundColor(_currentColor);
+            if (_timer == null)
+            {
+                return;
+            }
+            _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            _timer.Dispose();
+            _timer = null;
+            Console.WriteLine("Timer disposed...");
         }
 
-        private void Control_Touch(object sender, Android.Views.View.TouchEventArgs e)
+        private void HanldeCallBack(object state)
         {
-            throw new NotImplementedException();
+            var command = LongPressedEffect.GetCommand(Element);
+            command?.Execute(LongPressedEffect.GetCommandParameter(Element));
         }
 
         protected override void OnDetached()
@@ -76,13 +109,11 @@ namespace BlogApp.Droid.Effects
             {
                 if (Control != null)
                 {
-                    Control.LongClickable = true;
-                    Control.LongClick -= OnLongClick;
+                    Control.Touch -= OnTouch;
                 }
                 else
                 {
-                    Container.LongClickable = true;
-                    Container.LongClick -= OnLongClick;
+                    Container.Touch -= OnTouch;
                 }
                 _attached = false;
             }

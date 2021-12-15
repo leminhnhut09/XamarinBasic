@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace BlogApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : MasterDetailPage
+    public partial class SettingPage : ContentPage
     {
-        public MainPage()
+        public SettingPage()
         {
             InitializeComponent();
         }

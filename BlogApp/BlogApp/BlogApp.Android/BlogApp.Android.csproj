@@ -89,6 +89,7 @@
     <Compile Include="CustomRenderers\AndroidCustomEntryRenderer.cs" />
     <Compile Include="CustomRenderers\AndroidGradientButtonRenderer.cs" />
     <Compile Include="Effects\AndroidLongPressedEffect.cs" />
+    <Compile Include="Environment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +126,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\darkicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lighticon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

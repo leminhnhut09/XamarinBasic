@@ -19,13 +19,13 @@ namespace BlogApp.Views
             InitializeComponent();
         }
 
-        private void OnListViewItemAppearing(object sender, ItemVisibilityEventArgs e)
+        private async void OnListViewItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             var viewmodel = BindingContext as PostPageViewModel;
             //(BindingContext as PostPageViewModel).LoadMore(e.Item as Post);
             if(viewmodel != null)
             {
-                viewmodel.LoadMore(e.Item as Post);
+                await viewmodel.LoadMore(e.Item as Post);
             }
         }
     }

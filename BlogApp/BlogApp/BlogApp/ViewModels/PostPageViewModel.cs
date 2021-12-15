@@ -20,11 +20,11 @@ namespace BlogApp.ViewModels
 {
     public class PostPageViewModel : BindableBase, IPageLifecycleAware, IApplicationLifecycleAware
     {
-        protected INavigationService _navigationService;
-        protected IPageDialogService _pageDialogService;
-        protected IAlbumService _albumService;
-        protected IUserService _userService;
-        protected IPhotoService _photoService;
+        private INavigationService _navigationService;
+        private IPageDialogService _pageDialogService;
+        private IAlbumService _albumService;
+        private IUserService _userService;
+        private IPhotoService _photoService;
 
         private string _title = "Danh Sách";
         public string Title
@@ -45,13 +45,6 @@ namespace BlogApp.ViewModels
         {
             get { return _isInternet; }
             set { SetProperty(ref _isInternet, value); }
-        }
-
-        private bool _isNotInternet;
-        public bool IsNotInternet
-        {
-            get { return _isNotInternet; }
-            set { SetProperty(ref _isNotInternet, value); }
         }
 
         private bool _isRefreshing;
@@ -75,13 +68,17 @@ namespace BlogApp.ViewModels
             set { SetProperty(ref _offset, value); }
         }
 
-        public List<User> UserList { get; set; } = new List<User>();
-        public List<Photo> PhotoList { get; set; } = new List<Photo>();
-        public List<Album> AlbumList { get; set; } = new List<Album>();
+        List<User> UserList { get; set; } = new List<User>();
+        List<Photo> PhotoList { get; set; } = new List<Photo>();
+        List<Album> AlbumList { get; set; } = new List<Album>();
         public ObservableCollection<Post> PostList { get; set; } = new ObservableCollection<Post>();
 
         public DelegateCommand<Post> OnItemSelectedCommand { get; set; }
-        public DelegateCommand OnRefreshingListViewCommand { get; set; }
+
+        private DelegateCommand _onRefreshingListViewCommand;
+        public DelegateCommand OnRefreshingListViewCommand =>
+            _onRefreshingListViewCommand ?? (_onRefreshingListViewCommand = new DelegateCommand(async () => await ExcuteRefreshingListView()));
+
         public PostPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService,
             IAlbumService albumService, IUserService userService, IPhotoService photoService)
         {
@@ -91,9 +88,6 @@ namespace BlogApp.ViewModels
             _userService = userService;
             _photoService = photoService;
             OnItemSelectedCommand = new DelegateCommand<Post>(ExcuteItemSelected);
-            OnRefreshingListViewCommand = new DelegateCommand(async () => await ExcuteRefreshingListView());
-            GetStatusInternet();
-            Device.BeginInvokeOnMainThread(async () => await CallApi());
         }
 
         private async Task ExcuteRefreshingListView()
@@ -116,8 +110,10 @@ namespace BlogApp.ViewModels
                 }
             }
         }
-        public void OnAppearing()
+        public async void OnAppearing()
         {
+            GetStatusInternet();
+            await CallApi();
             Connectivity.ConnectivityChanged += OnConnectivityChanged;
         }
 
@@ -125,14 +121,12 @@ namespace BlogApp.ViewModels
         {
             if (e.NetworkAccess == NetworkAccess.Internet)
             {
-                IsNotInternet = false;
                 IsInternet = true;
                 RefreshData();
                 Device.BeginInvokeOnMainThread(async () => await CallApi());
             }
             else
             {
-                IsNotInternet = true;
                 IsInternet = false;
             }
         }
@@ -156,12 +150,10 @@ namespace BlogApp.ViewModels
 
             if (current == NetworkAccess.Internet)
             {
-                IsNotInternet = false;
                 IsInternet = true;
             }
             else
             {
-                IsNotInternet = true;
                 IsInternet = false;
             }
         }
@@ -176,29 +168,16 @@ namespace BlogApp.ViewModels
             {
                 IsBusy = true;
             }
-            // users
-            //var responseUser = RestService.For<IUserService>("http://jsonplaceholder.typicode.com");
-            //var users = await responseUser.GetUsers();
-            var users = await _userService.GetUsers();
-            foreach (var item in users)
-            {
-                UserList.Add(item);
-            }
-            //var responsePhoto = RestService.For<IPhotoService>("http://jsonplaceholder.typicode.com");
-            //var photos = await responsePhoto.GetPhotos();
-            var photos = await _photoService.GetPhotos(0, 50);
-            foreach (var item in photos)
-            {
-                PhotoList.Add(new Photo(item.AlbumId, item.Title, item.ThumbnailUrl));
-            }
 
-            //var responseAlbum = RestService.For<IAlbumService>("http://jsonplaceholder.typicode.com");
-            //var albums = await responseAlbum.GetAlbums();
+            var users = await _userService.GetUsers();
+            UserList.AddRange(users);
+
+            var photos = await _photoService.GetPhotos(0, 50);
+            PhotoList.AddRange(photos);
+
             var albums = await _albumService.GetAlbums();
-            foreach (var item in albums)
-            {
-                AlbumList.Add(item);
-            }
+            AlbumList.AddRange(albums);
+
             var listPost = from p in PhotoList
                            join a in AlbumList on p.AlbumId.ToString() equals a.Id.ToString()
                            join u in UserList on a.UserId.ToString() equals u.Id.ToString()
@@ -221,10 +200,9 @@ namespace BlogApp.ViewModels
             IsBusy = false;
         }
 
-        public async void LoadMore(Post currentItem)
+        public async Task LoadMore(Post currentItem)
         {
             int itemIndex = PostList.IndexOf(currentItem);
-            Console.WriteLine("indexxxxxxxxxxx:" + itemIndex);
             if (PostList.Count - 3 == itemIndex)
             {
                 IsBusyLoadMore = true;
@@ -232,10 +210,7 @@ namespace BlogApp.ViewModels
                 PhotoList.Clear();
                 var photos = await _photoService.GetPhotos(OffSet, 50);
                 IsBusyLoadMore = false;
-                foreach (var item in photos)
-                {
-                    PhotoList.Add(new Photo(item.AlbumId, item.Title, item.ThumbnailUrl));
-                }
+                PhotoList.AddRange(photos);
 
                 var listPost = from p in PhotoList
                                join a in AlbumList on p.AlbumId.ToString() equals a.Id.ToString()
@@ -254,8 +229,6 @@ namespace BlogApp.ViewModels
                         PostList.Add(new Post(item.UserName, item.TitleAlbum, item.Title, item.ThumbnailUrl));
                     });
                 }
-                //PhotoList.Clear();
-                Console.WriteLine("PostList" + PostList.Count);
             }
         }
 

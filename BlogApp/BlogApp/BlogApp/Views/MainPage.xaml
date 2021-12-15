@@ -14,7 +14,7 @@
                 x:Key="buttonPurpleStyle"
                 BasedOn="{StaticResource cornerRadiusButtonStyle}"
                 TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Purple" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SystemPurple}, Dark={StaticResource SystemGreen}}" />
             </Style>
         </ResourceDictionary>
     </MasterDetailPage.Resources>
@@ -23,29 +23,16 @@
             Title="Menu"
             Padding="{OnPlatform Default='20',
                                  iOS='20,40'}"
-            BackgroundColor="{DynamicResource TertiaryTextColor}"
-            IconImageSource="{OnPlatform iOS='hamburger.png'}">
+            BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
+                                              Dark={StaticResource SystemGrayDark}}">
             <ScrollView>
                 <StackLayout>
                     <Frame
-                        BackgroundColor="DarkBlue"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray2},
+                                                          Dark={StaticResource SystemGray3}}"
                         CornerRadius="5"
                         HeightRequest="120">
                         <StackLayout>
-                            <!--<Frame
-                                Padding="0"
-                                BackgroundColor="Red"
-                                CornerRadius="100"
-                                HeightRequest="200"
-                                HorizontalOptions="Center"
-                                IsClippedToBounds="True"
-                                WidthRequest="200">
-                                <Image
-                                    Aspect="AspectFill"
-                                    HorizontalOptions="Center"
-                                    Source="facebook.png"
-                                    VerticalOptions="Start" />
-                            </Frame>-->
                             <Image
                                 Aspect="AspectFill"
                                 BackgroundColor="Red"
@@ -65,43 +52,49 @@
                             <Label
                                 HorizontalOptions="CenterAndExpand"
                                 Text="{Binding UserName}"
-                                TextColor="White"
+                                TextColor="{AppThemeBinding Light={StaticResource TextColorDark},
+                                                            Dark={StaticResource SystemGray5Dark}}"
                                 VerticalOptions="StartAndExpand" />
                         </StackLayout>
                     </Frame>
                     <renderers:GradientButtonRenderer
                         Command="{Binding OnNavigationCommand}"
-                        CommandParameter="InfoPage"
-                        EndColor="Green"
-                        StartColor="Pink"
+                        CommandParameter="InfomationPage"
+                        EndColor="{AppThemeBinding Light={StaticResource SystemGreen},
+                                                   Dark={StaticResource SystemPurple}}"
+                        StartColor="{AppThemeBinding Light={StaticResource SystemPurpleDark},
+                                                     Dark={StaticResource SystemGreenDark}}"
                         Style="{StaticResource cornerRadiusButtonStyle}"
                         Text="Thông tin cá nhân" />
 
                     <renderers:GradientButtonRenderer
                         Command="{Binding OnNavigationCommand}"
                         CommandParameter="PostPage"
-                        EndColor="Green"
-                        StartColor="Pink"
+                        EndColor="{AppThemeBinding Light={StaticResource SystemGreen},
+                                                   Dark={StaticResource SystemPurple}}"
+                        StartColor="{AppThemeBinding Light={StaticResource SystemPurpleDark},
+                                                     Dark={StaticResource SystemGreenDark}}"
                         Style="{StaticResource cornerRadiusButtonStyle}"
                         Text="Duyệt hình ảnh" />
-                    <!--<Button
+                    <renderers:GradientButtonRenderer
                         Command="{Binding OnNavigationCommand}"
-                        CommandParameter="InfomationPage"
-                        Style="{StaticResource buttonGradientStyle}"
-                        Text="Thông tin cá nhân" />
+                        CommandParameter="SettingPage"
+                        EndColor="{AppThemeBinding Light={StaticResource SystemGreen},
+                                                   Dark={StaticResource SystemPurple}}"
+                        StartColor="{AppThemeBinding Light={StaticResource SystemPurpleDark},
+                                                     Dark={StaticResource SystemGreenDark}}"
+                        Style="{StaticResource cornerRadiusButtonStyle}"
+                        Text="Cài đặt" />
                     <Button
-                        Command="{Binding OnNavigationCommand}"
-                        CommandParameter="PostPage"
-                        Style="{StaticResource buttonGradientStyle}"
-                        Text="Duyệt hình ảnh" />-->
-                    <Button Style="{StaticResource buttonPurpleStyle}" Text="Đăng xuất">
-                        <Button.Behaviors>
-                            <behaviors:LongPressBehavior Command="{Binding OnLogOutCommand}" CommandParameter="someValue" />
-                        </Button.Behaviors>
+                        effects:LongPressedEffect.Command="{Binding OnLogOutCommand}"
+                        effects:LongPressedEffect.CommandParameter="{Binding .}"
+                        Style="{StaticResource buttonPurpleStyle}"
+                        Text="Đăng xuất">
                         <Button.Effects>
-                            <effects:LongPressedEffect Color="Purple" />
+                            <effects:LongPressedEffect />
                         </Button.Effects>
                     </Button>
+                    <!--<effects:LongPressedEffect Color="{AppThemeBinding Light={StaticResource SystemPurple}, Dark={StaticResource SystemOrangeDark}}" />-->
                 </StackLayout>
             </ScrollView>
         </ContentPage>

@@ -1,4 +1,5 @@
-﻿using BlogApp.Models;
+﻿using BlogApp.Helpers;
+using BlogApp.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace BlogApp.Services
         {
             try
             {
-                var responseUser = RestService.For<IPhotoService>("http://jsonplaceholder.typicode.com");
+                var responseUser = RestService.For<IPhotoService>(ContainsKey.HostKey);
                 var photos = await responseUser.GetPhotos(start, limit);
                 return photos;
             }

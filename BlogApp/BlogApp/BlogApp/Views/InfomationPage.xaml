@@ -6,7 +6,8 @@
     xmlns:behaviors="clr-namespace:BlogApp.Behavior"
     xmlns:effects="clr-namespace:BlogApp.Effects"
     xmlns:renderers="clr-namespace:BlogApp.CustomRenderes"
-    BackgroundColor="{DynamicResource TertiaryTextColor}">
+    BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
+                                      Dark={StaticResource SystemGrayDark}}">
     <ContentPage.Content>
         <StackLayout
             Padding="10,0"
@@ -31,36 +32,24 @@
             <Entry
                 Margin="0,30,0,0"
                 Style="{DynamicResource placeColorStyle}"
-                Text="Lê Minh Nhựt" />
+                Text="{Binding FullName}" />
             <Entry Style="{DynamicResource placeColorStyle}" Text="{Binding UserName}" />
             <Entry
                 IsPassword="True"
                 Style="{DynamicResource placeColorStyle}"
                 Text="{Binding Password}" />
-            <!--<Button
-                Margin="0,20"
-                effects:LongPressedEffect.Command="{Binding ShowAlertCommand}"
-                effects:LongPressedEffect.CommandParameter="{Binding .}"
-                Text="Quay lại">
-                <Button.Effects>
-                    <effects:LongPressedEffect />
-                </Button.Effects>
-            </Button>-->
 
             <renderers:GradientButtonRenderer
                 Margin="0,20"
                 Padding="20"
                 Command="{Binding OnPopNavigationCommand}"
                 CommandParameter="InfoPage"
-                EndColor="Green"
-                StartColor="Pink"
+                EndColor="{AppThemeBinding Light={StaticResource SystemGreen},
+                                           Dark={StaticResource SystemPurple}}"
+                StartColor="{AppThemeBinding Light={StaticResource SystemPurpleDark},
+                                             Dark={StaticResource SystemGreenDark}}"
                 Style="{StaticResource cornerRadiusButtonStyle}"
                 Text="Quay lại" />
-            <!--<Button
-                Margin="0,20"
-                Padding="20"
-                Command="{Binding OnPopNavigationCommand}"
-                Text="Quay lại" />-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

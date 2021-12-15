@@ -8,7 +8,7 @@ namespace BlogApp.CustomRenderes
     public class GradientButtonRenderer : Button
     {
         public static readonly BindableProperty StartColorProperty = 
-            BindableProperty.Create("StartColor",  // property định nghĩa
+            BindableProperty.Create(nameof(StartColor),  // property định nghĩa
                                     typeof(Color),  // kiểu dữ liệu
                                     typeof(GradientButtonRenderer), // kiểu lớp 
                                     Color.Black); // giá trị mặc định
@@ -23,7 +23,7 @@ namespace BlogApp.CustomRenderes
         }
 
         public static readonly BindableProperty EndColorProperty = BindableProperty.Create(
-            "EndColor", typeof(Color), typeof(GradientButtonRenderer), Color.Black);
+           nameof(EndColor), typeof(Color), typeof(GradientButtonRenderer), Color.Black);
         public Color EndColor
         {
             get

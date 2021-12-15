@@ -3,7 +3,8 @@
     x:Class="BlogApp.Views.InfoPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="{DynamicResource TertiaryTextColor}">
+    BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
+                                      Dark={StaticResource SystemGrayDark}}">
     <ContentPage.Content>
         <StackLayout
             Padding="10,0"
@@ -11,7 +12,7 @@
             VerticalOptions="CenterAndExpand">
             <Image
                 Aspect="AspectFill"
-                BackgroundColor="Red"
+                BackgroundColor="Transparent"
                 HeightRequest="200"
                 HorizontalOptions="Center"
                 Source="image.png"
@@ -23,15 +24,12 @@
                         RadiusX="100"
                         RadiusY="100" />
                 </Image.Clip>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OnNavigationCommand}" />
-                </Image.GestureRecognizers>
             </Image>
 
             <Entry
                 Margin="0,40,0,0"
                 Style="{DynamicResource placeColorStyle}"
-                Text="Lê Minh Nhựt" />
+                Text="{Binding FullName}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

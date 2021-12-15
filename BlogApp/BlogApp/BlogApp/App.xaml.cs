@@ -1,4 +1,5 @@
-﻿using BlogApp.Services;
+﻿using BlogApp.Helpers;
+using BlogApp.Services;
 using BlogApp.Themes;
 using BlogApp.ViewModels;
 using BlogApp.Views;
@@ -22,13 +23,7 @@ namespace BlogApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            LoadTheme(AppInfo.RequestedTheme.ToString());
-
-            Application.Current.RequestedThemeChanged += OnRequestedThemeChanged; ;
-
-            //var result = await NavigationService.NavigateAsync("NavigationPage/LoginPage");
             var result = await NavigationService.NavigateAsync("LoginPage");
-            //var result = await NavigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage");
             if (!result.Success)
             {
                 Console.WriteLine("Navigation Fail !");
@@ -73,6 +68,7 @@ namespace BlogApp
             containerRegistry.Register<IAlbumService, AlbumService>();
             containerRegistry.Register<IPhotoService, PhotoService>();
             containerRegistry.RegisterForNavigation<PostPage, PostPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingPage, SettingPageViewModel>();
             containerRegistry.RegisterForNavigation<DetailPostPage, DetailPostPageViewModel>();
         }
         //public App()
@@ -82,9 +78,11 @@ namespace BlogApp
         //    MainPage = new MainPage();
         //}
 
-        //protected override void OnStart()
-        //{
-        //}
+        protected override void OnStart()
+        {
+            int theme = Preferences.Get("theme", 0);
+            TheTheme.SetTheme(theme);
+        }
 
         //protected override void OnSleep()
         //{

@@ -1,4 +1,5 @@
-﻿using BlogApp.Models;
+﻿using BlogApp.Helpers;
+using BlogApp.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace BlogApp.Services
                 //};
 
 
-                var responseUser = RestService.For<IAlbumService>("http://jsonplaceholder.typicode.com");
+                var responseUser = RestService.For<IAlbumService>(ContainsKey.HostKey);
                 var albums = await responseUser.GetAlbums();
                 return albums;
             }

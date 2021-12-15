@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using BlogApp.Helpers;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -11,8 +12,8 @@ namespace BlogApp.ViewModels
 {
     public class InfomationPageViewModel : BindableBase, IInitializeAsync
     {
-        protected INavigationService _navigationService;
-        protected IPageDialogService _pageDialogService;
+        private INavigationService _navigationService;
+        private IPageDialogService _pageDialogService;
 
         private string _userName = "";
         public string UserName
@@ -27,16 +28,29 @@ namespace BlogApp.ViewModels
             set { SetProperty(ref _password, value); }
         }
 
+        private string _fullName = "Lê Minh Nhựt";
+        public string FullName
+        {
+            get { return _fullName; }
+            set { SetProperty(ref _fullName, value); }
+        }
+
         private DelegateCommand _onPopNavigationCommand;
         public DelegateCommand OnPopNavigationCommand =>
             _onPopNavigationCommand ?? (_onPopNavigationCommand = new DelegateCommand(async ()=> await ExecuteOnPopNavigation()));
 
+        public InfomationPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+        {
+            _navigationService = navigationService;
+            _pageDialogService = pageDialogService;
+        }
+
         private async Task ExecuteOnPopNavigation()
         {
             var navigationParams = new NavigationParameters();
-            navigationParams.Add("username", UserName);
-            navigationParams.Add("password", Password);
-            var result = await _navigationService.GoBackAsync(navigationParams, true, true);
+            navigationParams.Add(ContainsKey.Usernamekey, UserName);
+            navigationParams.Add(ContainsKey.Passwordkey, Password);
+            var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
             if (!result.Success)
             {
                 await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể quay lại !", "Đóng");
@@ -45,19 +59,14 @@ namespace BlogApp.ViewModels
 
         public async Task InitializeAsync(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("username"))
+            if (parameters.ContainsKey(ContainsKey.Usernamekey))
             {
-                UserName = parameters.GetValue<string>("username");
+                UserName = parameters.GetValue<string>(ContainsKey.Usernamekey);
             }
-            if (parameters.ContainsKey("password"))
+            if (parameters.ContainsKey(ContainsKey.Passwordkey))
             {
-                Password = parameters.GetValue<string>("password");
+                Password = parameters.GetValue<string>(ContainsKey.Passwordkey);
             }
-        }
-
-        public InfomationPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
         }
     }
 }

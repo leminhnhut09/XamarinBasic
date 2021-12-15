@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using BlogApp.Helpers;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -10,7 +11,6 @@ namespace BlogApp.ViewModels
 {
     public class InfoPageViewModel : BindableBase, IInitializeAsync
     {
-        protected INavigationService _navigationService;
         private string _avatar = "image.png";
         public string Avatar
         {
@@ -30,31 +30,22 @@ namespace BlogApp.ViewModels
             set { SetProperty(ref _password, value); }
         }
 
-        private DelegateCommand _onNavigationCommand;
-        public DelegateCommand OnNavigationCommand =>
-            _onNavigationCommand ?? (_onNavigationCommand = new DelegateCommand(ExecuteNavigation));
-        public InfoPageViewModel(INavigationService navigationService)
+        private string _fullName = "Lê Minh Nhựt";
+        public string FullName
         {
-            _navigationService = navigationService;
-        }
-        async void ExecuteNavigation()
-        {
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("username", UserName);
-            navigationParams.Add("password", Password);
-            //await _navigationService.NavigateAsync("InfomationPage");
-            await _navigationService.NavigateAsync("InfomationPage", navigationParams, true, true);
+            get { return _fullName; }
+            set { SetProperty(ref _fullName, value); }
         }
 
         public async Task InitializeAsync(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("username"))
+            if (parameters.ContainsKey(ContainsKey.Usernamekey))
             {
-                UserName = parameters.GetValue<string>("username");
+                UserName = parameters.GetValue<string>(ContainsKey.Usernamekey);
             }
-            if (parameters.ContainsKey("password"))
+            if (parameters.ContainsKey(ContainsKey.Passwordkey))
             {
-                Password = parameters.GetValue<string>("password");
+                Password = parameters.GetValue<string>(ContainsKey.Passwordkey);
             }
         }
     }

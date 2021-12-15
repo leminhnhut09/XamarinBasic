@@ -1,4 +1,5 @@
-﻿using Prism.AppModel;
+﻿using BlogApp.Helpers;
+using Prism.AppModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -13,8 +14,10 @@ namespace BlogApp.ViewModels
 {
     public class LoginPageViewModel : ConnectivityViewModel, IPageLifecycleAware
     {
-        protected INavigationService _navigationService;
-        protected IPageDialogService _pageDialogService;
+
+        private INavigationService _navigationService;
+        private IPageDialogService _pageDialogService;
+
         private string _userName = "";
         public string UserName
         {
@@ -35,13 +38,14 @@ namespace BlogApp.ViewModels
             set { SetProperty(ref _isChecked, value); }
         }
 
-        public DelegateCommand OnNavigationPageCommand { get; set; }
+        private DelegateCommand _onNavigationPageCommand;
+        public DelegateCommand OnNavigationPageCommand =>
+            _onNavigationPageCommand ?? (_onNavigationPageCommand = new DelegateCommand(async ()=> await ExcuteLogin()));
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
         {
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
-            OnNavigationPageCommand = new DelegateCommand(async ()=> await ExcuteLogin());
         }
 
         private async Task ExcuteLogin()
@@ -59,19 +63,18 @@ namespace BlogApp.ViewModels
                 if ((UserName.Equals("minhnhut") && Password.Equals("Nhut1234@")))
                 {
                     var navigationParams = new NavigationParameters();
-                    navigationParams.Add("username", UserName);
-                    navigationParams.Add("password", Password);
+                    navigationParams.Add(ContainsKey.Usernamekey, UserName);
+                    navigationParams.Add(ContainsKey.Passwordkey, Password);
                     var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
-                    //await _pageDialogService.DisplayAlertAsync("Thông báo", "Đăng nhập thành công", "Đóng");
                     if(!result.Success)
                     {
                         await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể chuyển trang", "Đóng");
                     }    
                     if (result.Success && IsChecked)
                     {
-                       Preferences.Set("isRemember", IsChecked);
-                       await SecureStorage.SetAsync("username", UserName);
-                       await SecureStorage.SetAsync("password", Password);
+                       Preferences.Set(ContainsKey.RememberKey, IsChecked);
+                       await SecureStorage.SetAsync(ContainsKey.Usernamekey, UserName);
+                       await SecureStorage.SetAsync(ContainsKey.Passwordkey, Password);
                     }
                 }
                 else
@@ -83,14 +86,22 @@ namespace BlogApp.ViewModels
         public override async void OnAppearing()
         {
             base.OnAppearing();
-            if (Preferences.ContainsKey("isRemember"))
-            {
-                var username = await SecureStorage.GetAsync("username");
-                var pass = await SecureStorage.GetAsync("password");
+            await HandleRememberAccount();
+        }
 
+        private async Task HandleRememberAccount() {
+            if (Preferences.ContainsKey(ContainsKey.RememberKey))
+            {
+                var username = await SecureStorage.GetAsync(ContainsKey.Usernamekey);
+                var password = await SecureStorage.GetAsync(ContainsKey.Passwordkey);
+
+                if(String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password))
+                {
+                    return;
+                }
                 var navigationParams = new NavigationParameters();
-                navigationParams.Add("username", username);
-                navigationParams.Add("password", pass);
+                navigationParams.Add(ContainsKey.Usernamekey, username);
+                navigationParams.Add(ContainsKey.Passwordkey, password);
 
                 var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
                 if (!result.Success)

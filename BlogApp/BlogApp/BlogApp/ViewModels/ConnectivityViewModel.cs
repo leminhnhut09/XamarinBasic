@@ -18,12 +18,11 @@ namespace BlogApp.ViewModels
             set { SetProperty(ref _isInternet, value); }
         }
 
-
-        private int _opacity;
-        public int Opacity
+        private int _blurRatio;
+        public int BlurRatio
         {
-            get { return _opacity; }
-            set { SetProperty(ref _opacity, value); }
+            get { return _blurRatio; }
+            set { SetProperty(ref _blurRatio, value); }
         }
         public ConnectivityViewModel()
         {
@@ -36,12 +35,12 @@ namespace BlogApp.ViewModels
 
             if (current == NetworkAccess.Internet)
             {
-                Opacity = 0;
+                BlurRatio = 0;
                 IsInternet = true;
             }
             else
             {
-                Opacity = 1;
+                BlurRatio = 1;
                 IsInternet = false;
             }
         }
@@ -55,12 +54,12 @@ namespace BlogApp.ViewModels
         {
             if (e.NetworkAccess == NetworkAccess.Internet)
             {
-                Opacity = 0;
+                BlurRatio = 0;
                 IsInternet = true;
             }
             else
             {
-                Opacity = 1;
+                BlurRatio = 1;
                 IsInternet = false;
             }
         }

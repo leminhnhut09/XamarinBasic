@@ -51,6 +51,17 @@ namespace BlogApp.Droid.CustomRenderers
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
+            var caller = sender as GradientButtonRenderer;
+            if (caller == null || Control == null) return;
+            if (e.PropertyName == nameof(caller.StartColor))
+            {
+                var gradientColor = new GradientDrawable(GradientDrawable.Orientation.LeftRight, new[] {
+                    caller.StartColor.ToAndroid().ToArgb(),
+                    caller.EndColor.ToAndroid().ToArgb()
+                });
+                gradientColor.SetCornerRadius(caller.CornerRadius.ToDevicePixels(_context));
+                Control.SetBackground(gradientColor);
+            }
         }
     }
     public static class HelperExtension

@@ -1,4 +1,5 @@
-﻿using BlogApp.Views;
+﻿using BlogApp.Helpers;
+using BlogApp.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -8,13 +9,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace BlogApp.ViewModels
 {
     public class MainPageViewModel : BindableBase, IInitializeAsync
     {
-        protected INavigationService _navigationService;
-        protected IPageDialogService _pageDialogService;
+        private INavigationService _navigationService;
+        private IPageDialogService _pageDialogService;
 
         private string _userName = "";
         public string UserName
@@ -32,36 +34,20 @@ namespace BlogApp.ViewModels
         private DelegateCommand<string> _onNavigationCommand;
         public DelegateCommand<string> OnNavigationCommand =>
             _onNavigationCommand ?? (_onNavigationCommand = new DelegateCommand<string>(ExecuteNavigation));
-        public DelegateCommand OnLogOutCommand { get; set; }
+
+        private DelegateCommand _onLogOutCommand;
+        public DelegateCommand OnLogOutCommand =>
+            _onLogOutCommand ?? (_onLogOutCommand = new DelegateCommand(async () => await ExcuteLogout()));
         public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
         {
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
-            OnLogOutCommand = new DelegateCommand(async ()=> await ExcuteLogout());
         }
-
-        private async Task ExcuteLogout()
-        {
-            bool isLogout = await _pageDialogService.DisplayAlertAsync("Thông báo", "Bạn có muốn thoát ?", "Đồng ý", "Từ chối");
-            if (isLogout)
-            {
-                if (Preferences.ContainsKey("isRemember"))
-                {
-                    Preferences.Clear();
-                }
-                var result = await _navigationService.NavigateAsync($"/{nameof(LoginPage)}");
-                if (!result.Success)
-                {
-                    await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể đăng xuất", "Đóng");
-                }
-            }
-        }
-
         private async void ExecuteNavigation(string parameter)
         {
             var navigationParams = new NavigationParameters();
-            navigationParams.Add("username", UserName);
-            navigationParams.Add("password", Password);
+            navigationParams.Add(ContainsKey.Usernamekey, UserName);
+            navigationParams.Add(ContainsKey.Passwordkey, Password);
 
             var result = await _navigationService.NavigateAsync($"NavigationPage/{parameter}", navigationParams);
             if (!result.Success)
@@ -72,14 +58,36 @@ namespace BlogApp.ViewModels
 
         public async Task InitializeAsync(INavigationParameters parameters)
         {
-            if(parameters.ContainsKey("username"))
+            if(parameters.ContainsKey(ContainsKey.Usernamekey))
             {
-                UserName = parameters.GetValue<string>("username");
+                UserName = parameters.GetValue<string>(ContainsKey.Usernamekey);
             }
-            if (parameters.ContainsKey("password"))
+            if (parameters.ContainsKey(ContainsKey.Passwordkey))
             {
-                Password = parameters.GetValue<string>("password");
+                Password = parameters.GetValue<string>(ContainsKey.Passwordkey);
             }
+        }
+        async Task ExcuteLogout()
+        {
+            await Task.Run(() =>
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    bool isLogout = await _pageDialogService.DisplayAlertAsync("Thông báo", "Bạn có muốn thoát ?", "Đồng ý", "Từ chối");
+                    if (isLogout)
+                    {
+                        if (Preferences.ContainsKey(ContainsKey.RememberKey))
+                        {
+                            Preferences.Clear();
+                        }
+                        var result = await _navigationService.NavigateAsync($"/{nameof(LoginPage)}");
+                        if (!result.Success)
+                        {
+                            await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể đăng xuất", "Đóng");
+                        }
+                    }
+                });
+            });
         }
     }
 }
