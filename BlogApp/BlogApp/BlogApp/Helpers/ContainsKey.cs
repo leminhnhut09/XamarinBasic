@@ -6,6 +6,8 @@ namespace BlogApp.Helpers
 {
     public static class ContainsKey
     {
+        public const string AccountKey = "account";
+
         public const string Usernamekey = "username";
         public const string Passwordkey = "password";
         public const string RememberKey = "isRemember";

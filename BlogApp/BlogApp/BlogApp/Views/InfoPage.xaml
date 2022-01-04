@@ -11,11 +11,11 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="CenterAndExpand">
             <Image
-                Aspect="AspectFill"
+                Aspect="Fill"
                 BackgroundColor="Transparent"
                 HeightRequest="200"
                 HorizontalOptions="Center"
-                Source="image.png"
+                Source="{Binding AccountLogin.Picture}"
                 VerticalOptions="Center"
                 WidthRequest="200">
                 <Image.Clip>

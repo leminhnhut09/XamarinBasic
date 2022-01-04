@@ -3,9 +3,8 @@
     x:Class="BlogApp.Views.InfomationPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="clr-namespace:BlogApp.Behavior"
-    xmlns:effects="clr-namespace:BlogApp.Effects"
     xmlns:renderers="clr-namespace:BlogApp.CustomRenderes"
+    xmlns:resource="clr-namespace:BlogApp"
     BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
                                       Dark={StaticResource SystemGrayDark}}">
     <ContentPage.Content>
@@ -49,7 +48,7 @@
                 StartColor="{AppThemeBinding Light={StaticResource SystemPurpleDark},
                                              Dark={StaticResource SystemGreenDark}}"
                 Style="{StaticResource cornerRadiusButtonStyle}"
-                Text="Quay lại" />
+                Text="{Static resource:AppResource.textButtonExit}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

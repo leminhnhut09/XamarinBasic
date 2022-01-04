@@ -70,6 +70,8 @@ namespace BlogApp
             containerRegistry.RegisterForNavigation<PostPage, PostPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingPage, SettingPageViewModel>();
             containerRegistry.RegisterForNavigation<DetailPostPage, DetailPostPageViewModel>();
+            containerRegistry.Register<ILoginFacebookService, LoginFacebookService>();
+
         }
         //public App()
         //{

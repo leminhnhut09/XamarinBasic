@@ -6,6 +6,7 @@
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:converters="clr-namespace:BlogApp.Converters"
     xmlns:renderers="clr-namespace:BlogApp.CustomRenderes"
+    xmlns:resource="clr-namespace:BlogApp"
     BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
                                       Dark={StaticResource SystemGrayDark}}">
     <ContentPage.Resources>
@@ -31,7 +32,7 @@
                         FontAttributes="Bold"
                         FontSize="30"
                         HorizontalOptions="Center"
-                        Text="LOGIN"
+                        Text="{Static resource:AppResource.titleButtonLogin}"
                         TextColor="{AppThemeBinding Light={StaticResource TextColor},
                                                     Dark={StaticResource TextColorDark}}" />
                     <Frame
@@ -69,7 +70,7 @@
                     <Label
                         x:Name="userLabel"
                         Margin="0"
-                        Text="Độ dài ít nhất 8 ký tự"
+                        Text="{Static resource:AppResource.messageErrorUsername}"
                         TextColor="{AppThemeBinding Light={StaticResource SystemGray2Dark},
                                                     Dark={StaticResource SystemGray4}}">
                         <Label.Triggers>
@@ -118,7 +119,7 @@
                     <Label
                         x:Name="passwordLabel"
                         Margin="0"
-                        Text="Độ dài ít nhất 8 ký tự, có chứa số và ký tự đặc biệt"
+                        Text="{Static resource:AppResource.messageErrorPassword}"
                         TextColor="{AppThemeBinding Light={StaticResource SystemGray2Dark},
                                                     Dark={StaticResource SystemGray4}}">
                         <Label.Triggers>
@@ -136,7 +137,7 @@
                         <Label
                             FontSize="Small"
                             HorizontalTextAlignment="Center"
-                            Text="Remember me"
+                            Text="{Static resource:AppResource.textRemember}"
                             TextColor="{AppThemeBinding Light={StaticResource SystemGray2Dark},
                                                         Dark={StaticResource SystemGray6}}"
                             VerticalTextAlignment="Center" />
@@ -158,8 +159,75 @@
                                 <Setter Property="Opacity" Value="1" />
                             </MultiTrigger>
                         </Button.Triggers>
-
                     </Button>
+                </StackLayout>
+                <!--  add  -->
+                <StackLayout Margin="0,25,0,0" Padding="0">
+                    <Grid>
+                        <BoxView
+                            BackgroundColor="DarkGray"
+                            HeightRequest="1"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="150" />
+                        <Frame
+                            Margin="0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            BorderColor="DarkGray"
+                            CornerRadius="45"
+                            HasShadow="False"
+                            HeightRequest="45"
+                            HorizontalOptions="Center"
+                            WidthRequest="45">
+                            <Label
+                                FontSize="Small"
+                                HorizontalTextAlignment="Center"
+                                Text="{Static resource:AppResource.textOr}"
+                                TextColor="DarkGray"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout
+                    Margin="0,25"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Horizontal">
+                    <Frame
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="White"
+                        BorderColor="DarkGray"
+                        CornerRadius="45"
+                        HasShadow="False"
+                        HeightRequest="45"
+                        HorizontalOptions="Center"
+                        WidthRequest="45">
+                        <Image
+                            Margin="0"
+                            Aspect="AspectFill"
+                            Source="https://tuongxinh.com.vn/wp-content/uploads/2018/09/facebook-icon.jpg">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnLoginFacebookCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                    <Frame
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="White"
+                        BorderColor="DarkGray"
+                        CornerRadius="45"
+                        HasShadow="False"
+                        HeightRequest="45"
+                        HorizontalOptions="Center"
+                        WidthRequest="45">
+                        <Image
+                            Margin="0"
+                            Aspect="AspectFill"
+                            Source="https://blog.hubspot.com/hubfs/image8-2.jpg" />
+                    </Frame>
                 </StackLayout>
             </StackLayout>
 
@@ -168,7 +236,7 @@
                     BackgroundColor="Red"
                     HorizontalTextAlignment="Center"
                     Opacity="{Binding BlurRatio}"
-                    Text="Disconnected"
+                    Text="{Static resource:AppResource.textDisconnect}"
                     TextColor="White" />
             </StackLayout>
         </StackLayout>

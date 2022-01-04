@@ -1,4 +1,5 @@
 ﻿using BlogApp.Helpers;
+using BlogApp.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -37,6 +38,12 @@ namespace BlogApp.ViewModels
             set { SetProperty(ref _fullName, value); }
         }
 
+        private Account accountLogin;
+        public Account AccountLogin
+        {
+            get { return accountLogin; }
+            set { SetProperty(ref accountLogin, value); }
+        }
         public async Task InitializeAsync(INavigationParameters parameters)
         {
             if (parameters.ContainsKey(ContainsKey.Usernamekey))
@@ -46,6 +53,10 @@ namespace BlogApp.ViewModels
             if (parameters.ContainsKey(ContainsKey.Passwordkey))
             {
                 Password = parameters.GetValue<string>(ContainsKey.Passwordkey);
+            }
+            if (parameters.ContainsKey(ContainsKey.AccountKey))
+            {
+                AccountLogin = parameters.GetValue<Account>(ContainsKey.AccountKey);
             }
         }
     }

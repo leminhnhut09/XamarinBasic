@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:BlogApp.Converters"
     xmlns:prism="http://prismlibrary.com"
+    xmlns:resource="clr-namespace:BlogApp"
     BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
                                       Dark={StaticResource SystemGrayDark}}">
     <ContentPage.Resources>
@@ -101,7 +102,7 @@
                     <Label
                         Margin="0,12,0,0"
                         Style="{DynamicResource LabelMedium}"
-                        Text="THEME" />
+                        Text="{Static resource:AppResource.textTheme}" />
                     <Frame Style="{DynamicResource CoffeeCard}">
                         <Grid
                             ColumnDefinitions="*,Auto,Auto,Auto,*"

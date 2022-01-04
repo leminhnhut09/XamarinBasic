@@ -1,16 +1,7 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 using BlogApp.Droid.Effects;
 using BlogApp.Effects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -24,7 +15,6 @@ namespace BlogApp.Droid.Effects
         private bool _attached;
         private Timer _timer;
         private bool _isLongPressed;
-        private Android.Graphics.Rect _rectf;
 
         protected override void OnAttached()
         {
@@ -44,22 +34,31 @@ namespace BlogApp.Droid.Effects
 
         private void OnTouch(object sender, Android.Views.View.TouchEventArgs e)
         {
-            float x1 = e.Event.GetX();
-            float y1 = e.Event.GetY();
-            float x = Control.GetX();
-            float y = Control.GetY();
-            float width = Control.Width;
-            float height = Control.Height;
-            Android.Views.View view = Control as Android.Views.View;
+
+
+            //float xMin = Control.GetX();
+            //float yMin = Control.GetY();
+            //float xMax = Control.Width + xMin;
+            //float yMax = Control.Height + yMin;
+
+            //float x1 = e.Event.GetX() + xMin;
+            //float y1 = e.Event.GetY() + yMin;
+
+            float x_Mouse_Btn = e.Event.GetX();
+            float y_Mouse_Btn = e.Event.GetY();
+            float x_Btn_Screen = Control.GetX();
+            float y_Btn_Screen = Control.GetY();
+            float x_Mouse_Screen = x_Mouse_Btn + x_Btn_Screen;
+            float y_Mouse_Screen = y_Mouse_Btn + y_Btn_Screen;
+            float HeightBtn = Control.Height;
+            float WidthBtn = Control.Width;
             if (e.Event.Action == MotionEventActions.Down)
             {
                 Console.WriteLine("Ấnnnnnnnnnnnnn");
                 _isLongPressed = true;
                 Control.SetBackgroundColor(Android.Graphics.Color.Green);
-                _timer = new Timer(HanldeCallBack, null, 5000, Timeout.Infinite);
-
-                _rectf = new Android.Graphics.Rect(view.Left, view.Top, view.Right, view.Bottom);
-                Console.WriteLine("x,y,w,h: ({0},{1},{2},{3})", view.Left, view.Top, view.Right, view.Bottom);
+                _timer = new Timer(HanldeCallBack, null, 2000, Timeout.Infinite);
+           
             }
             else if (e.Event.Action == MotionEventActions.Up)
             {
@@ -71,18 +70,23 @@ namespace BlogApp.Droid.Effects
             }
             else if (e.Event.Action == MotionEventActions.Move)
             {
-                Console.WriteLine("Tọa độ nhấn: (x, y): {0},{1}", x1 + x, y1 + y);
-                Console.WriteLine("Tọa độ button: (x1, x2, y1, y2): {0},{1},{2},{3}", x, x + width, y, y + height);
+                //Console.WriteLine("Tọa độ nhấn: (x, y): {0},{1}", x1, y1);
+                //Console.WriteLine("Tọa độ control: (xMin, xMax, yMin, yMax): {0},{1}, {2},{3}", xMin, xMax, yMin, yMax);
+                ////Console.WriteLine("Tọa độ button: (x1, x2, y1, y2): {0},{1},{2},{3}", 0, width, 0, height);
+                //if (x1 < xMin || x1 > xMax || y1 < yMin || y1 > yMax)
+                //{
+                //    Console.WriteLine("Out side");
+                //    Cancel();
+                //}
 
+                Console.WriteLine("x, y ({0}, {1})", x_Mouse_Btn, y_Mouse_Btn);
 
-                if (x1 + x < x || x1 + x > x + width || y1 + y < 0 || y1 + y > y + height)
-                {
-                    Console.WriteLine("Out Side");
-                }
-            }
-            else if (e.Event.Action == MotionEventActions.Outside)
-            {
-                Console.WriteLine("Outsideeeeeeeeeeee");
+                if (x_Mouse_Screen > (x_Btn_Screen + WidthBtn) && y_Mouse_Screen > (y_Btn_Screen + HeightBtn) ||
+                    x_Mouse_Screen < (x_Btn_Screen + WidthBtn) && y_Mouse_Screen > (y_Btn_Screen + HeightBtn) ||
+                    x_Mouse_Screen > (x_Btn_Screen + WidthBtn) && y_Mouse_Screen < (y_Btn_Screen + HeightBtn) ||
+                    x_Mouse_Screen < (x_Btn_Screen + WidthBtn) && y_Mouse_Screen < (y_Btn_Screen + HeightBtn))
+                    Cancel();
+                Control.SetBackgroundColor(Android.Graphics.Color.Purple);
             }
         }
         private void Cancel()

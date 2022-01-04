@@ -1,12 +1,14 @@
 ﻿using BlogApp.Helpers;
+using BlogApp.Models;
+using BlogApp.Services;
+using Newtonsoft.Json;
+using Plugin.FacebookClient;
 using Prism.AppModel;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -14,9 +16,13 @@ namespace BlogApp.ViewModels
 {
     public class LoginPageViewModel : ConnectivityViewModel, IPageLifecycleAware
     {
+        readonly string[] fbRequestFields = { "email", "first_name", "picture", "gender", "last_name" };
+        readonly string[] fbPermisions = { "email", "public_profile"};
 
         private INavigationService _navigationService;
         private IPageDialogService _pageDialogService;
+        private ILoginFacebookService _loginFacebookService;
+        IFacebookClient _facebookService = CrossFacebookClient.Current;
 
         private string _userName = "";
         public string UserName
@@ -42,10 +48,95 @@ namespace BlogApp.ViewModels
         public DelegateCommand OnNavigationPageCommand =>
             _onNavigationPageCommand ?? (_onNavigationPageCommand = new DelegateCommand(async ()=> await ExcuteLogin()));
 
-        public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+        //private DelegateCommand _onLoginFacebookCommand;
+        //public DelegateCommand OnLoginFacebookCommand =>
+        //    _onLoginFacebookCommand ?? (_onLoginFacebookCommand = new DelegateCommand(async () => await ExcuteLoginFaceBook()));
+
+
+        //private async Task ExcuteLoginFaceBook()
+        //{
+        //    try
+        //    {
+        //        if (_facebookService.IsLoggedIn)
+        //        {
+        //            _facebookService.Logout();
+        //        }
+        //        EventHandler<FBEventArgs<string>> userDataDelegate = null;
+
+        //        userDataDelegate = async (object sender, FBEventArgs<string> e) =>
+        //        {
+        //            if (e == null) return;
+
+        //            switch (e.Status)
+        //            {
+        //                case FacebookActionStatus.Completed:
+        //                    var facebookProfile = JsonConvert.DeserializeObject<FacebookProfile>(e.Data);
+        //                    var account = new Account
+        //                    {
+        //                        Email = facebookProfile.Email,
+        //                        Picture = facebookProfile.Picture.Data.Url
+        //                    };
+        //                    var navigationParams = new NavigationParameters();
+        //                    navigationParams.Add(ContainsKey.AccountKey, account);
+        //                    var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
+        //                    if (!result.Success)
+        //                    {
+        //                        await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể chuyển trang", "Đóng");
+        //                    }
+        //                    break;
+        //                case FacebookActionStatus.Canceled:
+        //                    await _pageDialogService.DisplayAlertAsync("Thông báo", "Đã hủy đăng nhập facebook", "Đóng");
+        //                    break;
+        //                case FacebookActionStatus.Error:
+        //                    await _pageDialogService.DisplayAlertAsync("Thông báo", "Lỗi đăng nhập", "Đóng");
+        //                    break;
+        //                case FacebookActionStatus.Unauthorized:
+        //                    await _pageDialogService.DisplayAlertAsync("Thông báo", "Lỗi", "Đóng");
+        //                    break;
+        //                default:
+        //                    break;
+        //            }
+        //            _facebookService.OnUserData -= userDataDelegate;
+        //        };
+
+        //        _facebookService.OnUserData += userDataDelegate;
+        //        await _facebookService.RequestUserDataAsync(fbRequestFields, fbPermisions);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(ex.ToString());
+        //    }
+        //}
+
+
+        private DelegateCommand _onLoginFacebookCommand;
+        public DelegateCommand OnLoginFacebookCommand =>
+            _onLoginFacebookCommand ?? (_onLoginFacebookCommand = new DelegateCommand(async () => await ExcuteLoginFaceBook()));
+        private async Task ExcuteLoginFaceBook()
+        {
+            await _loginFacebookService.Login(OnLoginComplete);
+        }
+        private void FacebookLogin()
+        {
+            _loginFacebookService.Login(OnLoginComplete);
+        }
+        private async void OnLoginComplete(Account account, string message)
+        {
+            if (account != null)
+            {
+                
+            }
+            else
+            {
+                await _pageDialogService.DisplayAlertAsync("Error", message, "Ok");
+            }
+        }
+
+        public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, ILoginFacebookService loginFacebookService)
         {
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
+            _loginFacebookService = loginFacebookService;
         }
 
         private async Task ExcuteLogin()

@@ -6,6 +6,7 @@
     xmlns:converters="clr-namespace:BlogApp.Converters"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:prism="http://prismlibrary.com"
+    xmlns:resource="clr-namespace:BlogApp"
     Title="{Binding Title}"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="{AppThemeBinding Light={StaticResource SystemGray6},
@@ -46,28 +47,6 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="3*" />
                                 </Grid.ColumnDefinitions>
-                                <!--<Image
-                                    Grid.RowSpan="2"
-                                    Margin="5"
-                                    Aspect="Fill"
-                                    HeightRequest="50"
-                                    Source="https://clipart-best.com/img/mario/mario-clip-art-5.png"
-                                    WidthRequest="50" />-->
-                                <!--<Image
-                                    Grid.RowSpan="3"
-                                    Aspect="AspectFill"
-                                    HeightRequest="80"
-                                    HorizontalOptions="Center"
-                                    Source="image.png"
-                                    VerticalOptions="Center"
-                                    WidthRequest="80">
-                                    <Image.Clip>
-                                        <EllipseGeometry
-                                            Center="40,40"
-                                            RadiusX="100"
-                                            RadiusY="100" />
-                                    </Image.Clip>
-                                </Image>-->
                                 <Frame
                                     Grid.RowSpan="3"
                                     Padding="0"
@@ -84,10 +63,7 @@
                                         Source="{Binding ThumbnailUrl}"
                                         VerticalOptions="Center"
                                         WidthRequest="80" />
-                                    <!--<Label Text="{Binding ThumbnailUrl}" TextColor="Red" />-->
-                                    <!--<Image Aspect="Fill" Source="{Binding ThumbnailUrl}" />-->
                                 </Frame>
-                                <!--<Label Grid.RowSpan="3" Text="{Binding ThumbnailUrl, StringFormat='{0}.png'}" />-->
                                 <Label
                                     Grid.Column="1"
                                     Margin="0,5,0,0"
@@ -131,7 +107,7 @@
                 BackgroundColor="Red"
                 HorizontalTextAlignment="Center"
                 IsVisible="{Binding IsInternet, Converter={StaticResource isNotInternetConverter}}"
-                Text="Disconnected"
+                Text="{Static resource:AppResource.messageErrorDisconnected}"
                 TextColor="White" />
         </StackLayout>
         <!--<Label Text="Hello" />-->
