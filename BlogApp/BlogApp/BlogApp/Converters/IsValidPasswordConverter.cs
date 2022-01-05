@@ -11,7 +11,6 @@ namespace BlogApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
             var pass = value as string;
             if(pass != null)
             {

@@ -1,7 +1,4 @@
 ﻿using BlogApp.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace BlogApp.Helpers
@@ -25,8 +22,6 @@ namespace BlogApp.Helpers
                     App.Current.UserAppTheme = OSAppTheme.Dark;
                     break;
             }
-
-            // xử lý color nav bar
 
             var nav = App.Current.MainPage as NavigationPage;
 

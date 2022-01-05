@@ -2,6 +2,8 @@
 using Prism.AppModel;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +11,7 @@ using Xamarin.Essentials;
 
 namespace BlogApp.ViewModels
 {
-    public class SettingPageViewModel : BindableBase, IPageLifecycleAware
+    public class SettingPageViewModel : ViewModelBase
     {
         private int _theme = 0;
         public int Theme
@@ -26,16 +28,21 @@ namespace BlogApp.ViewModels
         }
 
         private DelegateCommand<string> _onChangedThemeCommand;
+
+        public SettingPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
+        {
+        }
+
         public DelegateCommand<string> OnChangedThemeCommand =>
             _onChangedThemeCommand ?? (_onChangedThemeCommand = new DelegateCommand<string>(ExecuteChangedTheme));
 
         private void ExecuteChangedTheme(string theme)
         {
-            if (theme.Equals("light"))
+            if (theme.Equals(ContainsKey.ThemeLightKey))
             {
                 Theme = 1;
             }
-            else if (theme.Equals("dark"))
+            else if (theme.Equals(ContainsKey.ThemeDarkKey))
             {
                 Theme = 2;
             }
@@ -45,15 +52,10 @@ namespace BlogApp.ViewModels
             Preferences.Set(ContainsKey.ThemeKey, Theme);
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             Theme = Preferences.Get("theme", 0);
             TheTheme.SetTheme(Theme);
-        }
-
-        public void OnDisappearing()
-        {
-            
         }
     }
 }

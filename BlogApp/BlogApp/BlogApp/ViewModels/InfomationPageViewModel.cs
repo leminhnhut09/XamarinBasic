@@ -10,11 +10,8 @@ using System.Threading.Tasks;
 
 namespace BlogApp.ViewModels
 {
-    public class InfomationPageViewModel : BindableBase, IInitializeAsync
+    public class InfomationPageViewModel : ViewModelBase, IInitializeAsync
     {
-        private INavigationService _navigationService;
-        private IPageDialogService _pageDialogService;
-
         private string _userName = "";
         public string UserName
         {
@@ -37,12 +34,11 @@ namespace BlogApp.ViewModels
 
         private DelegateCommand _onPopNavigationCommand;
         public DelegateCommand OnPopNavigationCommand =>
-            _onPopNavigationCommand ?? (_onPopNavigationCommand = new DelegateCommand(async ()=> await ExecuteOnPopNavigation()));
+           _onPopNavigationCommand ?? (_onPopNavigationCommand = new DelegateCommand(async () => await ExecuteOnPopNavigation()));
 
-        public InfomationPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+        public InfomationPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : 
+            base(navigationService, pageDialogService)
         {
-            _navigationService = navigationService;
-            _pageDialogService = pageDialogService;
         }
 
         private async Task ExecuteOnPopNavigation()
@@ -50,10 +46,10 @@ namespace BlogApp.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add(ContainsKey.Usernamekey, UserName);
             navigationParams.Add(ContainsKey.Passwordkey, Password);
-            var result = await _navigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
+            var result = await NavigationService.NavigateAsync("/MainPage/NavigationPage/InfoPage", navigationParams);
             if (!result.Success)
             {
-                await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể quay lại !", "Đóng");
+                await PageDialogService.DisplayAlertAsync("Thông báo", "Không thể quay lại !", "Đóng");
             }
         }
 

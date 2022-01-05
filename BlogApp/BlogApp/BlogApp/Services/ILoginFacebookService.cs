@@ -9,7 +9,6 @@ namespace BlogApp.Services
     public interface ILoginFacebookService
     {
         Task Login(Action<Account, string> onLoginComplete);
-
         void Logout();
     }
 }

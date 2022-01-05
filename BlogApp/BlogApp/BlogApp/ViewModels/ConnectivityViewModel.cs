@@ -1,15 +1,10 @@
-﻿using Prism.AppModel;
-using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Navigation;
 using Prism.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Essentials;
 
 namespace BlogApp.ViewModels
 {
-    public class ConnectivityViewModel : BindableBase, IPageLifecycleAware
+    public class ConnectivityViewModel : ViewModelBase
     {
         private bool _isInternet;
         public bool IsInternet
@@ -24,7 +19,8 @@ namespace BlogApp.ViewModels
             get { return _blurRatio; }
             set { SetProperty(ref _blurRatio, value); }
         }
-        public ConnectivityViewModel()
+
+        public ConnectivityViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
             GetStatusInternet();
         }
@@ -45,7 +41,7 @@ namespace BlogApp.ViewModels
             }
         }
 
-        public virtual void OnAppearing()
+        public override void OnAppearing()
         {
             Connectivity.ConnectivityChanged += OnConnectivityChanged;
         }
@@ -63,7 +59,7 @@ namespace BlogApp.ViewModels
                 IsInternet = false;
             }
         }
-        public void OnDisappearing()
+        public override void OnDisappearing()
         {
             Connectivity.ConnectivityChanged -= OnConnectivityChanged;
         }

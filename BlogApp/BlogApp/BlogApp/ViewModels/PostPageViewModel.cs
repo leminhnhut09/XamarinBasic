@@ -18,20 +18,13 @@ using Prism.AppModel;
 
 namespace BlogApp.ViewModels
 {
-    public class PostPageViewModel : BindableBase, IPageLifecycleAware, IApplicationLifecycleAware
+    public class PostPageViewModel : ViewModelBase
     {
-        private INavigationService _navigationService;
-        private IPageDialogService _pageDialogService;
         private IAlbumService _albumService;
         private IUserService _userService;
         private IPhotoService _photoService;
 
-        private string _title = "Danh Sách";
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        private bool _isLoading;
 
         private bool _isbusy;
         public bool IsBusy
@@ -73,21 +66,23 @@ namespace BlogApp.ViewModels
         List<Album> AlbumList { get; set; } = new List<Album>();
         public ObservableCollection<Post> PostList { get; set; } = new ObservableCollection<Post>();
 
-        public DelegateCommand<Post> OnItemSelectedCommand { get; set; }
+        private DelegateCommand<Post> _onItemSelectedCommand;
+        public DelegateCommand<Post> OnItemSelectedCommand =>
+            _onItemSelectedCommand ?? (_onItemSelectedCommand = new DelegateCommand<Post>(ExcuteItemSelected));
+
 
         private DelegateCommand _onRefreshingListViewCommand;
         public DelegateCommand OnRefreshingListViewCommand =>
             _onRefreshingListViewCommand ?? (_onRefreshingListViewCommand = new DelegateCommand(async () => await ExcuteRefreshingListView()));
 
-        public PostPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService,
-            IAlbumService albumService, IUserService userService, IPhotoService photoService)
+        public PostPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, 
+            IAlbumService albumService, IUserService userService, IPhotoService photoService) : 
+            base(navigationService, pageDialogService)
         {
-            _navigationService = navigationService;
-            _pageDialogService = pageDialogService;
             _albumService = albumService;
             _userService = userService;
             _photoService = photoService;
-            OnItemSelectedCommand = new DelegateCommand<Post>(ExcuteItemSelected);
+            Title = "Danh Sách";
         }
 
         private async Task ExcuteRefreshingListView()
@@ -103,18 +98,22 @@ namespace BlogApp.ViewModels
             {
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("post", post);
-                var result = await _navigationService.NavigateAsync(nameof(DetailPostPage), navigationParams);
+                var result = await NavigationService.NavigateAsync(nameof(DetailPostPage), navigationParams);
                 if (!result.Success)
                 {
-                    await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể chuyển trang", "Đóng");
+                    await PageDialogService.DisplayAlertAsync("Thông báo", "Không thể chuyển trang", "Đóng");
                 }
             }
         }
-        public async void OnAppearing()
+        public override async void OnAppearing()
         {
-            GetStatusInternet();
-            await CallApi();
-            Connectivity.ConnectivityChanged += OnConnectivityChanged;
+            if (!_isLoading)
+            {
+                GetStatusInternet();
+                await CallApi();
+                Connectivity.ConnectivityChanged += OnConnectivityChanged;
+                _isLoading = true;
+            } 
         }
 
         private void OnConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
@@ -139,7 +138,7 @@ namespace BlogApp.ViewModels
             PostList.Clear();
         }
 
-        public void OnDisappearing()
+        public override void OnDisappearing()
         {
             Connectivity.ConnectivityChanged -= OnConnectivityChanged;
         }
@@ -232,13 +231,13 @@ namespace BlogApp.ViewModels
             }
         }
 
-        public async void OnResume()
+        public override async void OnResume()
         {
             GetStatusInternet();
             await CallApi();
         }
 
-        public void OnSleep()
+        public override void OnSleep()
         {
             RefreshData();
         }

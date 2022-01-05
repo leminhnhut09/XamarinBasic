@@ -1,8 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace BlogApp.Models
 {
     public class FacebookProfile
@@ -39,7 +35,6 @@ namespace BlogApp.Models
         [JsonProperty("is_silhouette")]
         public bool Is_Silhouette { get; set; }
         public int Height { get; set; }
-
         public string Url { get; set; }
         public int Width { get; set; }
     }

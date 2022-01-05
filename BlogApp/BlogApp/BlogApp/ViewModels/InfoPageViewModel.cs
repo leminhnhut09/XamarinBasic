@@ -3,14 +3,12 @@ using BlogApp.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Prism.Services;
 using System.Threading.Tasks;
 
 namespace BlogApp.ViewModels
 {
-    public class InfoPageViewModel : BindableBase, IInitializeAsync
+    public class InfoPageViewModel : ViewModelBase, IInitializeAsync
     {
         private string _avatar = "image.png";
         public string Avatar
@@ -44,6 +42,12 @@ namespace BlogApp.ViewModels
             get { return accountLogin; }
             set { SetProperty(ref accountLogin, value); }
         }
+
+        public InfoPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : 
+            base(navigationService, pageDialogService)
+        {
+        }
+        
         public async Task InitializeAsync(INavigationParameters parameters)
         {
             if (parameters.ContainsKey(ContainsKey.Usernamekey))

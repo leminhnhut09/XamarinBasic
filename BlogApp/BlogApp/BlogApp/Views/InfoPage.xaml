@@ -15,7 +15,7 @@
                 BackgroundColor="Transparent"
                 HeightRequest="200"
                 HorizontalOptions="Center"
-                Source="{Binding AccountLogin.Picture}"
+                Source="{Binding AccountLogin.Picture, FallbackValue='image.png', TargetNullValue='image.png'}"
                 VerticalOptions="Center"
                 WidthRequest="200">
                 <Image.Clip>

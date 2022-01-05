@@ -1,32 +1,31 @@
 ﻿using BlogApp.Models;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BlogApp.ViewModels
 {
-    public class DetailPostPageViewModel : BindableBase, INavigationAware
+    public class DetailPostPageViewModel : ViewModelBase
     {
         const string PostKey = "post";
-        private string _title = "Chi tiết";
-        public string Title 
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
         private Post _postItem;
+
+        public DetailPostPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : 
+            base(navigationService, pageDialogService)
+        {
+            Title = "Chi tiết";
+        }
+
         public Post PostItem
         {
             get { return _postItem; }
             set { SetProperty(ref _postItem, value); }
         }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey(PostKey))
             {

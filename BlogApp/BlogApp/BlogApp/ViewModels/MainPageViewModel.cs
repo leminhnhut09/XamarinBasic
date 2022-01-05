@@ -6,19 +6,13 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace BlogApp.ViewModels
 {
-    public class MainPageViewModel : BindableBase, IInitializeAsync
+    public class MainPageViewModel : ViewModelBase, IInitializeAsync
     {
-        private INavigationService _navigationService;
-        private IPageDialogService _pageDialogService;
         private ILoginFacebookService _loginFacebookService;
 
         private string _userName = "";
@@ -48,22 +42,23 @@ namespace BlogApp.ViewModels
         private DelegateCommand _onLogOutCommand;
         public DelegateCommand OnLogOutCommand =>
             _onLogOutCommand ?? (_onLogOutCommand = new DelegateCommand(async () => await ExcuteLogout()));
-        public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, ILoginFacebookService loginFacebookService)
+
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, ILoginFacebookService loginFacebookService) : 
+            base(navigationService, pageDialogService)
         {
-            _navigationService = navigationService;
-            _pageDialogService = pageDialogService;
             _loginFacebookService = loginFacebookService;
         }
+
         private async void ExecuteNavigation(string parameter)
         {
             var navigationParams = new NavigationParameters();
             navigationParams.Add(ContainsKey.Usernamekey, UserName);
             navigationParams.Add(ContainsKey.Passwordkey, Password);
 
-            var result = await _navigationService.NavigateAsync($"NavigationPage/{parameter}", navigationParams);
+            var result = await NavigationService.NavigateAsync($"NavigationPage/{parameter}", navigationParams);
             if (!result.Success)
             {
-                await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể chuyển trang", "Đóng");
+                await PageDialogService.DisplayAlertAsync("Thông báo", "Không thể chuyển trang", "Đóng");
             }
         }
 
@@ -84,7 +79,7 @@ namespace BlogApp.ViewModels
         }
         async Task ExcuteLogout()
         {
-            bool isLogout = await _pageDialogService.DisplayAlertAsync("Thông báo", "Bạn có muốn thoát ?", "Đồng ý", "Từ chối");
+            bool isLogout = await PageDialogService.DisplayAlertAsync("Thông báo", "Bạn có muốn thoát ?", "Đồng ý", "Từ chối");
             if (isLogout)
             {
                 if (Preferences.ContainsKey(ContainsKey.RememberKey))
@@ -92,10 +87,10 @@ namespace BlogApp.ViewModels
                     Preferences.Clear();
                 }
                 _loginFacebookService.Logout();
-                var result = await _navigationService.NavigateAsync($"/{nameof(LoginPage)}");
+                var result = await NavigationService.NavigateAsync($"/{nameof(LoginPage)}");
                 if (!result.Success)
                 {
-                    await _pageDialogService.DisplayAlertAsync("Thông báo", "Không thể đăng xuất", "Đóng");
+                    await PageDialogService.DisplayAlertAsync("Thông báo", "Không thể đăng xuất", "Đóng");
                 }
             }
         }

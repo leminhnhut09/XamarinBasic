@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlogApp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -10,19 +11,19 @@ namespace BlogApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int theme = (int)value;
+            int? theme = value as int?;
             var key = parameter as string;
-            if(key != null)
+            if(key != null && theme != null)
             {
-                if (key.Equals("system") && theme == 0)
+                if (key.Equals(ContainsKey.ThemeSystemKey) && theme == 0)
                 {
                     return true;
                 }
-                if (key.Equals("light") && theme == 1)
+                if (key.Equals(ContainsKey.ThemeLightKey) && theme == 1)
                 {
                     return true;
                 }
-                if (key.Equals("dark") && theme == 2)
+                if (key.Equals(ContainsKey.ThemeDarkKey) && theme == 2)
                 {
                     return true;
                 }

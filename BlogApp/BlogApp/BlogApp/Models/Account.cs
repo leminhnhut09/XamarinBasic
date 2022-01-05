@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BlogApp.Models
+﻿namespace BlogApp.Models
 {
     public class Account
     {

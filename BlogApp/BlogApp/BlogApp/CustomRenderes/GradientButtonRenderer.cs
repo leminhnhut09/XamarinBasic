@@ -35,20 +35,5 @@ namespace BlogApp.CustomRenderes
                 SetValue(EndColorProperty, value);
             }
         }
-
-        //public static readonly BindableProperty BoderRadiusProperty =
-        //    BindableProperty.Create("BoderRadius", typeof(float), typeof(GradientButtonRenderer), 0f);
-        //public float BoderRadius
-        //{
-        //    get
-        //    {
-        //        return (float)GetValue(BoderRadiusProperty);
-        //    }
-        //    set
-        //    {
-        //        SetValue(BoderRadiusProperty, value);
-        //    }
-        //}
-    
     }
 }
