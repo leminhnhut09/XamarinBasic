@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinEntity.Views.StudentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:XamarinEntity.Converters"
+    xmlns:prism="http://prismlibrary.com"
+    x:Name="ManagerPage"
+    Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ReverseGenderConverter x:Key="reverseGenderConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{prism:NavigateTo 'AddStudentPage'}" Text="Add" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding StudentList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                BackgroundColor="#09C"
+                                                Command="{Binding Path=BindingContext.OnNavigationCommand, Source={x:Reference Name=ManagerPage}}"
+                                                CommandParameter="{Binding .}"
+                                                IconImageSource="image.png"
+                                                Text="Edit" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                BackgroundColor="#CC0000"
+                                                Command="{Binding Path=BindingContext.OnDeleteStudentCommand, Source={x:Reference Name=ManagerPage}}"
+                                                CommandParameter="{Binding .}"
+                                                IconImageSource="image.png"
+                                                Text="Delete" />
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+                                    <Grid Padding="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image
+                                            Grid.RowSpan="3"
+                                            Aspect="Fill"
+                                            HeightRequest="100"
+                                            Source="{Binding Avatar}"
+                                            WidthRequest="100" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Id, StringFormat='Mã sinh viên: {0}'}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Name, StringFormat='Tên sinh viên: {0}'}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding Sex, StringFormat='Giới tính: {0}', Converter={StaticResource reverseGenderConverter}, Mode=TwoWay}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            Text="{Binding Birthday, StringFormat='Ngày sinh: {0:dd/MM/yyyy}'}" />
+                                    </Grid>
+                                </SwipeView>
+                            </StackLayout>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

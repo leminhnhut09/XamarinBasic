@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinEntity.Views.AddStudentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:XamarinEntity.Converters"
+    xmlns:resource="clr-namespace:XamarinEntity"
+    Title="Form add">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding OnAddStudentCommand}" Text="Save" />
+        <ToolbarItem Command="{Binding OnUpdateStudentCommand}" Text="Update" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <converters:ReverseGenderConverter x:Key="reverseGenderConverter" />
+        <converters:ReverseBooleanConverter x:Key="reverseBooleanConverter" />
+        <ResourceDictionary>
+            <Style x:Key="labelTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="5" VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Row="0"
+                Style="{StaticResource labelTextStyle}"
+                Text="{x:Static resource:AppResource.textIdStudent}" />
+            <Entry
+                Grid.Row="1"
+                IsEnabled="{Binding IsUpdate, Converter={StaticResource reverseBooleanConverter}}"
+                Placeholder="{x:Static resource:AppResource.subTextIdStudent}"
+                Text="{Binding CurrentStudent.Id, TargetNullValue='', Mode=TwoWay}" />
+
+            <Label
+                Grid.Row="2"
+                Style="{StaticResource labelTextStyle}"
+                Text="{x:Static resource:AppResource.textNameStudent}" />
+            <Entry
+                Grid.Row="3"
+                Placeholder="{x:Static resource:AppResource.subTextNameStudent}"
+                Text="{Binding CurrentStudent.Name, TargetNullValue='', Mode=TwoWay}" />
+
+            <Label
+                Grid.Row="4"
+                Style="{StaticResource labelTextStyle}"
+                Text="{x:Static resource:AppResource.textGenderStudent}" />
+            <Picker Grid.Row="5" SelectedItem="{Binding CurrentStudent.Sex, TargetNullValue='', Converter={StaticResource reverseGenderConverter}}">
+                <Picker.Items>
+                    <x:String>Nam</x:String>
+                    <x:String>Nữ</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label
+                Grid.Row="6"
+                Style="{StaticResource labelTextStyle}"
+                Text="{x:Static resource:AppResource.textBirthdayStudent}" />
+            <DatePicker Grid.Row="7" Date="{Binding CurrentStudent.Birthday, Mode=TwoWay}" />
+
+            <Label
+                Grid.Row="8"
+                Style="{StaticResource labelTextStyle}"
+                Text="{x:Static resource:AppResource.textChooseAvatar}" />
+            <Button
+                Grid.Row="9"
+                Command="{Binding OnChoosePhotoCommand}"
+                Text="{x:Static resource:AppResource.textChooseAvatar}" />
+            <Image
+                Grid.Row="10"
+                Aspect="AspectFill"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                Source="{Binding CurrentStudent.Avatar, Mode=TwoWay}"
+                WidthRequest="120" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
