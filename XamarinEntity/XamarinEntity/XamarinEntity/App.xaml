@@ -4,12 +4,16 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
-    <Application.Resources>
+    <prism:PrismApplication.Resources>
         <ResourceDictionary>
             <Style x:Key="labelTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
+            <!--<Style x:Key="messageLabel" TargetType="Label">
+                <Setter Property="Margin" Value="10, 0,0,0" />
+                <Setter Property="TextColor" Value="Red" />
+            </Style>-->
         </ResourceDictionary>
-    </Application.Resources>
+    </prism:PrismApplication.Resources>
 </prism:PrismApplication>

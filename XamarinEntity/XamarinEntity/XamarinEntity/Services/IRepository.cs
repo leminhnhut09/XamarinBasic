@@ -13,7 +13,5 @@ namespace XamarinEntity.Services
         Task<bool> DeleteAsync(T entity);
         Task<T> GetAsync(int id);
         Task<IEnumerable<T>> GetAsync();
-        Task<IEnumerable<Student>> GetListStudentAsync(int idGrade);
-
     }
 }

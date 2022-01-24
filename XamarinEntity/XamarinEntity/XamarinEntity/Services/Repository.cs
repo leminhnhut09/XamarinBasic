@@ -73,11 +73,6 @@ namespace XamarinEntity.Services
             return await Task.FromResult(_dbSet.ToList());
         }
 
-        public async Task<IEnumerable<Student>> GetListStudentAsync(int idGrade)
-        {
-            return await Task.FromResult(_dbContext.Students.Where(t => t.GradeId == idGrade).ToList());
-        }
-
         public async Task<bool> UpdateAsync(T entity)
         {
             try

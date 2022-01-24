@@ -13,16 +13,24 @@
     <ContentPage.Resources>
         <converters:ReverseGenderConverter x:Key="reverseGenderConverter" />
         <converters:ReverseBooleanConverter x:Key="reverseBooleanConverter" />
+        <converters:CheckInputLengthConverter x:Key="checkInputLengthConverter" />
         <ResourceDictionary>
             <Style x:Key="labelTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style x:Key="messageLabel" TargetType="Label">
+                <Setter Property="Margin" Value="10, 0,0,0" />
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="IsVisible" Value="False" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid Padding="5" VerticalOptions="CenterAndExpand">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -41,25 +49,54 @@
                 Style="{StaticResource labelTextStyle}"
                 Text="{x:Static resource:AppResource.textIdStudent}" />
             <Entry
+                x:Name="idEntry"
                 Grid.Row="1"
                 IsEnabled="{Binding IsUpdate, Converter={StaticResource reverseBooleanConverter}}"
                 Placeholder="{x:Static resource:AppResource.subTextIdStudent}"
                 Text="{Binding CurrentStudent.Id, TargetNullValue='', Mode=TwoWay}" />
-
             <Label
                 Grid.Row="2"
+                Style="{StaticResource messageLabel}"
+                Text="{x:Static resource:AppResource.textNoteIdStudent}">
+                <Label.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference idEntry}, Path=Text.Length}"
+                        TargetType="Label"
+                        Value="0">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+
+            <Label
+                Grid.Row="3"
                 Style="{StaticResource labelTextStyle}"
                 Text="{x:Static resource:AppResource.textNameStudent}" />
             <Entry
-                Grid.Row="3"
+                x:Name="nameEntry"
+                Grid.Row="4"
                 Placeholder="{x:Static resource:AppResource.subTextNameStudent}"
                 Text="{Binding CurrentStudent.Name, TargetNullValue='', Mode=TwoWay}" />
+            <Label
+                Grid.Row="5"
+                Style="{StaticResource messageLabel}"
+                Text="{x:Static resource:AppResource.textNoteNameStudent}">
+                <Label.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference nameEntry}, Converter={StaticResource checkInputLengthConverter}, Path=Text}"
+                        TargetType="Label"
+                        Value="False">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
 
             <Label
-                Grid.Row="4"
+                Grid.Row="6"
                 Style="{StaticResource labelTextStyle}"
                 Text="{x:Static resource:AppResource.textGenderStudent}" />
-            <Picker Grid.Row="5" SelectedItem="{Binding CurrentStudent.Sex, TargetNullValue='', Converter={StaticResource reverseGenderConverter}}">
+            <Picker Grid.Row="7" SelectedItem="{Binding CurrentStudent.Sex, TargetNullValue='', Converter={StaticResource reverseGenderConverter}}">
                 <Picker.Items>
                     <x:String>Nam</x:String>
                     <x:String>Nữ</x:String>
@@ -67,21 +104,21 @@
             </Picker>
 
             <Label
-                Grid.Row="6"
+                Grid.Row="8"
                 Style="{StaticResource labelTextStyle}"
                 Text="{x:Static resource:AppResource.textBirthdayStudent}" />
-            <DatePicker Grid.Row="7" Date="{Binding CurrentStudent.Birthday, Mode=TwoWay}" />
+            <DatePicker Grid.Row="9" Date="{Binding CurrentStudent.Birthday, Mode=TwoWay}" />
 
             <Label
-                Grid.Row="8"
+                Grid.Row="10"
                 Style="{StaticResource labelTextStyle}"
                 Text="{x:Static resource:AppResource.textChooseAvatar}" />
             <Button
-                Grid.Row="9"
+                Grid.Row="11"
                 Command="{Binding OnChoosePhotoCommand}"
                 Text="{x:Static resource:AppResource.textChooseAvatar}" />
             <Image
-                Grid.Row="10"
+                Grid.Row="12"
                 Aspect="AspectFill"
                 HeightRequest="120"
                 HorizontalOptions="Center"

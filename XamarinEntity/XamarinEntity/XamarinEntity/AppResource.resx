@@ -150,4 +150,16 @@
   <data name="textNameStudent" xml:space="preserve">
     <value>Tên sinh viên</value>
   </data>
+  <data name="textNoteIdGrade" xml:space="preserve">
+    <value>Vui lòng nhập mã lớp</value>
+  </data>
+  <data name="textNoteIdStudent" xml:space="preserve">
+    <value>Vui lòng nhập mã sinh viên</value>
+  </data>
+  <data name="textNoteNameGrade" xml:space="preserve">
+    <value>Vui lòng nhập tên lớp &gt; 5 ký tự</value>
+  </data>
+  <data name="textNoteNameStudent" xml:space="preserve">
+    <value>Vui lòng nhập tên sinh viên &gt; 5 ký tự</value>
+  </data>
 </root>

@@ -96,9 +96,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\edit.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\XamarinEntity\XamarinEntity.csproj">
       <Project>{D33C194F-CBE2-4209-A444-C5F3A94F9A6B}</Project>
       <Name>XamarinEntity</Name>
@@ -106,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

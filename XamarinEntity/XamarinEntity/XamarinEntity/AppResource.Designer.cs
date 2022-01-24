@@ -158,5 +158,41 @@ namespace XamarinEntity {
                 return ResourceManager.GetString("textNameStudent", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vui lòng nhập mã lớp.
+        /// </summary>
+        internal static string textNoteIdGrade {
+            get {
+                return ResourceManager.GetString("textNoteIdGrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vui lòng nhập mã sinh viên.
+        /// </summary>
+        internal static string textNoteIdStudent {
+            get {
+                return ResourceManager.GetString("textNoteIdStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vui lòng nhập tên lớp &gt; 5 ký tự.
+        /// </summary>
+        internal static string textNoteNameGrade {
+            get {
+                return ResourceManager.GetString("textNoteNameGrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vui lòng nhập tên sinh viên &gt; 5 ký tự.
+        /// </summary>
+        internal static string textNoteNameStudent {
+            get {
+                return ResourceManager.GetString("textNoteNameStudent", resourceCulture);
+            }
+        }
     }
 }

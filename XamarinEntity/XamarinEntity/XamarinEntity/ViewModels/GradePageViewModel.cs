@@ -89,6 +89,7 @@ namespace XamarinEntity.ViewModels
         private async Task ExecuteAddGrade()
         {
             await _gradeService.AddAsync(CurrentGrade);
+            CurrentGrade = new Grade();
             await LoadData();
         }
         private async Task ExecuteUpdateGrade()
@@ -99,15 +100,18 @@ namespace XamarinEntity.ViewModels
 
         private async Task ExecuteDeleteGrade(Grade grade)
         {
-            await _gradeService.DeleteAsync(grade);
-            await LoadData();
+            var result = await PageDialogService.DisplayAlertAsync("Thông báo", "Bạn có muốn xóa lớp (sinh viên thuộc lớp)", "Đồng ý", "Từ chối");
+            if (result)
+            {
+                await _gradeService.DeleteAsync(grade);
+                await LoadData();
+            }
         }
         public async override void OnAppearing()
         {
             await LoadData();
         }
 
-       
         private async Task ExcuteBackUp()
         {
             try
@@ -136,7 +140,7 @@ namespace XamarinEntity.ViewModels
             }
             else
             {
-                await PageDialogService.DisplayAlertAsync("Thông báo", "Bạn chưa sao lưu", "Đóng");
+                await PageDialogService.DisplayAlertAsync("Thông báo", "Bạn chưa có bản sao lưu", "Đóng");
             }
         }
     }

@@ -3,9 +3,32 @@
     x:Class="XamarinEntity.Views.GradePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:XamarinEntity.Converters"
     xmlns:prism="http://prismlibrary.com"
     xmlns:resource="clr-namespace:XamarinEntity"
     x:Name="ManagerGradePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:CheckInputLengthConverter x:Key="checkInputLengthConverter" />
+            <Style x:Key="crudButton" TargetType="Button">
+                <Setter Property="InputTransparent" Value="True" />
+                <Style.Triggers>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference idLabel}, Path=IsVisible}" Value="False" />
+                            <BindingCondition Binding="{Binding Source={x:Reference nameLabel}, Path=IsVisible}" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="InputTransparent" Value="False" />
+                    </MultiTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="messageLabel" TargetType="Label">
+                <Setter Property="Margin" Value="10, 0,0,0" />
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding RestoreCommand}" Text="Restore" />
         <ToolbarItem Command="{Binding BackupCommand}" Text="Backup" />
@@ -33,34 +56,68 @@
                     Grid.ColumnSpan="2"
                     Text="{x:Static resource:AppResource.textIdGrade}" />
                 <Entry
+                    x:Name="idEntry"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
                     Placeholder="{x:Static resource:AppResource.subTextIdGrade}"
                     Text="{Binding CurrentGrade.GradeId, TargetNullValue='', Mode=TwoWay}" />
+                <Label
+                    x:Name="idLabel"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource messageLabel}"
+                    Text="{x:Static resource:AppResource.textNoteIdGrade}">
+                    <Label.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference idEntry}, Path=Text.Length}"
+                            TargetType="Label"
+                            Value="0">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
 
                 <Label
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.ColumnSpan="2"
                     Text="{x:Static resource:AppResource.textNameGrade}" />
                 <Entry
-                    Grid.Row="3"
+                    x:Name="nameEntry"
+                    Grid.Row="4"
                     Grid.ColumnSpan="2"
                     Placeholder="{x:Static resource:AppResource.subTextNameGrade}"
                     Text="{Binding CurrentGrade.GradeName, TargetNullValue='', Mode=TwoWay}" />
+                <Label
+                    x:Name="nameLabel"
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource messageLabel}"
+                    Text="{x:Static resource:AppResource.textNoteNameGrade}">
+                    <Label.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference nameEntry}, Converter={StaticResource checkInputLengthConverter}, Path=Text}"
+                            TargetType="Label"
+                            Value="False">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
 
                 <Button
-                    Grid.Row="4"
+                    Grid.Row="6"
                     Grid.Column="0"
                     Command="{Binding OnAddGradeCommand}"
+                    Style="{StaticResource crudButton}"
                     Text="Thêm" />
                 <Button
-                    Grid.Row="4"
+                    Grid.Row="6"
                     Grid.Column="1"
                     Command="{Binding OnUpdateCommand}"
+                    Style="{StaticResource crudButton}"
                     Text="Cập nhật" />
                 <ListView
-                    Grid.Row="5"
-                    Grid.ColumnSpan="3"
+                    Grid.Row="7"
+                    Grid.ColumnSpan="2"
                     HasUnevenRows="True"
                     ItemsSource="{Binding GradeList}">
                     <ListView.Header>
@@ -91,7 +148,6 @@
                                             FontSize="Medium"
                                             HorizontalTextAlignment="Center"
                                             Text="{Binding GradeId}" />
-
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
@@ -107,7 +163,7 @@
                                             CommandParameter="{Binding .}"
                                             HeightRequest="30"
                                             HorizontalOptions="End"
-                                            Source="image.png"
+                                            Source="edit.png"
                                             WidthRequest="30" />
                                         <ImageButton
                                             Grid.Row="0"
@@ -117,7 +173,7 @@
                                             CommandParameter="{Binding .}"
                                             HeightRequest="30"
                                             HorizontalOptions="Center"
-                                            Source="image.png"
+                                            Source="delete.png"
                                             WidthRequest="30" />
                                     </Grid>
                                 </StackLayout>
