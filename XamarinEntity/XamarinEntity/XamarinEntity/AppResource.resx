@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="subTextIdGrade" xml:space="preserve">
+    <value>Nhập mã lớp</value>
+  </data>
   <data name="subTextIdStudent" xml:space="preserve">
     <value>Nhập mã sinh viên</value>
+  </data>
+  <data name="subTextNameGrade" xml:space="preserve">
+    <value>Nhập tên lớp</value>
   </data>
   <data name="subTextNameStudent" xml:space="preserve">
     <value>Nhập tên sinh viên</value>
@@ -132,8 +138,14 @@
   <data name="textGenderStudent" xml:space="preserve">
     <value>Giới tính</value>
   </data>
+  <data name="textIdGrade" xml:space="preserve">
+    <value>Mã lớp</value>
+  </data>
   <data name="textIdStudent" xml:space="preserve">
     <value>Mã sinh viên</value>
+  </data>
+  <data name="textNameGrade" xml:space="preserve">
+    <value>Tên lớp</value>
   </data>
   <data name="textNameStudent" xml:space="preserve">
     <value>Tên sinh viên</value>

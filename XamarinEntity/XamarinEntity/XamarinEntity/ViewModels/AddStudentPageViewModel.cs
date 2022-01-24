@@ -28,6 +28,12 @@ namespace XamarinEntity.ViewModels
             get { return _currentStudent; }
             set { SetProperty(ref _currentStudent, value); }
         }
+        private Grade _currentGrade;
+        public Grade CurrentGrade
+        {
+            get { return _currentGrade; }
+            set { SetProperty(ref _currentGrade, value); }
+        }
 
         private DelegateCommand _onAddStudentCommand;
         public DelegateCommand OnAddStudentCommand =>
@@ -52,10 +58,13 @@ namespace XamarinEntity.ViewModels
         {
             if (CurrentStudent != null)
             {
-                var result = await _studentService.AddStudentAsync(CurrentStudent);
+                var result = await _studentService.AddAsync(CurrentStudent);
                 if (result)
                 {
-                    await NavigationService.GoBackAsync();
+                    var navigationParams = new NavigationParameters();
+                    navigationParams.Add(Constant.GradeKey, CurrentGrade);
+
+                    await NavigationService.GoBackAsync(navigationParams);
                 }
                 else
                 {
@@ -66,7 +75,7 @@ namespace XamarinEntity.ViewModels
 
         private async Task ExecuteUpdateStudent()
         {
-            var result = await _studentService.UpdateStudentAsync(CurrentStudent);
+            var result = await _studentService.UpdateAsync(CurrentStudent);
             if (result)
             {
                 await NavigationService.GoBackAsync();
@@ -116,7 +125,7 @@ namespace XamarinEntity.ViewModels
             using (var newStream = File.OpenWrite(newFile))
                 await stream.CopyToAsync(newStream);
             CurrentStudent.Avatar = newFile;
-            RaisePropertyChanged("CurrentStudent");
+            //RaisePropertyChanged("CurrentStudent");
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
@@ -125,6 +134,11 @@ namespace XamarinEntity.ViewModels
             {
                 CurrentStudent = parameters.GetValue<Student>(Constant.StudentKey);
                 IsUpdate = true;
+            }
+            if (parameters.ContainsKey(Constant.GradeKey))
+            {
+                CurrentGrade = parameters.GetValue<Grade>(Constant.GradeKey);
+                CurrentStudent.GradeId = CurrentGrade.GradeId;
             }
         }
     }

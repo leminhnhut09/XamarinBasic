@@ -13,7 +13,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{prism:NavigateTo 'AddStudentPage'}" Text="Add" />
+        <ToolbarItem Command="{Binding OnAddNavigationCommand}" Text="Add" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -76,7 +76,7 @@
                                         <Label
                                             Grid.Row="2"
                                             Grid.Column="2"
-                                            Text="{Binding Birthday, StringFormat='Ngày sinh: {0:dd/MM/yyyy}'}" />
+                                            Text="{Binding BirthDay, StringFormat='Ngày sinh: {0:dd/MM/yyyy}'}" />
                                     </Grid>
                                 </SwipeView>
                             </StackLayout>

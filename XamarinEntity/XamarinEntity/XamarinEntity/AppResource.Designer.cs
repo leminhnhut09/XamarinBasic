@@ -61,11 +61,29 @@ namespace XamarinEntity {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nhập mã lớp.
+        /// </summary>
+        internal static string subTextIdGrade {
+            get {
+                return ResourceManager.GetString("subTextIdGrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nhập mã sinh viên.
         /// </summary>
         internal static string subTextIdStudent {
             get {
                 return ResourceManager.GetString("subTextIdStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nhập tên lớp.
+        /// </summary>
+        internal static string subTextNameGrade {
+            get {
+                return ResourceManager.GetString("subTextNameGrade", resourceCulture);
             }
         }
         
@@ -106,11 +124,29 @@ namespace XamarinEntity {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mã lớp.
+        /// </summary>
+        internal static string textIdGrade {
+            get {
+                return ResourceManager.GetString("textIdGrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã sinh viên.
         /// </summary>
         internal static string textIdStudent {
             get {
                 return ResourceManager.GetString("textIdStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên lớp.
+        /// </summary>
+        internal static string textNameGrade {
+            get {
+                return ResourceManager.GetString("textNameGrade", resourceCulture);
             }
         }
         

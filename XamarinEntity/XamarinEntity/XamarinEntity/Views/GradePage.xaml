@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinEntity.Views.GradePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:resource="clr-namespace:XamarinEntity"
+    x:Name="ManagerGradePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding RestoreCommand}" Text="Restore" />
+        <ToolbarItem Command="{Binding BackupCommand}" Text="Backup" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="5" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Text="{x:Static resource:AppResource.textIdGrade}" />
+                <Entry
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Placeholder="{x:Static resource:AppResource.subTextIdGrade}"
+                    Text="{Binding CurrentGrade.GradeId, TargetNullValue='', Mode=TwoWay}" />
+
+                <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Text="{x:Static resource:AppResource.textNameGrade}" />
+                <Entry
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Placeholder="{x:Static resource:AppResource.subTextNameGrade}"
+                    Text="{Binding CurrentGrade.GradeName, TargetNullValue='', Mode=TwoWay}" />
+
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Command="{Binding OnAddGradeCommand}"
+                    Text="Thêm" />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Command="{Binding OnUpdateCommand}"
+                    Text="Cập nhật" />
+                <ListView
+                    Grid.Row="5"
+                    Grid.ColumnSpan="3"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding GradeList}">
+                    <ListView.Header>
+                        <Label
+                            Margin="0,10,0,5"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center"
+                            Text="Danh sách lớp" />
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Grid Margin="4" BackgroundColor="White">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Margin="4"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding GradeId}" />
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="4"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium"
+                                            Text="{Binding GradeName}" />
+                                        <ImageButton
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            Aspect="Fill"
+                                            Command="{Binding Path=BindingContext.OnBindingUpdateCommand, Source={x:Reference Name=ManagerGradePage}}"
+                                            CommandParameter="{Binding .}"
+                                            HeightRequest="30"
+                                            HorizontalOptions="End"
+                                            Source="image.png"
+                                            WidthRequest="30" />
+                                        <ImageButton
+                                            Grid.Row="0"
+                                            Grid.Column="3"
+                                            Aspect="Fill"
+                                            Command="{Binding Path=BindingContext.OnDeleteCommand, Source={x:Reference Name=ManagerGradePage}}"
+                                            CommandParameter="{Binding .}"
+                                            HeightRequest="30"
+                                            HorizontalOptions="Center"
+                                            Source="image.png"
+                                            WidthRequest="30" />
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <prism:EventToCommandBehavior
+                            Command="{Binding OnNavigationCommand}"
+                            EventArgsParameterPath="Item"
+                            EventName="ItemTapped" />
+                    </ListView.Behaviors>
+                </ListView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

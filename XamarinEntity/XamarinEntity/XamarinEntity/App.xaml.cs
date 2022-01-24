@@ -4,6 +4,7 @@ using Prism.Plugin.Popups;
 using Prism.Unity;
 using System;
 using Xamarin.Forms;
+using XamarinEntity.Models;
 using XamarinEntity.Services;
 using XamarinEntity.ViewModels;
 using XamarinEntity.Views;
@@ -18,7 +19,7 @@ namespace XamarinEntity
 
         protected async override void OnInitialized()
         {
-            var result = await NavigationService.NavigateAsync("NavigationPage/StudentPage");
+            var result = await NavigationService.NavigateAsync("NavigationPage/GradePage");
             if (!result.Success)
             {
                 Console.WriteLine("Navigation fail!");
@@ -27,18 +28,15 @@ namespace XamarinEntity
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-
             containerRegistry.RegisterPopupNavigationService();
-            //containerRegistry.RegisterPopupDialogService();
-            //containerRegistry.RegisterDialog<TestPage>();
-
             containerRegistry.RegisterForNavigation<StudentPage, StudentPageViewModel>();
-            //containerRegistry.RegisterForNavigation<AddStudentPopup, AddStudentPopupViewModel>();
             containerRegistry.RegisterForNavigation<AddStudentPage, AddStudentPageViewModel>();
-
+            containerRegistry.RegisterForNavigation<GradePage, GradePageViewModel>();
 
             // Service
             containerRegistry.Register<IStudentService, StudentService>();
+            containerRegistry.Register<IGradeService, GradeService>();
+
         }
 
         protected override void OnResume()
